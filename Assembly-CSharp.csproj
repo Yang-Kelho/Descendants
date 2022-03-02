@@ -56,12 +56,12 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\DataScripts\PlayerRunData.cs" />
     <Compile Include="Assets\Scripts\DataScripts\PlayerCredentialData.cs" />
+    <Compile Include="Assets\Scripts\DefaultProjectileScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\TestWeapon.cs" />
     <Compile Include="Assets\Scripts\DataScripts\PlayerBuildData.cs" />
     <Compile Include="Assets\Scripts\TestEnemyScriptableObject.cs" />
-    <Compile Include="Assets\Scripts\TestWeapon.cs" />
-    <Compile Include="Assets\Scripts\DefaultProjectileScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\DataScripts\PlayerRunData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\InterfaceElements\TextMesh Pro\Shaders\TMPro.cginc" />
