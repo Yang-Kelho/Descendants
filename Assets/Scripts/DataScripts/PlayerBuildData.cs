@@ -6,12 +6,12 @@ public class PlayerBuildData
     public string weaponName;
     public string itemName;
 
-    public string toJson()
+    public string ConvertToJson()
     {
         return JsonUtility.ToJson(this);
     }
 
-    public PlayerBuildData parse(string json)
+    public PlayerBuildData Parse(string json)
     {
         return JsonUtility.FromJson<PlayerBuildData>(json);
     }

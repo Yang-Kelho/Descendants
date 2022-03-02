@@ -6,12 +6,12 @@ public class PlayerCredentialData
     public string passwordSalt;
     public string passwordHash;
 
-    public string toJson()
+    public string ConvertToJson()
     {
         return JsonUtility.ToJson(this);
     }
 
-    public PlayerCredentialData parse(string json)
+    public PlayerCredentialData Parse(string json)
     {
         return JsonUtility.FromJson<PlayerCredentialData>(json);
     }

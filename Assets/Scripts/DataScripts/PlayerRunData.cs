@@ -6,12 +6,12 @@ public class PlayerRunData
     public string playerName;
     public int score;
 
-    public string toJson()
+    public string ConvertToJson()
     {
         return JsonUtility.ToJson(this);
     }
 
-    public PlayerRunData parse(string json)
+    public PlayerRunData Parse(string json)
     {
         return JsonUtility.FromJson<PlayerRunData>(json);
     }
