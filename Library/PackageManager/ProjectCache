@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637815280945378153
+      ticks: 637817650006930044
     m_Hash: 1057529631
   m_LockFileStatus:
     m_FilePath: D:/Schoolwork/SeniorProject/Desandant/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637815280945378153
+      ticks: 637817650006930044
     m_Hash: 1165375285
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
