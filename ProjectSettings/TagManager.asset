@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Floor
+    uniqueID: 837234533
+    locked: 0
+  - name: Enemy
+    uniqueID: 2630734767
+    locked: 0
+  - name: NPC
+    uniqueID: 3499666383
+    locked: 0
+  - name: Player
+    uniqueID: 808228037
+    locked: 0
