@@ -5,9 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject projetile;
+    public GameObject projectile;
     public Rigidbody2D playerRb;
-    public float playerSpeed = 5f;
+    public float playerSpeed = 3f;
     public PlayerControls playerControls;
     Vector2 movDirection = Vector2.zero;
     Vector2 atkDirection = Vector2.zero;
@@ -41,13 +41,13 @@ public class PlayerController : MonoBehaviour
         atkDirection = attack.ReadValue<Vector2>();
         if (atkDirection != Vector2.zero)
         {
-            GameObject DefaultProjectile = Instantiate(projetile, transform.position, Quaternion.identity);
+            GameObject DefaultProjectile = Instantiate(projectile, transform.position, Quaternion.identity);
             DefaultProjectile.GetComponent<Rigidbody2D>().velocity = atkDirection * defaultProjectile.speed;
         }
     }
 
     private void FixedUpdate()
     {
-        playerRb.velocity = new Vector2(movDirection.x * playerSpeed, movDirection.y * playerSpeed);
+        playerRb.velocity = new Vector2(movDirection.x * playerSpeed * 100, movDirection.y * playerSpeed * 100);
     }
 }
