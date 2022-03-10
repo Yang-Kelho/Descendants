@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637824614658859413
-    m_Hash: 910479532
+      ticks: 637824679509194766
+    m_Hash: 3171836979
   m_LockFileStatus:
     m_FilePath: C:/Users/kyang/Documents/GitHub/Descendants/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637824614659068864
-    m_Hash: 4294099881
+      ticks: 637824679509214709
+    m_Hash: 1897704860
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
