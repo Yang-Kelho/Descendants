@@ -5,5 +5,5 @@ using UnityEngine;
 public class DefaultPlayerProjectileScriptableObject : ScriptableObject
 {
     public float damage = 10f;
-    public float speed = 2f;
+    public int speed = 100;
 }
