@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour
         attack.Disable();
     }
 
-    // Update is called once per frame
     void Update()
     {
         movDirection = move.ReadValue<Vector2>();
