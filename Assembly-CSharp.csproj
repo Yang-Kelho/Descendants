@@ -69,6 +69,7 @@
     <Compile Include="Assets\ScriptableObjects\ScriptableObjectsScripts\WeaponInventory.cs" />
     <Compile Include="Assets\Scripts\DataScripts\PlayerBuildData.cs" />
     <Compile Include="Assets\ScriptableObjects\ScriptableObjectsScripts\WeaponObjects.cs" />
+    <Compile Include="Assets\Scripts\UIScripts\RoomSpawner.cs" />
     <Compile Include="Assets\ScriptableObjects\ScriptableObjectsScripts\DefaultPistolScriptableObject.cs" />
     <Compile Include="Assets\ScriptableObjects\ScriptableObjectsScripts\ProjectileObjects.cs" />
     <Compile Include="Assets\Scripts\UIScripts\CameraController.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Assets\Scripts\UIScripts\LevelLoader.cs" />
     <Compile Include="Assets\ScriptableObjects\ScriptableObjectsScripts\DefaultPistolProjectileScriptableObject.cs" />
     <Compile Include="Assets\Scripts\DataScripts\PlayerRunData.cs" />
+    <Compile Include="Assets\Scripts\UIScripts\RoomTemplates.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\InterfaceElements\TextMesh Pro\Shaders\TMPro.cginc" />
