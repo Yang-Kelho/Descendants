@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39aaadd1bf54a664e9d9b5678c41489f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openingDirection: 2
+  openingDirection: 1
 --- !u!61 &2190369463387981376
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3011,7 +3011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39aaadd1bf54a664e9d9b5678c41489f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openingDirection: 1
+  openingDirection: 2
 --- !u!1 &2190369465349110985
 GameObject:
   m_ObjectHideFlags: 0
