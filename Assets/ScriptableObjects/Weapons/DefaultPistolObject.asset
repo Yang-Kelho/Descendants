@@ -15,9 +15,9 @@ MonoBehaviour:
   weaponPrefab: {fileID: 842562052067947392, guid: e3e8b4438eada884785051c79c7ecf48, type: 3}
   weaponType: 0
   affix: 3
-  shotType: 0
+  numOfShots: 1
   fireRate: 1
-  spread: 2
+  spread: 0
   tooltip: 
   description: 
   projectile: {fileID: 11400000, guid: 3526e21ae0fa8bb4e851431e8b5d11cd, type: 2}

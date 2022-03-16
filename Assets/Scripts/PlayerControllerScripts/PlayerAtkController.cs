@@ -9,11 +9,13 @@ public class PlayerAtkController : MonoBehaviour
     private InputAction attack;
     Vector2 atkDirection = Vector2.zero;
     private float nextAttack;
-    public WeaponObjects currentWeapon;
+    public WeaponInventory weaponInv;
+    public WeaponObjects defaultWeap;
 
     private void Awake()
     {
         playerControls = new PlayerControls();
+        weaponInv.AddDefaultWeapon(defaultWeap);
     }
 
     private void OnEnable()
@@ -34,16 +36,50 @@ public class PlayerAtkController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        var currentWeapon = weaponInv.containers[weaponInv.GetCurrentSlot()];
         if (nextAttack > 0)
             nextAttack -= Time.deltaTime;
         if (atkDirection != Vector2.zero && atkDirection.sqrMagnitude >= 0.7)
         {
             if (nextAttack <= 0)
             {
-                GameObject firedProjectile = Instantiate(currentWeapon.projectile.projectilePrefab, transform.position, Quaternion.identity);
-                firedProjectile.GetComponent<Rigidbody2D>().velocity = atkDirection.normalized * currentWeapon.projectile.projectileSpeed;
-                nextAttack = currentWeapon.fireRate;
+
+                GameObject firedProjectile = Instantiate(currentWeapon.weapons.projectile.projectilePrefab, transform.position, Quaternion.identity);
+                firedProjectile.GetComponent<Rigidbody2D>().velocity = atkDirection.normalized * currentWeapon.weapons.projectile.projectileSpeed;
+                for (int i = 2; i <= currentWeapon.weapons.numOfShots; i++)
+                {
+                        AddSpread(currentWeapon);
+                        firedProjectile = Instantiate(currentWeapon.weapons.projectile.projectilePrefab, transform.position, Quaternion.identity);
+                        firedProjectile.GetComponent<Rigidbody2D>().velocity = atkDirection.normalized * currentWeapon.weapons.projectile.projectileSpeed;
+                }
+                nextAttack = currentWeapon.weapons.fireRate;
             }
         }
     }
+
+    public void SwithchWeapon()
+    {
+        weaponInv.SwapCurrentSlot();
+    }
+
+    private void AddSpread(WeaponInventory.WeaponInventorySlots weapon)
+    {
+        float spread = Random.Range(0, weapon.weapons.spread);
+        int dir = Random.Range(0, 1);
+        int prevDir = dir;
+        if (dir == 0 && prevDir != 0)
+            atkDirection.x += spread;
+        else
+            atkDirection.x -= spread;
+        
+        spread = Random.Range(0, weapon.weapons.spread);
+        dir = Random.Range(0, 1);
+        prevDir = dir;
+        if (dir == 0 && prevDir != 0)
+            atkDirection.y += spread;
+        else
+            atkDirection.y -= spread;
+
+    }
+
 }
