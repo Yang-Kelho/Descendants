@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 3774708146209259859, guid: d7c122480f21a8a489017c39ddd0968f, type: 3}
   damage: 5
-  projectileSpeed: 10
+  projectileSpeed: 1000
   bounce: 0
