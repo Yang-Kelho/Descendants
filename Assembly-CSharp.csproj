@@ -56,29 +56,30 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\EnemyControllerScripts\ProjectileController.cs" />
+    <Compile Include="Assets\Scripts\ProjectileController.cs" />
     <Compile Include="Assets\Cainos\Pixel Art Top Down - Basic\Script\TopDownCharacterController.cs" />
     <Compile Include="Assets\Scripts\DataScripts\PlayerCredentialData.cs" />
-    <Compile Include="Assets\ScriptableObjects\ScriptableObjectsScripts\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjectsScripts\BoomStick.cs" />
     <Compile Include="Assets\Scripts\EnemyControllerScripts\EnemyHPController.cs" />
     <Compile Include="Assets\Scripts\PlayerControllerScripts\PlayerAtkController.cs" />
     <Compile Include="Assets\Cainos\Pixel Art Top Down - Basic\Script\PropsAltar.cs" />
     <Compile Include="Assets\Scripts\PlayerControllerScripts\PlayerMovementController.cs" />
     <Compile Include="Assets\Cainos\Pixel Art Top Down - Basic\Script\SpriteColorAnimation.cs" />
     <Compile Include="Assets\Scripts\PlayerControllerScripts\PlayerControls.cs" />
-    <Compile Include="Assets\ScriptableObjects\ScriptableObjectsScripts\WeaponInventory.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjectsScripts\WeaponInventory.cs" />
     <Compile Include="Assets\Scripts\DataScripts\PlayerBuildData.cs" />
-    <Compile Include="Assets\ScriptableObjects\ScriptableObjectsScripts\WeaponObjects.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjectsScripts\WeaponObjects.cs" />
     <Compile Include="Assets\Scripts\UIScripts\RoomSpawner.cs" />
-    <Compile Include="Assets\ScriptableObjects\ScriptableObjectsScripts\DefaultPistolScriptableObject.cs" />
-    <Compile Include="Assets\ScriptableObjects\ScriptableObjectsScripts\ProjectileObjects.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjectsScripts\DefaultPistolScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjectsScripts\ProjectileObjects.cs" />
     <Compile Include="Assets\Scripts\UIScripts\CameraController.cs" />
     <Compile Include="Assets\Cainos\Pixel Art Top Down - Basic\Script\LayerTrigger.cs" />
     <Compile Include="Assets\Scripts\UIScripts\RoomTemplates.cs" />
     <Compile Include="Assets\Cainos\Pixel Art Top Down - Basic\Script\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\UIScripts\LevelLoader.cs" />
-    <Compile Include="Assets\ScriptableObjects\ScriptableObjectsScripts\DefaultPistolProjectileScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjectsScripts\DefaultPistolProjectileScriptableObject.cs" />
     <Compile Include="Assets\Scripts\DataScripts\PlayerRunData.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjectsScripts\BoomStickProjectile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\InterfaceElements\TextMesh Pro\Shaders\TMPro.cginc" />
