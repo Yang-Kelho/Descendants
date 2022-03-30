@@ -48,47 +48,52 @@ public class MapGenerator : MonoBehaviour
 
     private void ArrayMapGen()
     {
-        List<NeighborRoom> rooms = new List<NeighborRoom>();
+        List<NeighborRoom> freeRooms = new List<NeighborRoom>();
         arrayMap[startRoomPosY, startRoomPosX] = 0;
         int roomSpawned = 1;
         int randSpawn;
-        rooms.Add(new NeighborRoom(startRoomPosY - 1, startRoomPosX));
-        rooms.Add(new NeighborRoom(startRoomPosY + 1, startRoomPosX));
-        rooms.Add(new NeighborRoom(startRoomPosY, startRoomPosX + 1));
-        rooms.Add(new NeighborRoom(startRoomPosY, startRoomPosX - 1));
+        freeRooms.Add(new NeighborRoom(startRoomPosY - 1, startRoomPosX));
+        freeRooms.Add(new NeighborRoom(startRoomPosY + 1, startRoomPosX));
+        freeRooms.Add(new NeighborRoom(startRoomPosY, startRoomPosX + 1));
+        freeRooms.Add(new NeighborRoom(startRoomPosY, startRoomPosX - 1));
         
         while (roomSpawned < numOfRooms)
         {
-            randSpawn = Random.Range(0, rooms.Count);
-            room2Spawn = rooms[randSpawn];
+            randSpawn = Random.Range(0, freeRooms.Count);
+            room2Spawn = freeRooms[randSpawn];
             arrayMap[room2Spawn.YPos, room2Spawn.XPos] = 0;
             roomSpawned++;
-            rooms.RemoveAt(randSpawn);
+            freeRooms.RemoveAt(randSpawn);
             CheckNeighbor(room2Spawn);
 
             //Add new neighbor room
+            
+            //check right -1 neighbor
             if (room2Spawn.XPos + 1 <= gridSize.mapWidth - 1 && arrayMap[room2Spawn.YPos, room2Spawn.XPos + 1] == -1)
             {
-                if(rooms.Contains(new NeighborRoom(room2Spawn.YPos, room2Spawn.XPos + 1)) == false)
-                    rooms.Add(new NeighborRoom(room2Spawn.YPos, room2Spawn.XPos + 1));
+                if(compareRooms(freeRooms,room2Spawn) == false)
+                    freeRooms.Add(new NeighborRoom(room2Spawn.YPos, room2Spawn.XPos + 1));
             }
 
+            //check left -1 neighbor
             if (room2Spawn.XPos - 1 >= 0 && arrayMap[room2Spawn.YPos, room2Spawn.XPos - 1] == -1) 
             {
-                if(rooms.Contains(new NeighborRoom(room2Spawn.YPos, room2Spawn.XPos - 1)) == false)
-                    rooms.Add(new NeighborRoom(room2Spawn.YPos, room2Spawn.XPos - 1));
+                if(compareRooms(freeRooms, room2Spawn) == false)
+                    freeRooms.Add(new NeighborRoom(room2Spawn.YPos, room2Spawn.XPos - 1));
             }
 
+            //check top -1 neighbor
             if (room2Spawn.YPos - 1 >= 0 && arrayMap[room2Spawn.YPos - 1, room2Spawn.XPos] == -1)
             {
-                if (rooms.Contains(new NeighborRoom(room2Spawn.YPos - 1, room2Spawn.XPos)) == false)
-                    rooms.Add(new NeighborRoom(room2Spawn.YPos - 1, room2Spawn.XPos));
+                if (compareRooms(freeRooms, room2Spawn) == false)
+                    freeRooms.Add(new NeighborRoom(room2Spawn.YPos - 1, room2Spawn.XPos));
             }
 
+            //check bottom -1 neighbor
             if (room2Spawn.YPos + 1 <= gridSize.mapHeight - 1 && arrayMap[room2Spawn.YPos + 1, room2Spawn.XPos] == -1)
             {
-                if (rooms.Contains(new NeighborRoom(room2Spawn.YPos + 1, room2Spawn.XPos)) == false)
-                    rooms.Add(new NeighborRoom(room2Spawn.YPos + 1, room2Spawn.XPos));
+                if (compareRooms(freeRooms, room2Spawn) == false)
+                    freeRooms.Add(new NeighborRoom(room2Spawn.YPos + 1, room2Spawn.XPos));
             }
         }
     }
@@ -171,6 +176,17 @@ public class MapGenerator : MonoBehaviour
     {
          arrayMap[room2Spawn.YPos, room2Spawn.XPos] += 2;
          arrayMap[room2Spawn.YPos + 1, room2Spawn.XPos] += 1;
+    }
 
+    private bool compareRooms(List<NeighborRoom> freeRooms, NeighborRoom newRoom)
+    {
+        for (int i = 0; i < freeRooms.Count; i++)
+        {
+            if (newRoom.equals(freeRooms[i]) == false)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
