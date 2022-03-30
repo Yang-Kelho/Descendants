@@ -9,15 +9,18 @@ public class PlayerPickup : MonoBehaviour
     WeaponObjects pickUpWeapon, droppedWeapon;
     WeaponInventory weaponInv;
     Collider2D collision;
-   
+
+    public void Start()
+    {
+        weaponInv = GetComponent<PlayerAtkController>().weaponInv;
+
+    }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("weapon"))
         {
             canPickUp = true;
             pickUpWeapon = collision.GetComponent<GroundWeaponObj>().weapon;
-            weaponInv = GetComponent<PlayerAtkController>().weaponInv;
-            droppedWeapon = weaponInv.GetCurrentWeapon();
             this.collision = collision;
         }
     }
@@ -26,11 +29,7 @@ public class PlayerPickup : MonoBehaviour
     {
         canPickUp = false;
         pickUpWeapon = null;
-        weaponInv = null;
         this.collision = null;
-        var dropped = Instantiate(droppedWeapon.weaponPrefab, transform.position, Quaternion.identity);
-        StartCoroutine(dropWeapon(dropped));
-        droppedWeapon = null;
     }
 
     IEnumerator dropWeapon(GameObject drop)
@@ -46,6 +45,16 @@ public class PlayerPickup : MonoBehaviour
         {
             weaponInv.AddWeapon(pickUpWeapon);
             Destroy(collision.gameObject);
+            SpawnWeapon();
         }
+    }
+    public void Update()
+    {
+        droppedWeapon = weaponInv.GetCurrentWeapon();
+    }
+    public void SpawnWeapon()
+    {
+        var dropped = Instantiate(droppedWeapon.weaponPrefab, transform.position, Quaternion.identity);
+        StartCoroutine(dropWeapon(dropped));
     }
 }

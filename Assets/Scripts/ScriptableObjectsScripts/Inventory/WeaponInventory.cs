@@ -9,6 +9,10 @@ public class WeaponInventory : ScriptableObject
     private int currentWeapon = 0;
 
     public WeaponInventorySlots[] containers = new WeaponInventorySlots[2];
+    public void SetToZero()
+    {
+        currentWeapon = 0;
+    }
     public void AddWeapon(WeaponObjects _weapon)
     {
         containers[currentWeapon] = new WeaponInventorySlots(_weapon);

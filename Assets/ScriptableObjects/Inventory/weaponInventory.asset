@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentWeapon: 1
   containers:
-  - weapons: {fileID: 11400000, guid: 97f84f35f047f7e4eaf62377080352f1, type: 2}
-  - weapons: {fileID: 11400000, guid: fbbb4548d2bb41840919150149424c12, type: 2}
+  - weapons: {fileID: 0}
+  - weapons: {fileID: 0}
