@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfb0a06c59f45a440b529c9317c65ae1, type: 3}
   m_Name: DefaultPistolObject
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 842562052067947392, guid: e3e8b4438eada884785051c79c7ecf48, type: 3}
+  weaponPrefab: {fileID: 8656538023185568143, guid: 8e904253e1f31134a9a98b7ae585f545, type: 3}
   weaponType: 0
-  affix: 3
+  affix: 1
   numOfShots: 1
   fireRate: 1
   spread: 0

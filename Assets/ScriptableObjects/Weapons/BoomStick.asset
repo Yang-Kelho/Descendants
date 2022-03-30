@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbcf4c1a16e9c1d4397dcf6ddb440bf2, type: 3}
   m_Name: BoomStick
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 0}
+  weaponPrefab: {fileID: 3642751434842724226, guid: bc55adeab63c73c4cb901a48555b8ea4, type: 3}
   weaponType: 1
-  affix: 3
+  affix: 1
   numOfShots: 3
   fireRate: 1.5
   spread: 0.09
