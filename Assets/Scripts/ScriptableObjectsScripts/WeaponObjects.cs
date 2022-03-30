@@ -8,14 +8,12 @@ public enum WeaponType
     shotGun,
     sniper,
     machineGun,
-    Laser
+    laser
 }
 
 public enum Affixes
 { 
-    greedy,
-    berserk,
-    risky,
+    cursed,
     none
 }
 
@@ -32,4 +30,12 @@ public abstract class WeaponObjects : ScriptableObject
     [TextArea(20, 10)]
     public string description;
     public ProjectileObjects projectile;
+
+    public int RollAffix()
+    {
+        int rand = Random.Range(1, 10);
+        return rand;
+    }
 }
+
+ 

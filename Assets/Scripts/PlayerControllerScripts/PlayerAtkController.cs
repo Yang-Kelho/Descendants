@@ -82,4 +82,9 @@ public class PlayerAtkController : MonoBehaviour
 
     }
 
+    private void OnApplicationQuit()
+    {
+        weaponInv.Clear();
+    }
+
 }

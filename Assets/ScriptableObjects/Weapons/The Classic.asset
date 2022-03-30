@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb94c47794c18904aa421e53f0d5535b, type: 3}
+  m_Name: The Classic
+  m_EditorClassIdentifier: 
+  weaponPrefab: {fileID: 1829108352623698028, guid: bcc01ede57e8b5043a91e550425c6b18, type: 3}
+  weaponType: 2
+  affix: 0
+  numOfShots: 1
+  fireRate: 0.4
+  spread: 0
+  tooltip: 
+  description: 
+  projectile: {fileID: 11400000, guid: d5236407d5e88644ea406ad45a7dbdb3, type: 2}
