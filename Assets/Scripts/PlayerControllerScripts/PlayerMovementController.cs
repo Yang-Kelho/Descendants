@@ -35,6 +35,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerRb.velocity = new Vector2(movDirection.x * playerSpeed * 100, movDirection.y * playerSpeed * 100);
+        playerRb.velocity = new Vector2(movDirection.x * playerSpeed, movDirection.y * playerSpeed);
     }
 }

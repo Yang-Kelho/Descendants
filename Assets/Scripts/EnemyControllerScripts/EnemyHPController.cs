@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class EnemyHPController : MonoBehaviour
 {
-    public float health;
-    public float maxHealth;
-
+    private float health;
     
     void Start()
     {
-        health = maxHealth;
+        health = GetComponent<Enemy>().enemy.maxHp;
     }
 
     private void CheckDeath()
