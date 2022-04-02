@@ -44,14 +44,15 @@ public class PlayerAtkController : MonoBehaviour
         {
             if (nextAttack <= 0)
             {
-
                 GameObject firedProjectile = Instantiate(currentWeapon.weapons.projectile.projectilePrefab, transform.position, Quaternion.identity);
+                firedProjectile.GetComponent<Projectile>().damage = currentWeapon.weapons.projectile.damage;
                 firedProjectile.GetComponent<Rigidbody2D>().velocity = atkDirection.normalized * currentWeapon.weapons.projectile.projectileSpeed;
                 for (int i = 2; i <= currentWeapon.weapons.numOfShots; i++)
                 {
                         AddSpread(currentWeapon);
                         firedProjectile = Instantiate(currentWeapon.weapons.projectile.projectilePrefab, transform.position, Quaternion.identity);
-                        firedProjectile.GetComponent<Rigidbody2D>().velocity = atkDirection.normalized * currentWeapon.weapons.projectile.projectileSpeed;
+                    firedProjectile.GetComponent<Projectile>().damage = currentWeapon.weapons.projectile.damage;
+                    firedProjectile.GetComponent<Rigidbody2D>().velocity = atkDirection.normalized * currentWeapon.weapons.projectile.projectileSpeed;
                 }
                 nextAttack = currentWeapon.weapons.fireRate;
             }

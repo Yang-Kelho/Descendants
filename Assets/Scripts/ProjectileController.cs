@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
-    public float damageTaken;
+    private float damageTaken;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name != "Player")
+        if (collision.CompareTag("Enemies"))
         {
             if (collision.GetComponent<EnemyHPController>() != null)
             {
+                damageTaken = GetComponent<Projectile>().damage;
                 collision.GetComponent<EnemyHPController>().takeDamage(damageTaken);
             }
             Destroy(gameObject);
