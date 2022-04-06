@@ -71,28 +71,28 @@ public class MapGenerator : MonoBehaviour
             //check right -1 neighbor
             if (room2Spawn.XPos + 1 <= gridSize.mapWidth - 1 && arrayMap[room2Spawn.YPos, room2Spawn.XPos + 1] == -1)
             {
-                if(compareRooms(freeRooms,room2Spawn) == false)
+                if(!compareRooms(freeRooms,room2Spawn))
                     freeRooms.Add(new NeighborRoom(room2Spawn.YPos, room2Spawn.XPos + 1));
             }
 
             //check left -1 neighbor
             if (room2Spawn.XPos - 1 >= 0 && arrayMap[room2Spawn.YPos, room2Spawn.XPos - 1] == -1) 
             {
-                if(compareRooms(freeRooms, room2Spawn) == false)
+                if(!compareRooms(freeRooms, room2Spawn))
                     freeRooms.Add(new NeighborRoom(room2Spawn.YPos, room2Spawn.XPos - 1));
             }
 
             //check top -1 neighbor
             if (room2Spawn.YPos - 1 >= 0 && arrayMap[room2Spawn.YPos - 1, room2Spawn.XPos] == -1)
             {
-                if (compareRooms(freeRooms, room2Spawn) == false)
+                if (!compareRooms(freeRooms, room2Spawn))
                     freeRooms.Add(new NeighborRoom(room2Spawn.YPos - 1, room2Spawn.XPos));
             }
 
             //check bottom -1 neighbor
             if (room2Spawn.YPos + 1 <= gridSize.mapHeight - 1 && arrayMap[room2Spawn.YPos + 1, room2Spawn.XPos] == -1)
             {
-                if (compareRooms(freeRooms, room2Spawn) == false)
+                if (!compareRooms(freeRooms, room2Spawn))
                     freeRooms.Add(new NeighborRoom(room2Spawn.YPos + 1, room2Spawn.XPos));
             }
         }
@@ -182,7 +182,7 @@ public class MapGenerator : MonoBehaviour
     {
         for (int i = 0; i < freeRooms.Count; i++)
         {
-            if (newRoom.equals(freeRooms[i]) == false)
+            if (!newRoom.equals(freeRooms[i]))
             {
                 return true;
             }

@@ -15,16 +15,13 @@ public class NeighborRoom
 
     public bool equals(NeighborRoom room1)
     {
-        bool equal;
         if (room1.XPos == this.XPos && room1.YPos == this.YPos)
         {
-            equal = true;
-            return equal;
+            return true;
         }
         else
         {
-            equal = false;
-            return equal;
+            return false;
         }
     }
 }
