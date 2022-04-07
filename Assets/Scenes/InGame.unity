@@ -1406,7 +1406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSize: {fileID: 11400000, guid: ae52c718687e541489329283e023fc61, type: 2}
   spawnPoint: {fileID: 7786758406862110774, guid: 178417c5b1d823c46a000e863096f07c, type: 3}
-  numOfRooms: 10
+  numOfRooms: 15
   startRoomPosX: 0
   startRoomPosY: 0
 --- !u!4 &1770796575
