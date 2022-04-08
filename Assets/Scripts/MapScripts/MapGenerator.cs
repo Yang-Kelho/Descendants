@@ -9,15 +9,16 @@ public class MapGenerator : MonoBehaviour
     public NeighborRoom room2Spawn;
     public int numOfRooms;
     public int[,] arrayMap;
-    public int startRoomPosX;
-    public int startRoomPosY;
-    
+    private int startRoomPosX;
+    private int startRoomPosY;
+    private NeighborRoom tempRoom;
+
     void Start()
     {
         Vector2 initspawnPointPosition;
         initspawnPointPosition.x = transform.position.x - (((gridSize.mapWidth - 1) / 2) * 1296);
         ArrayMapInit();
-        
+
         for (int i = 0; i < (gridSize.mapWidth); i++)
         {
             initspawnPointPosition.y = transform.position.y + (((gridSize.mapHeight - 1) / 2) * 720);
@@ -49,14 +50,16 @@ public class MapGenerator : MonoBehaviour
     private void ArrayMapGen()
     {
         List<NeighborRoom> freeRooms = new List<NeighborRoom>();
+        Dictionary<int, int> orderRooms = new Dictionary<int, int>();
         arrayMap[startRoomPosY, startRoomPosX] = 0;
         int roomSpawned = 1;
         int randSpawn;
+        int randGen;
         freeRooms.Add(new NeighborRoom(startRoomPosY - 1, startRoomPosX));
         freeRooms.Add(new NeighborRoom(startRoomPosY + 1, startRoomPosX));
         freeRooms.Add(new NeighborRoom(startRoomPosY, startRoomPosX + 1));
         freeRooms.Add(new NeighborRoom(startRoomPosY, startRoomPosX - 1));
-        
+
         while (roomSpawned < numOfRooms)
         {
             randSpawn = Random.Range(0, freeRooms.Count);
@@ -66,45 +69,75 @@ public class MapGenerator : MonoBehaviour
             freeRooms.RemoveAt(randSpawn);
             CheckNeighbor(room2Spawn);
 
+            for (int i = 1; i <= 4; i++)
+            {
+                if (!orderRooms.ContainsKey(i))
+                    orderRooms.Add(i, i);
+            }
             //Add new neighbor room
-            
-            //check right -1 neighbor
-            if (room2Spawn.XPos + 1 <= gridSize.mapWidth - 1 && arrayMap[room2Spawn.YPos, room2Spawn.XPos + 1] == -1)
+
+            while (orderRooms.Count != 0)
             {
-                if(!compareRooms(freeRooms,room2Spawn))
-                    freeRooms.Add(new NeighborRoom(room2Spawn.YPos, room2Spawn.XPos + 1));
+                randGen = Random.Range(1, 5);
+                if (!orderRooms.ContainsKey(randGen))
+                {
+                    continue;
+                }
+                else
+                {
+                    orderRooms.Remove(randGen);
+                }
+                switch (randGen)
+                {
+                    case 1:
+                        //check right -1 neighbor
+                        if (room2Spawn.XPos + 1 <= gridSize.mapWidth - 1 && arrayMap[room2Spawn.YPos, room2Spawn.XPos + 1] == -1)
+                        {
+                            tempRoom = new NeighborRoom(room2Spawn.YPos, room2Spawn.XPos + 1);
+                            if(!compareRooms(freeRooms, tempRoom))
+                                freeRooms.Add(new NeighborRoom(room2Spawn.YPos, room2Spawn.XPos + 1));
+                        }
+                        break;
+                    case 2:
+                        //check left -1 neighbor
+                        if (room2Spawn.XPos - 1 >= 0 && arrayMap[room2Spawn.YPos, room2Spawn.XPos - 1] == -1)
+                        {
+                            tempRoom = new NeighborRoom(room2Spawn.YPos, room2Spawn.XPos - 1);
+                            if (!compareRooms(freeRooms, tempRoom))
+                                freeRooms.Add(new NeighborRoom(room2Spawn.YPos, room2Spawn.XPos - 1));
+                        }
+                        break;
+                    case 3:
+                        //check top -1 neighbor
+                        if (room2Spawn.YPos - 1 >= 0 && arrayMap[room2Spawn.YPos - 1, room2Spawn.XPos] == -1)
+                        {
+                            tempRoom = new NeighborRoom(room2Spawn.YPos - 1, room2Spawn.XPos);
+                            if (!compareRooms(freeRooms, tempRoom))
+                                freeRooms.Add(new NeighborRoom(room2Spawn.YPos - 1, room2Spawn.XPos));
+                        }
+                        break;
+                    case 4:
+                        //check bottom -1 neighbor
+                        if (room2Spawn.YPos + 1 <= gridSize.mapHeight - 1 && arrayMap[room2Spawn.YPos + 1, room2Spawn.XPos] == -1)
+                        {
+                            tempRoom = new NeighborRoom(room2Spawn.YPos + 1, room2Spawn.XPos);
+                            if (!compareRooms(freeRooms, tempRoom))
+                                freeRooms.Add(new NeighborRoom(room2Spawn.YPos + 1, room2Spawn.XPos));
+                        }
+                        break;
+                }
             }
 
-            //check left -1 neighbor
-            if (room2Spawn.XPos - 1 >= 0 && arrayMap[room2Spawn.YPos, room2Spawn.XPos - 1] == -1) 
-            {
-                if(!compareRooms(freeRooms, room2Spawn))
-                    freeRooms.Add(new NeighborRoom(room2Spawn.YPos, room2Spawn.XPos - 1));
-            }
-
-            //check top -1 neighbor
-            if (room2Spawn.YPos - 1 >= 0 && arrayMap[room2Spawn.YPos - 1, room2Spawn.XPos] == -1)
-            {
-                if (!compareRooms(freeRooms, room2Spawn))
-                    freeRooms.Add(new NeighborRoom(room2Spawn.YPos - 1, room2Spawn.XPos));
-            }
-
-            //check bottom -1 neighbor
-            if (room2Spawn.YPos + 1 <= gridSize.mapHeight - 1 && arrayMap[room2Spawn.YPos + 1, room2Spawn.XPos] == -1)
-            {
-                if (!compareRooms(freeRooms, room2Spawn))
-                    freeRooms.Add(new NeighborRoom(room2Spawn.YPos + 1, room2Spawn.XPos));
-            }
         }
     }
-    
+
     public void CheckNeighbor(NeighborRoom room2Spawn)
     {
         int roomConnected = 0;
         int unavailableConnection = 0;
-        int randConnect = Random.Range(1, 4);
+//        int randConnect = Random.Range(1, 4);
 
-        while (roomConnected < randConnect && (unavailableConnection + roomConnected) != 4)
+        while ((unavailableConnection + roomConnected) != 4)
         {
 
             //check right
@@ -143,7 +176,7 @@ public class MapGenerator : MonoBehaviour
             }
             else
                 unavailableConnection++;
-            
+
         }
     }
 
@@ -174,15 +207,15 @@ public class MapGenerator : MonoBehaviour
 
     private void ConnectBottom(NeighborRoom room2Spawn)
     {
-         arrayMap[room2Spawn.YPos, room2Spawn.XPos] += 2;
-         arrayMap[room2Spawn.YPos + 1, room2Spawn.XPos] += 1;
+        arrayMap[room2Spawn.YPos, room2Spawn.XPos] += 2;
+        arrayMap[room2Spawn.YPos + 1, room2Spawn.XPos] += 1;
     }
 
     private bool compareRooms(List<NeighborRoom> freeRooms, NeighborRoom newRoom)
     {
         for (int i = 0; i < freeRooms.Count; i++)
         {
-            if (!newRoom.equals(freeRooms[i]))
+            if (newRoom.equals(freeRooms[i]))
             {
                 return true;
             }
