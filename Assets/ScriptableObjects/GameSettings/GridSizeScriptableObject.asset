@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb3e23758ff8d44d9422244145ad439, type: 3}
   m_Name: GridSizeScriptableObject
   m_EditorClassIdentifier: 
-  mapWidth: 10
-  mapHeight: 10
+  mapWidth: 5
+  mapHeight: 5
