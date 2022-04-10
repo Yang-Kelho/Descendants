@@ -8,19 +8,24 @@ public class WeaponInventory : ScriptableObject
     [SerializeField]
     private int currentWeapon = 0;
 
-    public WeaponInventorySlots[] containers = new WeaponInventorySlots[2];
+    public WeaponInventorySlots[] containers = new WeaponInventorySlots[2] {null, null};
     public void SetToZero()
     {
         currentWeapon = 0;
     }
     public void AddWeapon(WeaponObjects _weapon)
     {
-        containers[currentWeapon] = new WeaponInventorySlots(_weapon);
+        int slots = CheckEmptySlot();
+        if (slots < 2)
+            containers[slots] = new WeaponInventorySlots(_weapon);
+        else
+            containers[currentWeapon] = new WeaponInventorySlots(_weapon);
     }
 
     public void AddDefaultWeapon(WeaponObjects _weapon)
     {
-        containers[0] = new WeaponInventorySlots(_weapon);
+        if (CheckEmptySlot() == 0)
+            containers[0] = new WeaponInventorySlots(_weapon);
     }
 
     public void SwapCurrentSlot()
@@ -33,6 +38,16 @@ public class WeaponInventory : ScriptableObject
         {
             currentWeapon = 0;
         }
+    }
+
+    private int CheckEmptySlot()
+    {
+        if (containers[0].weapons == null)
+            return 0;
+        else if (containers[1].weapons == null)
+            return 1;
+        else
+            return 2;
     }
 
     public WeaponObjects GetCurrentWeapon()

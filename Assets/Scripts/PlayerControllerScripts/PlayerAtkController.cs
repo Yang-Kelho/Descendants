@@ -15,8 +15,8 @@ public class PlayerAtkController : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerControls();
+        weaponInv.SetToZero(); 
         weaponInv.AddDefaultWeapon(defaultWeap);
-        weaponInv.SetToZero();
     }
 
     private void OnEnable()

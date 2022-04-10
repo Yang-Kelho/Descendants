@@ -37,4 +37,9 @@ public class PlayerMovementController : MonoBehaviour
     {
         playerRb.velocity = new Vector2(movDirection.x * playerSpeed, movDirection.y * playerSpeed);
     }
+
+    public Vector2 GetPosition()
+    {
+        return GetComponent<Transform>().position; 
+    }
 }
