@@ -10,6 +10,7 @@ public class ProjectileController : MonoBehaviour
     {
         var type = GetComponent<Projectile>().projectile.type;
         if (type == ProjectileObjects.Type.player)
+        {
             if (collision.CompareTag("Enemies"))
             {
                 if (collision.GetComponent<EnemyHPController>() != null)
@@ -19,16 +20,18 @@ public class ProjectileController : MonoBehaviour
                 }
                 Destroy(gameObject);
             }
-        // Fill in health manager for player
-        //      else if (type == ProjectileObjects.Type.enemy)
-        //      {
-        //          if (collision.CompareTag("player"))
-        //          {
-        //
-        //               
-        //
-        //          }
-        //          Destroy(gameObject);
-        //       }
+        }
+        else if (type == ProjectileObjects.Type.enemy)
+        {
+            if (collision.CompareTag("Player"))
+            {
+                if (!(collision.gameObject.GetComponent<PlayerHealth>().IsDead()))
+                {
+                    damageTaken = GetComponent<Projectile>().damage;
+                    collision.gameObject.GetComponent<PlayerHealth>().PlayerDamage((int)damageTaken);
+                    Destroy(gameObject);
+                }
+            }
+        }
     }
 }
