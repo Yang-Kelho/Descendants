@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1339a27a0503245439bf89925824de16, type: 3}
   m_Name: BoomStickProjectile
   m_EditorClassIdentifier: 
+  type: 1
   projectilePrefab: {fileID: 3774708146209259859, guid: d7c122480f21a8a489017c39ddd0968f, type: 3}
   damage: 5
   projectileSpeed: 1000

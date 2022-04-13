@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d79f8b47fa4e5e94b870ea56719b2c6e, type: 3}
   m_Name: DefaultPistolProjectile
   m_EditorClassIdentifier: 
+  type: 1
   projectilePrefab: {fileID: 3774708146209259859, guid: d7c122480f21a8a489017c39ddd0968f, type: 3}
   damage: 5
   projectileSpeed: 1000

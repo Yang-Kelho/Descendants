@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f5b38a222f9694abc2dd0aea43670a, type: 3}
   m_Name: TheClassicProjectile
   m_EditorClassIdentifier: 
+  type: 1
   projectilePrefab: {fileID: 3774708146209259859, guid: d7c122480f21a8a489017c39ddd0968f, type: 3}
   damage: 13
   projectileSpeed: 2000

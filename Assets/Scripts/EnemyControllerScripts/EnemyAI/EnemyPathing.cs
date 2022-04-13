@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyPathing : MonoBehaviour
 {
     private Enemy enemy;
+    private float speed;
     private Vector2 moveDir;
     private Vector2 targetPos;
     private Vector2 currentPos;
@@ -15,6 +16,7 @@ public class EnemyPathing : MonoBehaviour
         enemy = GetComponent<Enemy>();
         GetCurrentPos();
         targetPos = currentPos;
+        speed = enemy.enemy.speed;
     }
 
     void Update()
@@ -24,7 +26,7 @@ public class EnemyPathing : MonoBehaviour
 
     private void FixedUpdate()
     {
-        enemy.GetComponent<Rigidbody2D>().velocity = moveDir * enemy.enemy.speed;
+        enemy.GetComponent<Rigidbody2D>().velocity = moveDir * speed;
     }
 
     public void SetTargetPos(Vector2 vector, float distance)

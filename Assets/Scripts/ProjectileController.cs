@@ -8,14 +8,27 @@ public class ProjectileController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemies"))
-        {
-            if (collision.GetComponent<EnemyHPController>() != null)
+        var type = GetComponent<Projectile>().projectile.type;
+        if (type == ProjectileObjects.Type.player)
+            if (collision.CompareTag("Enemies"))
             {
-                damageTaken = GetComponent<Projectile>().damage;
-                collision.GetComponent<EnemyHPController>().takeDamage(damageTaken);
+                if (collision.GetComponent<EnemyHPController>() != null)
+                {
+                    damageTaken = GetComponent<Projectile>().damage;
+                    collision.GetComponent<EnemyHPController>().takeDamage(damageTaken);
+                }
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
-        }
+        // Fill in health manager for player
+        //      else if (type == ProjectileObjects.Type.enemy)
+        //      {
+        //          if (collision.CompareTag("player"))
+        //          {
+        //
+        //               
+        //
+        //          }
+        //          Destroy(gameObject);
+        //       }
     }
 }
