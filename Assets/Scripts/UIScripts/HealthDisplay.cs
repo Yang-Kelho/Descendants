@@ -46,7 +46,7 @@ public class HealthDisplay : MonoBehaviour
         RefreshHealthDisplay();
     }
 
-    private void HealthSystem_OnDamaged(object sender, System.EventArgs e)
+    private void HealthSystem_OnDamaged(object sender, EventArgs e)
     {
         RefreshHealthDisplay();
     }

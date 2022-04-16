@@ -9,7 +9,6 @@ public class HealSpot : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Touched healspot");
             var player = other.gameObject.GetComponent<PlayerHealth>();
             player.PlayerHeal(healAmount);
         }

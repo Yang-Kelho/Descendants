@@ -17,4 +17,5 @@ MonoBehaviour:
   eliteCheck: 0
   speed: 200
   maxHp: 20
+  goldDropped: 25
   atkCoolDown: 3

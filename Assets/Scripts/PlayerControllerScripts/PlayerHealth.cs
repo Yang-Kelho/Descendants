@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] ParticleSystem _particleSystem;
     public void PlayerDamage(int damageAmount)
     {
         Debug.Log("Player took " + damageAmount + " damage");
@@ -25,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
     public void Die()
     {
         gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-        _particleSystem.Play();
+        gameObject.GetComponent<ParticleSystem>().Play();
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         gameObject.GetComponent<PlayerMovementController>().enabled = false;
     }

@@ -10,6 +10,7 @@ public class EnemyObjects : ScriptableObject
     public bool eliteCheck;
     public float speed;
     public float maxHp;
+    public int goldDropped;
     public float atkCoolDown;
 
     public bool EliteRoll()

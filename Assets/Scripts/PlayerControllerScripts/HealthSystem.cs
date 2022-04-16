@@ -70,8 +70,6 @@ public class HealthSystem {
 
     public bool IsDead()
     {
-        Debug.Log(heartList[0].GetFragmentNumber() + " fragments");
-        Debug.Log("returning " + (heartList[0].GetFragmentNumber() == 0));
         return heartList[0].GetFragmentNumber() == 0;
     }
 

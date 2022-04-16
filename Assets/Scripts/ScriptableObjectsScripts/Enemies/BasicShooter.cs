@@ -15,5 +15,6 @@ public class BasicShooter : EnemyObjects
         maxHp = 20f;
         speed = 250f;
         atkCoolDown = 10f;
+        goldDropped = 25;
     }
 }
