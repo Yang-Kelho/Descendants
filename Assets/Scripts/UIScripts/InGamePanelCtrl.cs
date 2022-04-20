@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InGamePanelCtrl : MonoBehaviour
 {
@@ -46,6 +47,7 @@ public class InGamePanelCtrl : MonoBehaviour
         btn_cancel.onClick.AddListener(CancelEvent);
         btn_use.onClick.AddListener(UseEvent);
         btn_remove.onClick.AddListener(RemoveEvent);
+        btn_exit.onClick.AddListener(ExitEvent);
 
         initBackpackSlots();
 
@@ -128,17 +130,24 @@ public class InGamePanelCtrl : MonoBehaviour
 
     private void ExitEvent()
     {
+        // Do the saving here:
+            // save same files, code goes here:
+
+
         // transit back to the UI scene:
 
+        SceneManager.LoadScene(sceneBuildIndex: 0);
     }
 
     private void UseEvent()
     {
         // use the selected item if it is not NULL:
+
     }
 
     private void RemoveEvent()
     {
         // remove the selected item if it is not NULL:
+
     }
 }
