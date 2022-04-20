@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Realms;
+using Realms.Sync;
 
 public class LoginPanelCtrl : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class LoginPanelCtrl : MonoBehaviour
     Button btn_login;
     Button btn_back;
     Button btn_register_transfer;
+    private Realm _realms;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,9 +28,28 @@ public class LoginPanelCtrl : MonoBehaviour
         btn_register_transfer.onClick.AddListener(RegisterTransferEvent);
     }
 
-    private void LoginEvent()
+    private async void LoginEvent()
     {
         // What do you want to do when you click the login button?
+        var userName = transform.Find("vertical_layout").Find("Input_userName").Find("Text").GetComponent<Text>().text;
+        var password = transform.Find("vertical_layout").Find("Input_password").Find("Text").GetComponent<Text>().text;
+        var payload = new
+        {
+            name = userName,
+            password = password
+        };
+        var realmApp = App.Create(new AppConfiguration("descendants-qsppj")
+        {
+            MetadataPersistenceMode = MetadataPersistenceMode.NotEncrypted
+        });
+
+        var currentUser = realmApp.CurrentUser;
+
+        if (currentUser == null)
+        {
+            currentUser = await realmApp.LogInAsync(Credentials.Function(payload));
+            Debug.Log(currentUser);
+        }
     }
 
     private void RegisterTransferEvent()
