@@ -15,7 +15,6 @@ public class RegisterPanelCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _realm = Realm.GetInstance();
         btn_register = transform.Find("btn_back").GetComponent<Button>();
         btn_back = transform.Find("btn_back").GetComponent<Button>();
 
