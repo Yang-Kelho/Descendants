@@ -12,7 +12,9 @@ public class LoginPanelCtrl : MonoBehaviour
     Button btn_login;
     Button btn_back;
     Button btn_register_transfer;
+    Button btn_Logout;
     private Realm _realms;
+    App realmApp;
 
     // Start is called before the first frame update
     void Start()
@@ -20,11 +22,13 @@ public class LoginPanelCtrl : MonoBehaviour
         // retrieve the buttons:
         btn_login = transform.Find("btn_login").GetComponent<Button>();
         btn_back = transform.Find("btn_back").GetComponent<Button>();
+        btn_Logout = transform.Find("btn_Logout").GetComponent<Button>();
         btn_register_transfer = transform.Find("btn_register_transfer").GetComponent<Button>();
 
         // add listener and events:
         btn_login.onClick.AddListener(LoginEvent);
         btn_back.onClick.AddListener(BackEvent);
+        btn_Logout.onClick.AddListener(LogoutEvent);
         btn_register_transfer.onClick.AddListener(RegisterTransferEvent);
     }
 
@@ -38,20 +42,33 @@ public class LoginPanelCtrl : MonoBehaviour
             name = userName,
             password = password
         };
-        var realmApp = App.Create(new AppConfiguration("descendants-qsppj")
+        realmApp = App.Create(new AppConfiguration("descendants-qsppj")
         {
             MetadataPersistenceMode = MetadataPersistenceMode.NotEncrypted
         });
 
         var currentUser = realmApp.CurrentUser;
+        Debug.Log(currentUser);
 
         if (currentUser == null)
         {
             currentUser = await realmApp.LogInAsync(Credentials.Function(payload));
             Debug.Log(currentUser);
+            _realms = await Realm.GetInstanceAsync(new SyncConfiguration("PlayerID", currentUser));
         }
+        else
+            _realms = Realm.GetInstance(new SyncConfiguration("PlayerID", currentUser));
     }
 
+    private async void LogoutEvent()
+    {
+        var currentUser = realmApp.CurrentUser;
+        if (currentUser != null)
+        {
+            await realmApp.CurrentUser.LogOutAsync();
+        }
+        _realms.Dispose();
+    }
     private void RegisterTransferEvent()
     {
         // transfer to register page:
@@ -66,6 +83,16 @@ public class LoginPanelCtrl : MonoBehaviour
         panel_start = transform.parent.Find("panel_start").gameObject;
         panel_start.SetActive(true);
         gameObject.SetActive(false);
+    }
+
+    private async void OnApplicationQuit()
+    {
+        var currentUser = realmApp.CurrentUser;
+        if (currentUser != null)
+        {
+            await realmApp.CurrentUser.LogOutAsync();
+        }
+        _realms.Dispose();
     }
 
 }

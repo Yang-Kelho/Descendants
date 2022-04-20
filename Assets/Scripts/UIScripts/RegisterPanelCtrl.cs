@@ -11,7 +11,6 @@ public class RegisterPanelCtrl : MonoBehaviour
     Button btn_register;
     Button btn_back;
     private Realm _realm;
-    private PlayerData data;
 
     // Start is called before the first frame update
     void Start()
@@ -29,8 +28,8 @@ public class RegisterPanelCtrl : MonoBehaviour
     private void RegisterEvent()
     {
         // trigger when you click the register button:
-        var userName = transform.Find("Input_userName").GetComponent<InputField>().GetComponent<Text>().text;
-        var password = transform.Find("Input_password").GetComponent<InputField>().GetComponent<Text>().text;
+        var userName = transform.Find("vertical_layout").Find("Input_userName").Find("Text").GetComponent<Text>().text;
+        var password = transform.Find("vertical_layout").Find("Input_password").Find("Text").GetComponent<Text>().text;
         var realmApp = App.Create(new AppConfiguration("descendants-qsppj")
         {
             MetadataPersistenceMode = MetadataPersistenceMode.NotEncrypted
@@ -42,6 +41,8 @@ public class RegisterPanelCtrl : MonoBehaviour
         {
            
         }
+
+        BackEvent();
     }
 
     private void BackEvent()

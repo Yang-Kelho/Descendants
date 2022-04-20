@@ -3,7 +3,7 @@ using Realms;
 public class PlayerData: RealmObject
 {
     [PrimaryKey]
-    [MapTo("PlayerId")]
+    [MapTo("_id")]
     public string playerId { get; set; }
     
     [MapTo("Password")]
@@ -14,9 +14,9 @@ public class PlayerData: RealmObject
 
     public PlayerData() { }
 
-    public PlayerData(string id, string password, int score)
+    public PlayerData(string _playerId, string password, int score)
     {
-        playerId = id;
+        playerId = _playerId;
         playerPassword = password;
         highestScore = score;
     }
