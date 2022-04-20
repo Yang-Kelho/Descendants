@@ -13,8 +13,8 @@ public class LoginPanelCtrl : MonoBehaviour
     Button btn_back;
     Button btn_register_transfer;
     Button btn_Logout;
-    private Realm _realms;
     App realmApp;
+    private Realm _realm;
 
     // Start is called before the first frame update
     void Start()
@@ -42,11 +42,11 @@ public class LoginPanelCtrl : MonoBehaviour
             name = userName,
             password = password
         };
+
         realmApp = App.Create(new AppConfiguration("descendants-qsppj")
         {
             MetadataPersistenceMode = MetadataPersistenceMode.NotEncrypted
         });
-
         var currentUser = realmApp.CurrentUser;
         Debug.Log(currentUser);
 
@@ -54,10 +54,10 @@ public class LoginPanelCtrl : MonoBehaviour
         {
             currentUser = await realmApp.LogInAsync(Credentials.Function(payload));
             Debug.Log(currentUser);
-            _realms = await Realm.GetInstanceAsync(new SyncConfiguration("PlayerID", currentUser));
+            _realm = await Realm.GetInstanceAsync(new SyncConfiguration("PlayerID", currentUser));
         }
         else
-            _realms = Realm.GetInstance(new SyncConfiguration("PlayerID", currentUser));
+            _realm = Realm.GetInstance(new SyncConfiguration("PlayerID", currentUser));
     }
 
     private async void LogoutEvent()
@@ -67,7 +67,7 @@ public class LoginPanelCtrl : MonoBehaviour
         {
             await realmApp.CurrentUser.LogOutAsync();
         }
-        _realms.Dispose();
+        _realm.Dispose();
     }
     private void RegisterTransferEvent()
     {
@@ -92,7 +92,7 @@ public class LoginPanelCtrl : MonoBehaviour
         {
             await realmApp.CurrentUser.LogOutAsync();
         }
-        _realms.Dispose();
+        _realm.Dispose();
     }
 
 }

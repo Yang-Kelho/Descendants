@@ -25,11 +25,16 @@ public class RegisterPanelCtrl : MonoBehaviour
 
     }
 
-    private void RegisterEvent()
+    private async void RegisterEvent()
     {
         // trigger when you click the register button:
         var userName = transform.Find("vertical_layout").Find("Input_userName").Find("Text").GetComponent<Text>().text;
         var password = transform.Find("vertical_layout").Find("Input_password").Find("Text").GetComponent<Text>().text;
+        var payload = new
+        {
+            name = userName,
+            password = password
+        };
         var realmApp = App.Create(new AppConfiguration("descendants-qsppj")
         {
             MetadataPersistenceMode = MetadataPersistenceMode.NotEncrypted
@@ -39,10 +44,13 @@ public class RegisterPanelCtrl : MonoBehaviour
 
         if (currentUser == null)
         {
-           
+            currentUser = await realmApp.LogInAsync(Credentials.Function(payload));
+            Debug.Log(currentUser);
+            _realm = await Realm.GetInstanceAsync(new SyncConfiguration("PlayerID", currentUser));
         }
-
         BackEvent();
+        await realmApp.CurrentUser.LogOutAsync();
+        _realm.Dispose();
     }
 
     private void BackEvent()
