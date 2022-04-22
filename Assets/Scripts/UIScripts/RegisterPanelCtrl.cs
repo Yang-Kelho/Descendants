@@ -29,6 +29,7 @@ public class RegisterPanelCtrl : MonoBehaviour
         // trigger when you click the register button:
         var userName = transform.Find("vertical_layout").Find("Input_userName").Find("Text").GetComponent<Text>().text;
         var password = transform.Find("vertical_layout").Find("Input_password").Find("Text").GetComponent<Text>().text;
+        var regi = 0;
         var payload = new
         {
             name = userName,
@@ -43,13 +44,23 @@ public class RegisterPanelCtrl : MonoBehaviour
 
         if (currentUser == null)
         {
-            currentUser = await realmApp.LogInAsync(Credentials.Function(payload));
-            Debug.Log(currentUser);
-            _realm = await Realm.GetInstanceAsync(new SyncConfiguration("PlayerID", currentUser));
+            currentUser = await realmApp.LogInAsync(Credentials.Anonymous());
+            regi = await realmApp.CurrentUser.Functions.CallAsync<int>("Register", payload);
         }
-        BackEvent();
-        await realmApp.CurrentUser.LogOutAsync();
-        _realm.Dispose();
+
+        if (regi == 0)
+        {
+            //if return value = 0. Register failed
+            await realmApp.CurrentUser.LogOutAsync();
+            _realm.Dispose();
+            Debug.Log("Reigster failed, duplicated id exists");
+        }
+        else
+        {
+            await realmApp.CurrentUser.LogOutAsync();
+            _realm.Dispose();
+            BackEvent();
+        }
     }
 
     private void BackEvent()
