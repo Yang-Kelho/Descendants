@@ -35,7 +35,7 @@ public class RegisterPanelCtrl : MonoBehaviour
             name = userName,
             password = password
         };
-        var realmApp = App.Create(new AppConfiguration("descendants-qsppj")
+        var realmApp = App.Create(new AppConfiguration("descandants-upzrf")
         {
             MetadataPersistenceMode = MetadataPersistenceMode.NotEncrypted
         });

@@ -2522,7 +2522,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 3365630555847488776}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.6100001
+  m_Size: 0.61
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2978,7 +2978,7 @@ RectTransform:
   m_Father: {fileID: 3365630557240469227}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.38999993}
+  m_AnchorMin: {x: 0, y: 0.39}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -6843,7 +6843,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3365630557182321725
 RectTransform:
   m_ObjectHideFlags: 0

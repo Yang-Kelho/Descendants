@@ -43,7 +43,7 @@ public class LoginPanelCtrl : MonoBehaviour
             password = password
         };
 
-        realmApp = App.Create(new AppConfiguration("descendants-qsppj")
+        realmApp = App.Create(new AppConfiguration("descandants-upzrf")
         {
             MetadataPersistenceMode = MetadataPersistenceMode.NotEncrypted
         });
@@ -54,17 +54,17 @@ public class LoginPanelCtrl : MonoBehaviour
             if (currentUser == null)
             {
                 currentUser = await realmApp.LogInAsync(Credentials.Function(payload));
-                Debug.Log(currentUser);
-                _realm = await Realm.GetInstanceAsync(new PartitionSyncConfiguration("PlayerID", currentUser));
+                _realm = await Realm.GetInstanceAsync(new PartitionSyncConfiguration("Password", currentUser));
             }
             else
-                _realm = Realm.GetInstance(new PartitionSyncConfiguration("PlayerID", currentUser));
+                _realm = Realm.GetInstance(new PartitionSyncConfiguration("Password", currentUser));
         }
         catch
         {
             //if error catched, login failed
             Debug.Log("Login failed, invaild Credential");
         }
+
     }
 
     private async void LogoutEvent()

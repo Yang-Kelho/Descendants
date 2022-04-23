@@ -1,7 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using MongoDB.Bson;
+using Realms.Sync;
+using Realms;
 
 public class HistoryPanelCtrl : MonoBehaviour
 {
@@ -10,6 +14,9 @@ public class HistoryPanelCtrl : MonoBehaviour
     Button btn_my_history;
     Button btn_leaderboard;
     Button btn_back;
+    private Realm _realm;
+    App realmApp;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +40,30 @@ public class HistoryPanelCtrl : MonoBehaviour
 
     private void LeaderboardEvent()
     {
-        // activate the scroll view that contains leaderboard info:
+        realmApp = App.Create(new AppConfiguration("descandants-upzrf")
+        {
+            MetadataPersistenceMode = MetadataPersistenceMode.NotEncrypted
+        });
+        var currentUser = realmApp.CurrentUser;
+        _realm = Realm.GetInstance(new PartitionSyncConfiguration("Password", currentUser));
+        var sortedStats = _realm.All<PlayerData>();
+        var test = sortedStats.First().ToString();
+
+        Debug.Log(test);
+
+        //            = new BsonArray
+        //        {
+        //            new BsonDocument("$group",
+        //            new BsonDocument
+        //                {
+        //                    { "_id", "$_id" },
+        //                    { "Score",
+        //            new BsonDocument("$first", "$Score") }
+        //                }),
+        //            new BsonDocument("$sort",
+        //           new BsonDocument("Score", -1))
+        //        };
+
     }
 
     private void BackEvent()
