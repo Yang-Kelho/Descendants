@@ -69,10 +69,10 @@ public class LoginPanelCtrl : MonoBehaviour
             if (currentUser == null)
             {
                 currentUser = await realmApp.LogInAsync(Credentials.Function(payload));
-                _realm = await Realm.GetInstanceAsync(new PartitionSyncConfiguration("Password", currentUser));
+                //_realm = await Realm.GetInstanceAsync(new PartitionSyncConfiguration("Pid", currentUser));
             }
             else
-                _realm = Realm.GetInstance(new PartitionSyncConfiguration("Password", currentUser));
+                _realm = Realm.GetInstance(new PartitionSyncConfiguration("Pid", currentUser));
         }
         catch
         {
@@ -91,11 +91,7 @@ public class LoginPanelCtrl : MonoBehaviour
 
     private async void LogoutEvent()
     {
-        var currentUser = realmApp.CurrentUser;
-        if (currentUser != null)
-        {
-            await realmApp.CurrentUser.LogOutAsync();
-        }
+        await realmApp.CurrentUser.LogOutAsync();
         _realm.Dispose();
     }
     private void RegisterTransferEvent()
@@ -116,11 +112,7 @@ public class LoginPanelCtrl : MonoBehaviour
 
     private async void OnApplicationQuit()
     {
-        var currentUser = realmApp.CurrentUser;
-        if (currentUser != null)
-        {
-            await realmApp.CurrentUser.LogOutAsync();
-        }
+        await realmApp.CurrentUser.LogOutAsync();
         _realm.Dispose();
     }
 

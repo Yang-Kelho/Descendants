@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using MongoDB.Bson;
 using Realms.Sync;
 using Realms;
 
@@ -38,31 +37,28 @@ public class HistoryPanelCtrl : MonoBehaviour
         // activate the scrow view that contains my historoy info:
     }
 
-    private void LeaderboardEvent()
+    private async void LeaderboardEvent()
     {
-        realmApp = App.Create(new AppConfiguration("descandants-upzrf")
-        {
-            MetadataPersistenceMode = MetadataPersistenceMode.NotEncrypted
-        });
+        realmApp = App.Create("descandants-upzrf");
+
         var currentUser = realmApp.CurrentUser;
-        _realm = Realm.GetInstance(new PartitionSyncConfiguration("Password", currentUser));
-        var sortedStats = _realm.All<PlayerData>();
-        var test = sortedStats.First().ToString();
+        _realm = await Realm.GetInstanceAsync(new PartitionSyncConfiguration("Pid", currentUser));
 
-        Debug.Log(test);
+        _realm.Write(() => 
+        {
+            var newPlayer = new PlayerData("Pid","555",0);
+            _realm.Add(newPlayer);
+            _realm.RemoveAll<PlayerData>();
+        });
 
-        //            = new BsonArray
-        //        {
-        //            new BsonDocument("$group",
-        //            new BsonDocument
-        //                {
-        //                    { "_id", "$_id" },
-        //                    { "Score",
-        //            new BsonDocument("$first", "$Score") }
-        //                }),
-        //            new BsonDocument("$sort",
-        //           new BsonDocument("Score", -1))
-        //        };
+
+//        var sortedStats = _realm.Find<PlayerData>("test1");
+//        Debug.Log(sortedStats.highestScore);        
+//        foreach (var playerData in sortedStats)
+//        {
+//            Debug.Log("ID:" + playerData.playerId);
+//            Debug.Log("Score:" + playerData.highestScore);
+//        }
 
     }
 
