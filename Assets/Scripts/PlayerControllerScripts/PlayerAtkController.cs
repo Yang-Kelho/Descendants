@@ -61,7 +61,7 @@ public class PlayerAtkController : MonoBehaviour
         }
     }
 
-    public void SwithchWeapon()
+    public void SwitchWeapon()
     {
         weaponInv.SwapCurrentSlot();
     }
