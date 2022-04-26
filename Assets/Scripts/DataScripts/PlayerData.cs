@@ -13,14 +13,14 @@ public class PlayerData : RealmObject
     public string playerPassword { get; set; }
 
     [MapTo("Score")]
-    public int highestScore { get; set; }
+    public long highestScore { get; set; }
 
     public PlayerData() { }
 
     public PlayerData(string _playerId, string password, int score)
     {
         playerId = _playerId;
-        pId = _playerId;
+        pId = "partition";
         playerPassword = password;
         highestScore = score;
     }

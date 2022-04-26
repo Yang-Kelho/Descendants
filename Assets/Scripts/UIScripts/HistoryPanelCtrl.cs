@@ -42,24 +42,15 @@ public class HistoryPanelCtrl : MonoBehaviour
         realmApp = App.Create("descandants-upzrf");
 
         var currentUser = realmApp.CurrentUser;
-        _realm = await Realm.GetInstanceAsync(new PartitionSyncConfiguration("Pid", currentUser));
+        _realm = await Realm.GetInstanceAsync(new PartitionSyncConfiguration("partition", currentUser));
 
-        _realm.Write(() => 
+        var sortedStats = _realm.All<PlayerData>().OrderByDescending(p => p.highestScore);
+        Debug.Log(sortedStats);
+        foreach (var playerData in sortedStats)
         {
-            var newPlayer = new PlayerData("Pid","555",0);
-            _realm.Add(newPlayer);
-            _realm.RemoveAll<PlayerData>();
-        });
-
-
-//        var sortedStats = _realm.Find<PlayerData>("test1");
-//        Debug.Log(sortedStats.highestScore);        
-//        foreach (var playerData in sortedStats)
-//        {
-//            Debug.Log("ID:" + playerData.playerId);
-//            Debug.Log("Score:" + playerData.highestScore);
-//        }
-
+            Debug.Log("ID:" + playerData.playerId);
+            Debug.Log("Score:" + playerData.highestScore);
+        }
     }
 
     private void BackEvent()

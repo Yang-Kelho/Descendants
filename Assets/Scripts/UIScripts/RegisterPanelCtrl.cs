@@ -73,6 +73,13 @@ public class RegisterPanelCtrl : MonoBehaviour
         }
         else
         {
+            _realm = await Realm.GetInstanceAsync(new PartitionSyncConfiguration("partition", currentUser));
+            _realm.Write(() =>
+            {
+                var newPlayer = new PlayerData(userName, password, 0);
+                _realm.Add(newPlayer);
+            });
+
             await realmApp.CurrentUser.LogOutAsync();
             _realm.Dispose();
             panel_notification_success.SetActive(true);

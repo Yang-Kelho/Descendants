@@ -69,10 +69,10 @@ public class LoginPanelCtrl : MonoBehaviour
             if (currentUser == null)
             {
                 currentUser = await realmApp.LogInAsync(Credentials.Function(payload));
-                //_realm = await Realm.GetInstanceAsync(new PartitionSyncConfiguration("Pid", currentUser));
+                //_realm = await Realm.GetInstanceAsync(new PartitionSyncConfiguration(userName, currentUser));
             }
             else
-                _realm = Realm.GetInstance(new PartitionSyncConfiguration("Pid", currentUser));
+                _realm = Realm.GetInstance(new PartitionSyncConfiguration("partition", currentUser));
         }
         catch
         {
