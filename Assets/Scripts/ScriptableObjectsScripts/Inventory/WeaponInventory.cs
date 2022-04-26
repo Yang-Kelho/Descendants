@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "weaponInventory", menuName = "Inventory/weponInventory")]
 public class WeaponInventory : ScriptableObject
@@ -25,7 +26,10 @@ public class WeaponInventory : ScriptableObject
     public void AddDefaultWeapon(WeaponObjects _weapon)
     {
         if (CheckEmptySlot() == 0)
+        {
             containers[0] = new WeaponInventorySlots(_weapon);
+        }
+            
     }
 
     public void SwapCurrentSlot()

@@ -9,6 +9,7 @@ public class InGamePanelCtrl : MonoBehaviour
     GameObject panel_backpack;
     GameObject panel_setting;
     GameObject slots;
+    //GameObject panel_inventory;
 
     Button btn_setting;
     Button btn_backpack;
@@ -19,6 +20,9 @@ public class InGamePanelCtrl : MonoBehaviour
     Button btn_remove;
 
     Button btn_selected;
+
+    // retrieve the images:
+    
 
     string slotName;
     string slotName_selected;
@@ -35,6 +39,7 @@ public class InGamePanelCtrl : MonoBehaviour
         // initialize the panels:
         panel_backpack = transform.Find("panel_backpack").gameObject;
         panel_setting = transform.Find("panel_setting").gameObject;
+        //panel_inventory = transform.Find("panel_inventory").gameObject;
 
         //initialize the button for cancel and exit:
         btn_cancel = panel_setting.transform.Find("btn_cancel").GetComponent<Button>();
@@ -50,9 +55,10 @@ public class InGamePanelCtrl : MonoBehaviour
         btn_exit.onClick.AddListener(ExitEvent);
 
         initBackpackSlots();
+        getWeaponInventory();
 
     }
-    
+
     private void initBackpackSlots()
     {
         // initialize the backpack slots and add onclick listener to them:
@@ -149,5 +155,14 @@ public class InGamePanelCtrl : MonoBehaviour
     {
         // remove the selected item if it is not NULL:
 
+    }
+
+    private void getWeaponInventory()
+    {
+        WeaponInventory.WeaponInventorySlots slot = GameObject.Find("PF Player").GetComponent<PlayerAtkController>().weaponInv.containers[0];
+        Sprite weapon = slot.weapons.weaponPrefab.transform.GetComponent<SpriteRenderer>().sprite;
+        this.transform.Find("sprite_currentWeapon").GetComponent<Image>().sprite = weapon;
+        
+        
     }
 }
