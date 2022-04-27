@@ -30,5 +30,9 @@ public class ProjectileController : MonoBehaviour
                 }
             }
         }
+        if (collision.CompareTag("Walls"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
