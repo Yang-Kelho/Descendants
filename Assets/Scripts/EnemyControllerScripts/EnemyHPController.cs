@@ -14,8 +14,10 @@ public class EnemyHPController : MonoBehaviour
     private void Die()
     {
         int goldDropped = GetComponent<Enemy>().enemy.goldDropped;
+        long score = GetComponent<Enemy>().enemy.score;
         Debug.Log("enemy dropped " + goldDropped + " gold");
         GoldDisplay.goldSystem.EarnGold(goldDropped);
+        Player.increaseCurrentScore(score);
         Destroy(gameObject);
     }
 

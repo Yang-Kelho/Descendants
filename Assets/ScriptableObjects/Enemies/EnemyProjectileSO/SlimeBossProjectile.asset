@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09fee1b337f72e944b1cd0789cfe7d2b, type: 3}
+  m_Name: SlimeBossProjectile
+  m_EditorClassIdentifier: 
+  type: 0
+  projectilePrefab: {fileID: 392734933304078596, guid: 6450fbd4531701141b12258b926a17d2, type: 3}
+  damage: 1
+  projectileSpeed: 700
+  bounce: 0

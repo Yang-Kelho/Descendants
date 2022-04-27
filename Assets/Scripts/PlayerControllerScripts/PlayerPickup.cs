@@ -43,9 +43,11 @@ public class PlayerPickup : MonoBehaviour
     {
         if (canPickUp == true && collision.GetComponent<Collider2D>().enabled == true)
         {
+            var slotsBeforePickUp = weaponInv.CheckEmptySlot();
             weaponInv.AddWeapon(pickUpWeapon);
             Destroy(collision.gameObject);
-            SpawnWeapon();
+            if(slotsBeforePickUp == 2 )
+                SpawnWeapon();
         }
     }
     public void Update()

@@ -119,6 +119,7 @@ public class LoginPanelCtrl : MonoBehaviour
     private void OKEvent_Success()
     {
         panel_notification_success.SetActive(false);
+        Player.userName = transform.Find("vertical_layout").Find("Input_userName").Find("Text").GetComponent<Text>().text;
     }
     private void OKEvent_Fail()
     {

@@ -1176,7 +1176,7 @@ GameObject:
   - component: {fileID: 1545045905}
   - component: {fileID: 1545045904}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: mov_stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1335,7 +1335,7 @@ GameObject:
   - component: {fileID: 1549716927}
   - component: {fileID: 1549716926}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: atk_stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1511,6 +1511,10 @@ PrefabInstance:
     - target: {fileID: 5786012857722167081, guid: b0a5156743804f246a23594f589fc20c, type: 3}
       propertyPath: m_Name
       value: BasicShooterPF
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786012857722167081, guid: b0a5156743804f246a23594f589fc20c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5924430078462576256, guid: b0a5156743804f246a23594f589fc20c, type: 3}
       propertyPath: m_Enabled
@@ -6741,7 +6745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &8747441744736570603
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 7868908687654807460}
   - component: {fileID: 2568664551565901486}
   - component: {fileID: 1807951886897064600}
+  - component: {fileID: -1099612864292787763}
   m_Layer: 0
   m_Name: PF Player
   m_TagString: Player
@@ -292,7 +293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a25acbb1c179eef45871e712e2e1977c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particleSystem: {fileID: 0}
 --- !u!199 &2568664551565901486
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -5123,3 +5123,15 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &-1099612864292787763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620448596000502390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e431243b84c689469e533546d415560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7729471927698599261}
   - component: {fileID: 37537944}
   - component: {fileID: 7729471927698599258}
-  - component: {fileID: 7729471927698599262}
+  - component: {fileID: 1684441617041792803}
+  - component: {fileID: 8575953072416416682}
   m_Layer: 0
   m_Name: Slime Boss
   m_TagString: Enemies
@@ -176,7 +177,7 @@ PolygonCollider2D:
       - {x: 0.71, y: -0.59}
       - {x: 0.79999995, y: -0.34}
       - {x: 0.79999995, y: -0.099999994}
---- !u!114 &7729471927698599262
+--- !u!114 &1684441617041792803
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,6 +186,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 7729471927698599259}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9adc19a16862a1940a0323e6cce40cf5, type: 3}
+  m_Script: {fileID: 11500000, guid: daed05e9639340c4c951c8a4a4cbb993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 11400000, guid: b9ece91fb2a15cb4e86017f9a14c1355, type: 2}
+--- !u!114 &8575953072416416682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7729471927698599259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de8d5d961fa1a24ea5a4de029a5de2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

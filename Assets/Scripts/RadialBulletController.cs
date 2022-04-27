@@ -7,11 +7,19 @@ public class RadialBulletController : MonoBehaviour
     [Header("Projectile Settings")]
     public int _numBullets;
     public float bulletSpeed;
-    public GameObject BulletPrefab;
+    private GameObject BulletPrefab;
     float atkCooldown = 0;
     [Header("Private Variables")]
     private Vector2 startPoint;
+    private Enemy enemy;
     private const float radius = 1f;
+
+    private void Awake()
+    {
+        //set projectile prefab
+        BulletPrefab = GetComponent<Enemy>().enemy.projectile.projectilePrefab;
+        enemy = GetComponent<Enemy>();
+    }
 
     void FixedUpdate()
     {
@@ -55,6 +63,8 @@ public class RadialBulletController : MonoBehaviour
             Vector2 projectileMoveDir = (projectileVector - startPoint).normalized * bulletSpeed;
 
             GameObject tmpObj = Instantiate(BulletPrefab, startPoint, Quaternion.identity);
+            tmpObj.GetComponent<Projectile>().projectile = enemy.enemy.projectile;
+            tmpObj.GetComponent<Projectile>().damage = enemy.enemy.projectile.damage;
             tmpObj.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileMoveDir.x, projectileMoveDir.y);
             angle += angleStep;
         }
@@ -77,11 +87,15 @@ public class RadialBulletController : MonoBehaviour
         Vector2 projectileMoveDir = (projectileVector - startPoint).normalized * (1.5f * bulletSpeed);
 
         GameObject tmpObj = Instantiate(BulletPrefab, startPoint, Quaternion.identity);
+        tmpObj.GetComponent<Projectile>().projectile = enemy.enemy.projectile;
+        tmpObj.GetComponent<Projectile>().damage = enemy.enemy.projectile.damage;
         tmpObj.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileMoveDir.x, projectileMoveDir.y);
         if (isDoubleSpiral)
         {
             // spawn bullet going in opposite direction
             GameObject tmpObj2 = Instantiate(BulletPrefab, startPoint, Quaternion.identity);
+            tmpObj2.GetComponent<Projectile>().projectile = enemy.enemy.projectile;
+            tmpObj2.GetComponent<Projectile>().damage = enemy.enemy.projectile.damage;
             tmpObj2.GetComponent<Rigidbody2D>().velocity = new Vector2(-projectileMoveDir.x, -projectileMoveDir.y);
         }
     }

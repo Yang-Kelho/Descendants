@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9adc19a16862a1940a0323e6cce40cf5, type: 3}
+  m_Name: SlimeBoss
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 7729471927698599259, guid: a86f3727ad38ab5428a6f57368d8d94e, type: 3}
+  projectile: {fileID: 11400000, guid: bb7a52a24777dfe4f83fbbe763787941, type: 2}
+  eliteCheck: 0
+  speed: 0
+  maxHp: 100
+  goldDropped: 80
+  atkCoolDown: 10
+  score: 1000

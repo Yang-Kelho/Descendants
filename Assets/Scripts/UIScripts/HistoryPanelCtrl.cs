@@ -43,7 +43,6 @@ public class HistoryPanelCtrl : MonoBehaviour
     {
         
         realmApp = App.Create("descandants-upzrf");
-
         var currentUser = realmApp.CurrentUser;
         _realm = await Realm.GetInstanceAsync(new PartitionSyncConfiguration("partition", currentUser));
 

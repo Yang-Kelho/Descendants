@@ -16,5 +16,6 @@ public class BasicShooter : EnemyObjects
         speed = 250f;
         atkCoolDown = 10f;
         goldDropped = 25;
+        score = 200;
     }
 }

@@ -12,6 +12,7 @@ public class EnemyObjects : ScriptableObject
     public float maxHp;
     public int goldDropped;
     public float atkCoolDown;
+    public long score;
 
     public bool EliteRoll()
     {

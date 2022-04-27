@@ -44,7 +44,7 @@ public class WeaponInventory : ScriptableObject
         }
     }
 
-    private int CheckEmptySlot()
+    public int CheckEmptySlot()
     {
         if (containers[0].weapons == null)
             return 0;

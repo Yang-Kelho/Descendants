@@ -19,3 +19,4 @@ MonoBehaviour:
   maxHp: 20
   goldDropped: 25
   atkCoolDown: 3
+  score: 200

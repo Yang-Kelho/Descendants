@@ -9,6 +9,7 @@ public class InGamePanelCtrl : MonoBehaviour
     GameObject panel_backpack;
     GameObject panel_setting;
     GameObject slots;
+    GameObject player;
     //GameObject panel_inventory;
 
     Button btn_setting;
@@ -54,7 +55,7 @@ public class InGamePanelCtrl : MonoBehaviour
 
         // add listener and event:
         btn_backpack.onClick.AddListener(BackpackEvent);
-        btn_setting.onClick.AddListener(delegate { SettingEvent(0, 0); });
+        btn_setting.onClick.AddListener(delegate { SettingEvent(Player.getHighestScore(), Player.getCurrentScore()); });
         btn_close.onClick.AddListener(CloseEvent);
         btn_cancel.onClick.AddListener(CancelEvent);
         btn_use.onClick.AddListener(UseEvent);
@@ -62,8 +63,12 @@ public class InGamePanelCtrl : MonoBehaviour
         btn_exit.onClick.AddListener(ExitEvent);
 
         initBackpackSlots();
-        getWeaponInventory();
 
+    }
+
+    private void Update()
+    {
+        getWeaponInventory();
     }
 
     private void initBackpackSlots()
@@ -121,8 +126,9 @@ public class InGamePanelCtrl : MonoBehaviour
         Debug.Log(k);
     }
 
-    private void SettingEvent(int currentScore, int highestScore)
+    private void SettingEvent(long currentScore, long highestScore)
     {
+        pause();
         panel_setting.SetActive(true);
         // modify the number:
         text_currentScore.text = "Current Score: " + currentScore;
@@ -137,11 +143,13 @@ public class InGamePanelCtrl : MonoBehaviour
     private void CloseEvent()
     {
         panel_backpack.SetActive(false);
+        resume();
     }
 
     private void CancelEvent()
     {
         panel_setting.SetActive(false);
+        resume();
     }
 
     private void ExitEvent()
@@ -153,6 +161,7 @@ public class InGamePanelCtrl : MonoBehaviour
         // transit back to the UI scene:
 
         SceneManager.LoadScene(sceneBuildIndex: 0);
+        resume();
     }
 
     private void UseEvent()
@@ -169,8 +178,23 @@ public class InGamePanelCtrl : MonoBehaviour
 
     private void getWeaponInventory()
     {
-        WeaponInventory.WeaponInventorySlots slot = GameObject.Find("PF Player").GetComponent<PlayerAtkController>().weaponInv.containers[0];
+        int currentSlot = GameObject.Find("PF Player").GetComponent<PlayerAtkController>().weaponInv.GetCurrentSlot();
+        WeaponInventory.WeaponInventorySlots slot = GameObject.Find("PF Player").GetComponent<PlayerAtkController>().weaponInv.containers[currentSlot];
         Sprite weapon = slot.weapons.weaponPrefab.transform.GetComponent<SpriteRenderer>().sprite;
         this.transform.Find("sprite_currentWeapon").GetComponent<Image>().sprite = weapon;
+    }
+
+    private void pause()
+    {
+        Time.timeScale = 0;
+        GameObject.Find("atk_stick").SetActive(false);
+        GameObject.Find("mov_stick").SetActive(false);
+    }
+
+    private void resume()
+    {
+        Time.timeScale = 1;
+        GameObject.Find("atk_stick").SetActive(true);
+        GameObject.Find("mov_stick").SetActive(true);
     }
 }
