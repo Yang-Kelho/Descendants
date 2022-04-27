@@ -11,8 +11,6 @@ public class GoldDisplay : MonoBehaviour
 
     void Awake()
     {
-
-
         GameObject goldIcon = new GameObject("Gold", typeof(Image));
         goldIcon.transform.SetParent(transform);
         goldIcon.transform.localPosition = Vector3.zero;

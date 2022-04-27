@@ -10,6 +10,8 @@ public class InGamePanelCtrl : MonoBehaviour
     GameObject panel_setting;
     GameObject slots;
     GameObject player;
+    GameObject atk_stick;
+    GameObject mov_stick;
     //GameObject panel_inventory;
 
     Button btn_setting;
@@ -37,6 +39,8 @@ public class InGamePanelCtrl : MonoBehaviour
         // initialize the panels:
         panel_backpack = transform.Find("panel_backpack").gameObject;
         panel_setting = transform.Find("panel_setting").gameObject;
+        atk_stick = GameObject.Find("atk_stick");
+        mov_stick = GameObject.Find("mov_stick");
 
         // initialize the buttons
         btn_backpack = transform.Find("btn_backpack").GetComponent<Button>();
@@ -55,7 +59,7 @@ public class InGamePanelCtrl : MonoBehaviour
 
         // add listener and event:
         btn_backpack.onClick.AddListener(BackpackEvent);
-        btn_setting.onClick.AddListener(delegate { SettingEvent(Player.getHighestScore(), Player.getCurrentScore()); });
+        btn_setting.onClick.AddListener(delegate { SettingEvent(Player.getCurrentScore(), Player.getHighestScore()); });
         btn_close.onClick.AddListener(CloseEvent);
         btn_cancel.onClick.AddListener(CancelEvent);
         btn_use.onClick.AddListener(UseEvent);
@@ -187,14 +191,14 @@ public class InGamePanelCtrl : MonoBehaviour
     private void pause()
     {
         Time.timeScale = 0;
-        GameObject.Find("atk_stick").SetActive(false);
-        GameObject.Find("mov_stick").SetActive(false);
+        atk_stick.SetActive(false);
+        mov_stick.SetActive(false);
     }
 
     private void resume()
     {
         Time.timeScale = 1;
-        GameObject.Find("atk_stick").SetActive(true);
-        GameObject.Find("mov_stick").SetActive(true);
+        atk_stick.SetActive(true);
+        mov_stick.SetActive(true);
     }
 }

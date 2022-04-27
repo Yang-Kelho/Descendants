@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovementController : MonoBehaviour
 {
     public Rigidbody2D playerRb;
-    public float playerSpeed = 3f;
+    public float playerSpeed = 300f;
     public PlayerControls playerControls;
     Vector2 movDirection = Vector2.zero;
     private InputAction move;
