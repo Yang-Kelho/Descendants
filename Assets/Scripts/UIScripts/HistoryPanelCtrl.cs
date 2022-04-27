@@ -13,6 +13,7 @@ public class HistoryPanelCtrl : MonoBehaviour
     Button btn_my_history;
     Button btn_leaderboard;
     Button btn_back;
+    Font defaultFont;
     private Realm _realm;
     App realmApp;
 
@@ -28,6 +29,7 @@ public class HistoryPanelCtrl : MonoBehaviour
         btn_leaderboard.onClick.AddListener(LeaderboardEvent);
         btn_back.onClick.AddListener(BackEvent);
 
+        defaultFont = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
         //trigger the my history content panel first (by default):
 
     }
@@ -39,6 +41,7 @@ public class HistoryPanelCtrl : MonoBehaviour
 
     private async void LeaderboardEvent()
     {
+        
         realmApp = App.Create("descandants-upzrf");
 
         var currentUser = realmApp.CurrentUser;
@@ -46,8 +49,27 @@ public class HistoryPanelCtrl : MonoBehaviour
 
         var sortedStats = _realm.All<PlayerData>().OrderByDescending(p => p.highestScore);
         Debug.Log(sortedStats);
+
+        // initialize parent object:
+        GameObject contentPanel = this.transform.Find("Scroll View").Find("Viewport").Find("Content").gameObject;
+        int index = 0;
         foreach (var playerData in sortedStats)
         {
+            // create an game object
+            GameObject go = new GameObject("record"+index);
+            // add text component to it
+            go.AddComponent<Text>();
+            // modify the spec of the component
+            go.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(400, 50);
+            Text textComponent = go.transform.GetComponent<Text>();
+            textComponent.text = "ID: " + playerData.playerId + "          "+"Score: " + playerData.highestScore;
+            textComponent.GetComponent<Text>().font = defaultFont;
+            textComponent.fontSize = 30;
+            // set the location of the component
+            go.transform.SetParent(contentPanel.transform, false);
+            index++;
+
+            // test debug:
             Debug.Log("ID:" + playerData.playerId);
             Debug.Log("Score:" + playerData.highestScore);
         }

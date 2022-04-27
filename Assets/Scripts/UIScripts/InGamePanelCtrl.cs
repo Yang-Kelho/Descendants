@@ -21,6 +21,10 @@ public class InGamePanelCtrl : MonoBehaviour
 
     Button btn_selected;
 
+    // retrieve total and current Score text component:
+    Text text_currentScore;
+    Text text_highestScore;
+
     // retrieve the images:
     
 
@@ -29,17 +33,20 @@ public class InGamePanelCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // initialize the panels:
+        panel_backpack = transform.Find("panel_backpack").gameObject;
+        panel_setting = transform.Find("panel_setting").gameObject;
+
         // initialize the buttons
         btn_backpack = transform.Find("btn_backpack").GetComponent<Button>();
         btn_setting = transform.Find("btn_setting").GetComponent<Button>();
         btn_close = transform.Find("panel_backpack").Find("btn_close").GetComponent<Button>();
         btn_use = transform.Find("panel_backpack").Find("btn_use").GetComponent<Button>();
         btn_remove = transform.Find("panel_backpack").Find("btn_remove").GetComponent<Button>();
-        
-        // initialize the panels:
-        panel_backpack = transform.Find("panel_backpack").gameObject;
-        panel_setting = transform.Find("panel_setting").gameObject;
-        //panel_inventory = transform.Find("panel_inventory").gameObject;
+
+        // initialize the texts:
+        text_currentScore = panel_setting.transform.Find("text_currentScore").GetComponent<Text>();
+        text_highestScore = panel_setting.transform.Find("text_highestScore").GetComponent<Text>();
 
         //initialize the button for cancel and exit:
         btn_cancel = panel_setting.transform.Find("btn_cancel").GetComponent<Button>();
@@ -47,7 +54,7 @@ public class InGamePanelCtrl : MonoBehaviour
 
         // add listener and event:
         btn_backpack.onClick.AddListener(BackpackEvent);
-        btn_setting.onClick.AddListener(SettingEvent);
+        btn_setting.onClick.AddListener(delegate { SettingEvent(0, 0); });
         btn_close.onClick.AddListener(CloseEvent);
         btn_cancel.onClick.AddListener(CancelEvent);
         btn_use.onClick.AddListener(UseEvent);
@@ -114,9 +121,12 @@ public class InGamePanelCtrl : MonoBehaviour
         Debug.Log(k);
     }
 
-    private void SettingEvent()
+    private void SettingEvent(int currentScore, int highestScore)
     {
         panel_setting.SetActive(true);
+        // modify the number:
+        text_currentScore.text = "Current Score: " + currentScore;
+        text_highestScore.text = "Highest Score: " + highestScore;
     }
 
     private void BackpackEvent()
@@ -162,7 +172,5 @@ public class InGamePanelCtrl : MonoBehaviour
         WeaponInventory.WeaponInventorySlots slot = GameObject.Find("PF Player").GetComponent<PlayerAtkController>().weaponInv.containers[0];
         Sprite weapon = slot.weapons.weaponPrefab.transform.GetComponent<SpriteRenderer>().sprite;
         this.transform.Find("sprite_currentWeapon").GetComponent<Image>().sprite = weapon;
-        
-        
     }
 }
