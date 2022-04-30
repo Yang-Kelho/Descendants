@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public PlayerStats stats;
+
     public void PlayerDamage(int damageAmount)
     {
         Debug.Log("Player took " + damageAmount + " damage");
         HealthDisplay.HealthSystemStatic.Damage(damageAmount);
+        stats.health = getCurrentHealth();
         if (IsDead())
             Die();
     }
@@ -18,11 +21,13 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.Log("Player healed " + healAmount + " HP");
             HealthDisplay.HealthSystemStatic.Heal(healAmount);
+            stats.health = getCurrentHealth();
         }
     }
 
     public void Die()
     {
+        stats.ReSet();
         gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         gameObject.GetComponent<ParticleSystem>().Play();
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
@@ -32,5 +37,21 @@ public class PlayerHealth : MonoBehaviour
     public bool IsDead()
     {
         return HealthDisplay.HealthSystemStatic.IsDead();
+    }
+
+    public int getCurrentHealth()
+    {
+        var heartList = HealthDisplay.HealthSystemStatic.GetHeartList();
+        var currentHealth = 0;
+        for (int i = 0; i < heartList.Count; i++)
+        {
+            currentHealth += heartList[i].GetFragmentNumber();
+        }
+        return currentHealth;
+    }
+
+    private void OnApplicationQuit()
+    {
+        stats.ReSet();
     }
 }

@@ -3,28 +3,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoldSystem
+public class GoldSystem: MonoBehaviour
 {
     private int goldAmount;
     public event EventHandler OnGoldUpdated;
+    public PlayerStats stats;
 
-    public GoldSystem()
+    private void Awake()
     {
-        goldAmount = 0;
+        goldAmount = stats.gold;
     }
 
     public void EarnGold(int amount)
     {
         goldAmount += amount;
+        stats.gold = goldAmount;
         OnGoldUpdated?.Invoke(this, EventArgs.Empty);
     }
 
     public void SpendGold(int amount)
     {
         // pre-condition: current > amount
-        goldAmount -= amount;
-        OnGoldUpdated?.Invoke(this, EventArgs.Empty);
+        if (goldAmount > amount)
+        {
+            goldAmount -= amount;
+            stats.gold = goldAmount;
+            OnGoldUpdated?.Invoke(this, EventArgs.Empty);
+        }
+        else
+            Debug.Log("Not enough gold");
     }
+
 
     public int GetCurrentGold()
     {

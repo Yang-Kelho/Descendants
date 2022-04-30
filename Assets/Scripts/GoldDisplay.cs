@@ -23,8 +23,9 @@ public class GoldDisplay : MonoBehaviour
 
     private void Start()
     {
-        goldSystem = new GoldSystem();
+        goldSystem = GetComponent<GoldSystem>();
         goldSystem.OnGoldUpdated += GoldSystem_OnGoldUpdated;
+        UpdateGoldDisplay();
     }
 
     private void GoldSystem_OnGoldUpdated(object sender, EventArgs e)

@@ -201,11 +201,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5786012857722167081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c282a4e300f6fe94394ca2d602fbc638, type: 3}
+  m_Script: {fileID: 11500000, guid: 7842e0f24f4913945858beef3ef7d83d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pathFinder: {fileID: 7619812126433523302}
-  playerPf: {fileID: 1620448596000502390, guid: 4dc1caa5333c6154d8106eca221681b5, type: 3}
+  playerMovement: {fileID: 0}
+  enemy: {fileID: 0}
 --- !u!114 &7619812126433523302
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class HealthDisplay : MonoBehaviour
 {
+    public PlayerStats stats;
     public static HealthSystem HealthSystemStatic;
     [SerializeField] private Sprite fullHeartSprite;
     [SerializeField] private Sprite halfHeartSprite;
@@ -20,7 +21,7 @@ public class HealthDisplay : MonoBehaviour
     }
     private void Start()
     {
-        HealthSystem healthSystem = new HealthSystem(3);
+        HealthSystem healthSystem = new HealthSystem(3, stats);
         setHealthSystem(healthSystem);
         HealthSystemStatic = healthSystem;
     }
@@ -39,6 +40,7 @@ public class HealthDisplay : MonoBehaviour
         }
         healthSystem.OnDamaged += HealthSystem_OnDamaged;
         healthSystem.OnHealed += HealthSystem_OnHealed;
+
     }
 
     private void HealthSystem_OnHealed(object sender, EventArgs e)

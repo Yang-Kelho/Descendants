@@ -7,6 +7,7 @@ using Realms;
 
 public class Player : MonoBehaviour
 {
+    public PlayerStats playerStats;
     private static long CurrentScore;
     private static long highestScore;
     Realm _realm;
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         var deadCheck = health.IsDead();
+        
         realmApp = App.Create("descandants-upzrf");
         if (deadCheck == true)
         {

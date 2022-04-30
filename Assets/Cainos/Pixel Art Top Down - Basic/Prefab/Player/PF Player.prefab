@@ -293,6 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a25acbb1c179eef45871e712e2e1977c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: f210b694fac419b4e90437d55283ba16, type: 2}
 --- !u!199 &2568664551565901486
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -5135,3 +5136,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e431243b84c689469e533546d415560, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStats: {fileID: 11400000, guid: f210b694fac419b4e90437d55283ba16, type: 2}
+  health: {fileID: 0}

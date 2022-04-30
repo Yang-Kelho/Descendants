@@ -3,21 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthSystem {
+public class HealthSystem{
 
+    public PlayerStats stats;
     public const int MAX_FRAGMENT_NUMBER = 2;
     public event EventHandler OnDamaged;
     public event EventHandler OnHealed;
 
     private List<Heart> heartList;
-    public HealthSystem(int heartAmount)
+    public HealthSystem(int heartAmount, PlayerStats stats)
     {
+        this.stats = stats;
         this.heartList = new List<Heart>();
         for (int i = 0; i < heartAmount; i++)
         {
             Heart heart = new Heart(2);
             heartList.Add(heart);
         }
+
+        if (stats.health < stats.maxHealth)
+        {
+            Damage(stats.maxHealth - stats.health);
+        }
+        else if (stats.health > stats.maxHealth)
+        {
+            stats.health = stats.maxHealth;
+        }
+
     }
 
     public List<Heart> GetHeartList()

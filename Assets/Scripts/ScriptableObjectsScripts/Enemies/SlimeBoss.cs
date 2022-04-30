@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SlimeBoss", menuName = "Enemies/SlimeBoss")]
 public class SlimeBoss : EnemyObjects
 { 
-
     public SlimeBoss()
     {
         maxHp = 100f;

@@ -15,7 +15,7 @@ public class BasicShooterAI : MonoBehaviour
     private float atkCoolDown = 0;
     private Vector2 lastMvDir;
     private Vector2 atkDir;
-    private const float keepOutDistance = 100f;
+    private const float keepOutDistance = 200f;
     private State state;
     private Vector2 selfPosition;
 
@@ -27,16 +27,16 @@ public class BasicShooterAI : MonoBehaviour
 
     void Update()
     {
-       selfPosition = GetComponent<Transform>().position;      
-       float distance = CheckDistance();
-       if (distance > keepOutDistance)
-       {
-           state = State.Chase;
-       }
-       else if (distance <= keepOutDistance)
-       {
+        selfPosition = GetComponent<Transform>().position;
+        float distance = CheckDistance();
+        if (distance > keepOutDistance)
+        {
+            state = State.Chase;
+        }
+        else if (distance <= keepOutDistance)
+        {
             state = State.Attack;
-       }
+        }
 
         switch (state)
         {
@@ -55,7 +55,7 @@ public class BasicShooterAI : MonoBehaviour
         if (atkCoolDown > 0)
         {
             atkCoolDown -= Time.deltaTime;
-        }  
+        }
         if (atkDir != Vector2.zero)
         {
             if (atkCoolDown <= 0)
@@ -65,7 +65,7 @@ public class BasicShooterAI : MonoBehaviour
                 firedProjectile.GetComponent<Projectile>().damage = enemy.enemy.projectile.damage;
                 firedProjectile.GetComponent<Rigidbody2D>().velocity = atkDir.normalized * enemy.enemy.projectile.projectileSpeed;
                 atkCoolDown = enemy.enemy.atkCoolDown;
-            }        
+            }
         }
     }
 
@@ -82,23 +82,22 @@ public class BasicShooterAI : MonoBehaviour
     private void ChaseTarget(float keepOutDistance)
     {
         pathFinder.SetTargetPos(playerMovement.GetPosition(), keepOutDistance);
-//        else if (Vector2.Distance(GetComponent<Transform>().position, playerMovement.transform.position) < keepOutDistance)
-//        {
-//            Vector2 pos = playerMovement.GetPosition();
-//            state = State.Attack;
-//            if (pos == Vector2.zero)
-//            {
-//                pos = lastMvDir;
-//               pathFinder.SetTargetPos(pos, keepOutDistance);
-//                lastMvDir = pos;
-//            }
-//            else
-//            {
-//                pos.x *= -1;
-//                pos.y *= -1;
-//                pathFinder.SetTargetPos(pos, keepOutDistance);
-//                lastMvDir = pos;
+        //        else if (Vector2.Distance(GetComponent<Transform>().position, playerMovement.transform.position) < keepOutDistance)
+        //        {
+        //            Vector2 pos = playerMovement.GetPosition();
+        //            state = State.Attack;
+        //            if (pos == Vector2.zero)
+        //            {
+        //                pos = lastMvDir;
+        //               pathFinder.SetTargetPos(pos, keepOutDistance);
+        //                lastMvDir = pos;
+        //            }
+        //            else
+        //            {
+        //                pos.x *= -1;
+        //                pos.y *= -1;
+        //                pathFinder.SetTargetPos(pos, keepOutDistance);
+        //                lastMvDir = pos;
     }
 }
-    
-
+        
