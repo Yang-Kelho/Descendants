@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5924430078462576256}
   - component: {fileID: -3573237670411831792}
   - component: {fileID: 4760772440349539304}
+  - component: {fileID: 7619812126433523302}
   m_Layer: 0
   m_Name: BasicShooterPF
   m_TagString: Enemies
@@ -200,6 +201,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 5786012857722167081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c282a4e300f6fe94394ca2d602fbc638, type: 3}
+  m_Script: {fileID: 11500000, guid: 7842e0f24f4913945858beef3ef7d83d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathFinder: {fileID: 7619812126433523302}
+  playerMovement: {fileID: 0}
+  enemy: {fileID: 0}
+--- !u!114 &7619812126433523302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5786012857722167081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e6622717e5d6d84d92880f48e27dc30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

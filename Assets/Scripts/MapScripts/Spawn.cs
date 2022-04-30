@@ -5,4 +5,5 @@ using UnityEngine;
 public class Spawn : MonoBehaviour
 {
     public int roomScore;
+    public int roomType;
 }

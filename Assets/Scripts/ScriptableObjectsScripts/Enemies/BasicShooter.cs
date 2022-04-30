@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BasicShooter", menuName = "Enemies/BasicShooter")]
 public class BasicShooter : EnemyObjects
 {
-
     public void Awake()
     {
         eliteCheck = EliteRoll();
@@ -15,5 +14,8 @@ public class BasicShooter : EnemyObjects
     {
         maxHp = 20f;
         speed = 250f;
+        atkCoolDown = 10f;
+        goldDropped = 25;
+        score = 200;
     }
 }

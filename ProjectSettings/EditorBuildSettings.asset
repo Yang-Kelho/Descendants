@@ -9,7 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/UI.unity
     guid: ef4d15eb7b681c44e94beee557cccf77
   - enabled: 1
-    path: Assets/Scenes/InGame.unity
+    path: Assets/Scenes/Floor1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Floor1BossRoom.unity
+    guid: beb0a22a2bd9f0c4b93843fdb3c57d76
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 6a89f2c8b0e314242af77de3ca62839c, type: 2}

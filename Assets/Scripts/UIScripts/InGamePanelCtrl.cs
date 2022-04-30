@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InGamePanelCtrl : MonoBehaviour
 {
     GameObject panel_backpack;
     GameObject panel_setting;
     GameObject slots;
+    GameObject player;
+    GameObject atk_stick;
+    GameObject mov_stick;
+    //GameObject panel_inventory;
 
     Button btn_setting;
     Button btn_backpack;
@@ -19,21 +24,34 @@ public class InGamePanelCtrl : MonoBehaviour
 
     Button btn_selected;
 
+    // retrieve total and current Score text component:
+    Text text_currentScore;
+    Text text_highestScore;
+
+    // retrieve the images:
+    
+
     string slotName;
     string slotName_selected;
     // Start is called before the first frame update
     void Start()
     {
+        // initialize the panels:
+        panel_backpack = transform.Find("panel_backpack").gameObject;
+        panel_setting = transform.Find("panel_setting").gameObject;
+        atk_stick = GameObject.Find("atk_stick");
+        mov_stick = GameObject.Find("mov_stick");
+
         // initialize the buttons
         btn_backpack = transform.Find("btn_backpack").GetComponent<Button>();
         btn_setting = transform.Find("btn_setting").GetComponent<Button>();
         btn_close = transform.Find("panel_backpack").Find("btn_close").GetComponent<Button>();
         btn_use = transform.Find("panel_backpack").Find("btn_use").GetComponent<Button>();
         btn_remove = transform.Find("panel_backpack").Find("btn_remove").GetComponent<Button>();
-        
-        // initialize the panels:
-        panel_backpack = transform.Find("panel_backpack").gameObject;
-        panel_setting = transform.Find("panel_setting").gameObject;
+
+        // initialize the texts:
+        text_currentScore = panel_setting.transform.Find("text_currentScore").GetComponent<Text>();
+        text_highestScore = panel_setting.transform.Find("text_highestScore").GetComponent<Text>();
 
         //initialize the button for cancel and exit:
         btn_cancel = panel_setting.transform.Find("btn_cancel").GetComponent<Button>();
@@ -41,16 +59,22 @@ public class InGamePanelCtrl : MonoBehaviour
 
         // add listener and event:
         btn_backpack.onClick.AddListener(BackpackEvent);
-        btn_setting.onClick.AddListener(SettingEvent);
+        btn_setting.onClick.AddListener(delegate { SettingEvent(Player.getCurrentScore(), Player.getHighestScore()); });
         btn_close.onClick.AddListener(CloseEvent);
         btn_cancel.onClick.AddListener(CancelEvent);
         btn_use.onClick.AddListener(UseEvent);
         btn_remove.onClick.AddListener(RemoveEvent);
+        btn_exit.onClick.AddListener(ExitEvent);
 
         initBackpackSlots();
 
     }
-    
+
+    private void Update()
+    {
+        getWeaponInventory();
+    }
+
     private void initBackpackSlots()
     {
         // initialize the backpack slots and add onclick listener to them:
@@ -106,9 +130,13 @@ public class InGamePanelCtrl : MonoBehaviour
         Debug.Log(k);
     }
 
-    private void SettingEvent()
+    private void SettingEvent(long currentScore, long highestScore)
     {
+        pause();
         panel_setting.SetActive(true);
+        // modify the number:
+        text_currentScore.text = "Current Score: " + currentScore;
+        text_highestScore.text = "Highest Score: " + highestScore;
     }
 
     private void BackpackEvent()
@@ -119,26 +147,58 @@ public class InGamePanelCtrl : MonoBehaviour
     private void CloseEvent()
     {
         panel_backpack.SetActive(false);
+        resume();
     }
 
     private void CancelEvent()
     {
         panel_setting.SetActive(false);
+        resume();
     }
 
     private void ExitEvent()
     {
+        // Do the saving here:
+            // save same files, code goes here:
+
+
         // transit back to the UI scene:
 
+        SceneManager.LoadScene(sceneBuildIndex: 0);
+        resume();
     }
 
     private void UseEvent()
     {
         // use the selected item if it is not NULL:
+
     }
 
     private void RemoveEvent()
     {
         // remove the selected item if it is not NULL:
+
+    }
+
+    private void getWeaponInventory()
+    {
+        int currentSlot = GameObject.Find("PF Player").GetComponent<PlayerAtkController>().weaponInv.GetCurrentSlot();
+        WeaponInventory.WeaponInventorySlots slot = GameObject.Find("PF Player").GetComponent<PlayerAtkController>().weaponInv.containers[currentSlot];
+        Sprite weapon = slot.weapons.weaponPrefab.transform.GetComponent<SpriteRenderer>().sprite;
+        this.transform.Find("sprite_currentWeapon").GetComponent<Image>().sprite = weapon;
+    }
+
+    private void pause()
+    {
+        Time.timeScale = 0;
+        atk_stick.SetActive(false);
+        mov_stick.SetActive(false);
+    }
+
+    private void resume()
+    {
+        Time.timeScale = 1;
+        atk_stick.SetActive(true);
+        mov_stick.SetActive(true);
     }
 }

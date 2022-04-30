@@ -11,16 +11,23 @@ public class EnemyHPController : MonoBehaviour
         health = GetComponent<Enemy>().enemy.maxHp;
     }
 
-    private void CheckDeath()
+    private void Die()
     {
-        if (health < 0)
-            Destroy(gameObject);
+        int goldDropped = GetComponent<Enemy>().enemy.goldDropped;
+        long score = GetComponent<Enemy>().enemy.score;
+        Debug.Log("enemy dropped " + goldDropped + " gold");
+        GoldDisplay.goldSystem.EarnGold(goldDropped);
+        Player.increaseCurrentScore(score);
+        Destroy(gameObject);
     }
 
     public void takeDamage(float damage)
     {
-        health -= damage;
-        CheckDeath();
+        if (health > damage)
+        {
+            health -= damage;
+        }
+        else
+            Die();
     }
-
 }

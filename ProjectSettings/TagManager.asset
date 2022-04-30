@@ -8,6 +8,10 @@ TagManager:
   - Rooms
   - weapon
   - Enemies
+  - Walls
+  - Floor
+  - Door
+  - Enemies_Spawn
   layers:
   - Default
   - TransparentFX

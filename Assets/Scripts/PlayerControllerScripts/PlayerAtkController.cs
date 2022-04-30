@@ -15,8 +15,8 @@ public class PlayerAtkController : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerControls();
+        weaponInv.SetToZero(); 
         weaponInv.AddDefaultWeapon(defaultWeap);
-        weaponInv.SetToZero();
     }
 
     private void OnEnable()
@@ -45,12 +45,14 @@ public class PlayerAtkController : MonoBehaviour
             if (nextAttack <= 0)
             {
                 GameObject firedProjectile = Instantiate(currentWeapon.weapons.projectile.projectilePrefab, transform.position, Quaternion.identity);
+                firedProjectile.GetComponent<Projectile>().projectile = currentWeapon.weapons.projectile;
                 firedProjectile.GetComponent<Projectile>().damage = currentWeapon.weapons.projectile.damage;
                 firedProjectile.GetComponent<Rigidbody2D>().velocity = atkDirection.normalized * currentWeapon.weapons.projectile.projectileSpeed;
                 for (int i = 2; i <= currentWeapon.weapons.numOfShots; i++)
                 {
-                        AddSpread(currentWeapon);
-                        firedProjectile = Instantiate(currentWeapon.weapons.projectile.projectilePrefab, transform.position, Quaternion.identity);
+                    AddSpread(currentWeapon);
+                    firedProjectile = Instantiate(currentWeapon.weapons.projectile.projectilePrefab, transform.position, Quaternion.identity);
+                    firedProjectile.GetComponent<Projectile>().projectile = currentWeapon.weapons.projectile;
                     firedProjectile.GetComponent<Projectile>().damage = currentWeapon.weapons.projectile.damage;
                     firedProjectile.GetComponent<Rigidbody2D>().velocity = atkDirection.normalized * currentWeapon.weapons.projectile.projectileSpeed;
                 }
@@ -59,7 +61,7 @@ public class PlayerAtkController : MonoBehaviour
         }
     }
 
-    public void SwithchWeapon()
+    public void SwitchWeapon()
     {
         weaponInv.SwapCurrentSlot();
     }

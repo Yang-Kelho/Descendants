@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: BasicShooter
   m_EditorClassIdentifier: 
   prefab: {fileID: 5786012857722167081, guid: b0a5156743804f246a23594f589fc20c, type: 3}
-  projectile: {fileID: 0}
+  projectile: {fileID: 11400000, guid: 1a985dbb8e9a6a0408e2b05078c7a2bc, type: 2}
   eliteCheck: 0
-  speed: 250
+  speed: 200
   maxHp: 20
+  goldDropped: 25
+  atkCoolDown: 3
+  score: 200

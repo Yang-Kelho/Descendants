@@ -7,7 +7,7 @@ public class RoomSpawner : MonoBehaviour
     public RoomTemplates room;
     void Start()
     {
-        Invoke(nameof(Spawn), 1f);
+        Spawn();
     }
 
     void Spawn()

@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovementController : MonoBehaviour
 {
     public Rigidbody2D playerRb;
-    public float playerSpeed = 3f;
+    public float playerSpeed = 300f;
     public PlayerControls playerControls;
     Vector2 movDirection = Vector2.zero;
     private InputAction move;
@@ -36,5 +36,10 @@ public class PlayerMovementController : MonoBehaviour
     private void FixedUpdate()
     {
         playerRb.velocity = new Vector2(movDirection.x * playerSpeed, movDirection.y * playerSpeed);
+    }
+
+    public Vector2 GetPosition()
+    {
+        return GetComponent<Transform>().position; 
     }
 }

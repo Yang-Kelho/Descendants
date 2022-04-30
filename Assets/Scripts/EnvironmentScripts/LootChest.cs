@@ -23,7 +23,7 @@ public class LootChest : Interactable
         {
             GetComponent<SpriteRenderer>().sprite = openSprite;
             isOpen = true;
-            dropItem();
+            DropItem();
         }
     }
 
@@ -46,7 +46,7 @@ public class LootChest : Interactable
         }
     }
 
-    public void dropItem()
+    public void DropItem()
     {
         GameObject droppedItem;
         droppedItem = Instantiate(item, transform.position, transform.rotation);
