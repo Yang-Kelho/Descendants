@@ -8,61 +8,64 @@ public class Door : MonoBehaviour
     GameObject mov_stick;
     GameObject player;
     Vector2 direction = Vector2.zero;
+
     void Start()
     {
         atk_stick = GameObject.Find("atk_stick");
         mov_stick = GameObject.Find("mov_stick");
+        GameObject room = this.transform.parent.gameObject;
+
+        // Doors are "opened" a.k.a. invisible upon start.
+        gameObject.GetComponent<Renderer>().enabled = false;
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
         // Transition
-        if (collision.CompareTag("Player")) {
+        if (collision.CompareTag("Player"))
+        {
             player = collision.gameObject;
             switch (this.name[this.name.Length - 1])
             {
                 case 'B':
-                    direction = new Vector2(0, 3);
+                    direction = new Vector2(0, 5);
                     break;
                 case 'T':
-                    direction = new Vector2(0, -3);
+                    direction = new Vector2(0, -5);
                     break;
                 case 'L':
-                    direction = new Vector2(3, 0);
+                    direction = new Vector2(5, 0);
                     break;
                 case 'R':
-                    direction = new Vector2(-3, 0);
+                    direction = new Vector2(-5, 0);
                     break;
                 default:
                     break;
             }
-
-            if (this.name[this.name.Length - 1] == 'B') {
-                Debug.Log("Works");
-                // Disable Joysticks
-                atk_stick.SetActive(false);
-                mov_stick.SetActive(false);
-                
-                atk_stick.SetActive(true);
-                mov_stick.SetActive(true);
-            }
+            atk_stick.SetActive(false);
+            mov_stick.SetActive(false);
         }
     }
 
-    void OnTriggerStay2D()
+    void OnTriggerStay2D(Collider2D collision)
     {
-        atk_stick.SetActive(false);
-        mov_stick.SetActive(false);
-        player.GetComponent<Transform>().Translate(direction);
+        // Translate Player
+        if (collision.CompareTag("Player"))
+        {
+            player.GetComponent<Transform>().Translate(direction);
+        }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
-        atk_stick.SetActive(true);
-        mov_stick.SetActive(true);
-        gameObject.GetComponent<BoxCollider2D>().enabled = true;
-    }
-
-    public void open()
-    {
-        gameObject.SetActive(false);
+        // Enable Joysticks & Prevent Player from walking through
+        if (collision.CompareTag("Player"))
+        {
+            if (!this.transform.parent.parent.GetComponent<Room>().cleared)
+            {
+                this.transform.parent.parent.GetComponent<Room>().closeDoor();
+            }
+            atk_stick.SetActive(true);
+            mov_stick.SetActive(true);
+            gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        }
     }
 }

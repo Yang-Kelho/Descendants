@@ -13,12 +13,14 @@ public class EnemyHPController : MonoBehaviour
 
     private void Die()
     {
+        Transform parent = this.transform.parent;
         int goldDropped = GetComponent<Enemy>().enemy.goldDropped;
         long score = GetComponent<Enemy>().enemy.score;
         Debug.Log("enemy dropped " + goldDropped + " gold");
         GoldDisplay.goldSystem.EarnGold(goldDropped);
         Player.increaseCurrentScore(score);
         Destroy(gameObject);
+        parent.GetComponent<Room>().checkClear();
     }
 
     public void takeDamage(float damage)

@@ -891,6 +891,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2783053413222950212}
+  - component: {fileID: 6192781058151561752}
   m_Layer: 0
   m_Name: Spawnpoint_Enemy (1)
   m_TagString: Enemies_Spawn
@@ -917,6 +918,19 @@ RectTransform:
   m_AnchoredPosition: {x: 360, y: 180}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6192781058151561752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2847311981821012691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a05ef8a07f36b014a9961e4580a56207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPF: {fileID: 5786012857722167081, guid: b0a5156743804f246a23594f589fc20c, type: 3}
 --- !u!1 &4506419943696146864
 GameObject:
   m_ObjectHideFlags: 0
@@ -1568,6 +1582,7 @@ GameObject:
   - component: {fileID: 5675382307527958779}
   - component: {fileID: 4506419943826534322}
   - component: {fileID: 4506419943826534333}
+  - component: {fileID: -1766945340449123921}
   m_Layer: 0
   m_Name: B
   m_TagString: Untagged
@@ -1640,6 +1655,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCam: {fileID: 4506419945099454942}
+--- !u!114 &-1766945340449123921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4506419943826534332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0946be9a83125b408c0bced6a9ce136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cleared: 0
 --- !u!1 &4506419944526858458
 GameObject:
   m_ObjectHideFlags: 0
@@ -3830,6 +3858,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3021437316458505384}
+  - component: {fileID: 2007914398780704668}
   m_Layer: 0
   m_Name: Spawnpoint_Enemy
   m_TagString: Enemies_Spawn
@@ -3856,3 +3885,16 @@ RectTransform:
   m_AnchoredPosition: {x: -360, y: 180}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2007914398780704668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6621667851732900798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a05ef8a07f36b014a9961e4580a56207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPF: {fileID: 5786012857722167081, guid: b0a5156743804f246a23594f589fc20c, type: 3}

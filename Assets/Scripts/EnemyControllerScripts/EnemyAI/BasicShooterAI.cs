@@ -21,6 +21,7 @@ public class BasicShooterAI : MonoBehaviour
 
     void Start()
     {
+        playerMovement = FindObjectOfType<Player>().GetComponent<PlayerMovementController>();
         pathFinder = GetComponent<EnemyPathing>();
         enemy = GetComponent<Enemy>();
     }

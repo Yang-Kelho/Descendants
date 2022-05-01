@@ -19,7 +19,17 @@ public class RoomSpawner : MonoBehaviour
         }
         else
         {
-            Instantiate(room.roomPrefabs[score - 1], transform.position, Quaternion.identity);
+            GameObject r = Instantiate(room.roomPrefabs[score - 1], transform.position, Quaternion.identity);
+            if (r.transform.position == Vector3.zero)
+            {
+                foreach (SpawnEnemy sp in r.GetComponentsInChildren<SpawnEnemy>()) {
+                    Destroy(sp.gameObject);
+                }
+                foreach (Door d in r.GetComponentsInChildren<Door>())
+                {
+                    Destroy(d.gameObject);
+                }
+            }
             Destroy(gameObject);
         }
     }
