@@ -60,13 +60,16 @@ public class SpreadShotShooterAI : MonoBehaviour
         {
             if (atkCoolDown <= 0)
             {
-                var positions = TripleShotVectors();
+                var angle = -30;
                 for (int i = 0; i < 3; i++)
                 {
+                    
+                    var positions = Rotate(atkDir, angle);
                     GameObject firedProjectile = Instantiate(enemy.enemy.projectile.projectilePrefab, transform.position, Quaternion.identity);
                     firedProjectile.GetComponent<Projectile>().projectile = enemy.enemy.projectile;
                     firedProjectile.GetComponent<Projectile>().damage = enemy.enemy.projectile.damage;
-                    firedProjectile.GetComponent<Rigidbody2D>().velocity = positions[i].normalized * enemy.enemy.projectile.projectileSpeed;
+                    firedProjectile.GetComponent<Rigidbody2D>().velocity = positions.normalized * enemy.enemy.projectile.projectileSpeed;
+                    angle += 30;
                 }
                 atkCoolDown = enemy.enemy.atkCoolDown;
             }        
@@ -104,42 +107,13 @@ public class SpreadShotShooterAI : MonoBehaviour
 //                lastMvDir = pos;
     }
 
-    private Vector2[] TripleShotVectors()
+    private Vector2 Rotate(Vector2 v, float delta)
     {
-        Vector2[] positions = new Vector2[3];
-        float r = CheckDistance();
-        float x = Mathf.Abs(transform.position.x - playerMovement.GetPosition().x);
-        float y = Mathf.Abs(transform.position.y - playerMovement.GetPosition().y);
-        float initAngle = Mathf.Atan2(y, x) * Mathf.Deg2Rad;
-        float secondAngle = (initAngle + 20f) * Mathf.Deg2Rad;
-        float thirdAngle = (initAngle - 20f) * Mathf.Deg2Rad;
-
-        float x2 = r * Mathf.Cos(secondAngle);
-        float y2 = r * Mathf.Sin(secondAngle);
-
-        //Calculate x3 and y3
-        float x3 = r * Mathf.Cos(thirdAngle);
-        float y3 = r * Mathf.Sin(thirdAngle);
-
-        //Verify if X is positive or negative
-        if (playerMovement.GetPosition().x < transform.position.x)
-        {
-            x2 = x2 * -1;
-            x3 = x3 * -1;
-        }
-
-        //Verify if Y is positive or negative
-        if (playerMovement.GetPosition().y < transform.position.y)
-        {
-            y2 = y2 * -1;
-            y3 = y3 * -1;
-        }
-
-        //Assign Values to positions
-        positions[0] = playerMovement.GetPosition();
-        positions[1] = new Vector3(transform.position.x + x2, transform.position.y + y2);
-        positions[2] = new Vector3(transform.position.x + x3, transform.position.y + y3);
-        return positions;
+        delta *= Mathf.PI / 180;
+        return new Vector2(
+            v.x * Mathf.Cos(delta) - v.y * Mathf.Sin(delta),
+            v.x * Mathf.Sin(delta) + v.y * Mathf.Cos(delta)
+        );
     }
 }
     

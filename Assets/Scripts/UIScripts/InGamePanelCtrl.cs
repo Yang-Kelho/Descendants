@@ -27,7 +27,8 @@ public class InGamePanelCtrl : MonoBehaviour
     // retrieve total and current Score text component:
     Text text_currentScore;
     Text text_highestScore;
-
+    [SerializeField]
+    PlayerStats stats;
     // retrieve the images:
     
 
@@ -67,7 +68,6 @@ public class InGamePanelCtrl : MonoBehaviour
         btn_exit.onClick.AddListener(ExitEvent);
 
         initBackpackSlots();
-
     }
 
     private void Update()
@@ -166,6 +166,7 @@ public class InGamePanelCtrl : MonoBehaviour
 
         SceneManager.LoadScene(sceneBuildIndex: 0);
         resume();
+        stats.ReSet();
     }
 
     private void UseEvent()

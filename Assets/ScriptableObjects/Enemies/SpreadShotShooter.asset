@@ -16,7 +16,7 @@ MonoBehaviour:
   projectile: {fileID: 11400000, guid: 59324e7fffeb44342b9e54af016ae5af, type: 2}
   eliteCheck: 0
   speed: 250
-  maxHp: 20
-  goldDropped: 25
-  atkCoolDown: 2
+  maxHp: 10
+  goldDropped: 30
+  atkCoolDown: 3
   score: 200
