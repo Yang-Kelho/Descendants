@@ -5,14 +5,18 @@ using UnityEngine;
 public class EnemyHPController : MonoBehaviour
 {
     private float health;
+    private AudioSource damageSound;
     
     void Start()
     {
         health = GetComponent<Enemy>().enemy.maxHp;
+        damageSound = GetComponent<AudioSource>();
     }
 
     private void Die()
     {
+        SoundManager sm = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+
         Transform parent = this.transform.parent;
         int goldDropped = GetComponent<Enemy>().enemy.goldDropped;
         long score = GetComponent<Enemy>().enemy.score;
@@ -20,13 +24,24 @@ public class EnemyHPController : MonoBehaviour
         GoldDisplay.goldSystem.EarnGold(goldDropped);
         Player.increaseCurrentScore(score);
         Destroy(gameObject);
-        parent.GetComponent<Room>().checkClear();
+        if (this.gameObject.CompareTag("Boss"))
+        {
+            sm.PlaySound("deathBoss");
+            Staircase sc = GameObject.FindObjectsOfType<Staircase>(true)[0];
+            sc.gameObject.SetActive(true);
+        }
+        else
+        {
+            sm.PlaySound("deathBoss");
+            parent.GetComponent<Room>().checkClear();
+        }
     }
 
-    public void takeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         if (health > damage)
         {
+            damageSound.Play();
             health -= damage;
         }
         else

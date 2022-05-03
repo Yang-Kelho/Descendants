@@ -6,10 +6,13 @@ public class Room : MonoBehaviour
 {
     public bool cleared = false;
     Door[] doors;
-    
+    SoundManager sm;
+
+
     private void Start()
     {
         doors = this.GetComponentInChildren<Grid>().GetComponentsInChildren<Door>();
+        sm = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,6 +35,7 @@ public class Room : MonoBehaviour
             {
                 d.gameObject.SetActive(false);
             }
+            sm.PlaySound("doorOpen");
         }
     }
     private bool AllEnemiesDefeated()
@@ -54,5 +58,6 @@ public class Room : MonoBehaviour
         {
             d.GetComponent<Renderer>().enabled = true;
         }
+        sm.PlaySound("doorClose");
     }
 }

@@ -31,7 +31,6 @@ public class RadialBulletController : MonoBehaviour
         {
             // chance to do one of three attacks
             int rand = Random.Range(0, 3);
-            Debug.Log(rand);
             switch (rand)
             {
                 case 2: // spawn double spiral

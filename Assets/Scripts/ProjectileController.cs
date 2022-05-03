@@ -11,10 +11,10 @@ public class ProjectileController : MonoBehaviour
         var type = GetComponent<Projectile>().projectile.type;
         if (type == ProjectileObjects.Type.player)
         {
-            if (collision.CompareTag("Enemies") && collision.isTrigger)
+            if ((collision.CompareTag("Enemies") || collision.CompareTag("Boss")) && collision.isTrigger)
             {
                 damageTaken = GetComponent<Projectile>().damage;
-                collision.GetComponent<EnemyHPController>().takeDamage(damageTaken);
+                collision.GetComponent<EnemyHPController>().TakeDamage(damageTaken);
                 Destroy(gameObject);
             }
         }

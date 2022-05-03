@@ -12,6 +12,7 @@ TagManager:
   - Floor
   - Door
   - Enemies_Spawn
+  - Boss
   layers:
   - Default
   - TransparentFX
