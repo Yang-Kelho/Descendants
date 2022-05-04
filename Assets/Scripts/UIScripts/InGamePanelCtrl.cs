@@ -9,7 +9,6 @@ public class InGamePanelCtrl : MonoBehaviour
     GameObject panel_backpack;
     GameObject panel_setting;
     GameObject slots;
-    GameObject player;
     GameObject atk_stick;
     GameObject mov_stick;
     //GameObject panel_inventory;
@@ -29,6 +28,7 @@ public class InGamePanelCtrl : MonoBehaviour
     Text text_highestScore;
     [SerializeField]
     PlayerStats stats;
+    public RealmController rc;
     // retrieve the images:
     
 
@@ -60,13 +60,12 @@ public class InGamePanelCtrl : MonoBehaviour
 
         // add listener and event:
         btn_backpack.onClick.AddListener(BackpackEvent);
-        btn_setting.onClick.AddListener(delegate { SettingEvent(Player.getCurrentScore(), Player.getHighestScore()); });
+        btn_setting.onClick.AddListener(delegate { SettingEvent(stats.score, rc.GetHighestScore()); });
         btn_close.onClick.AddListener(CloseEvent);
         btn_cancel.onClick.AddListener(CancelEvent);
         btn_use.onClick.AddListener(UseEvent);
         btn_remove.onClick.AddListener(RemoveEvent);
         btn_exit.onClick.AddListener(ExitEvent);
-
         initBackpackSlots();
     }
 

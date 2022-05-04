@@ -2,18 +2,121 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Realms;
+using System.Linq;
+using System.Threading.Tasks;
 using Realms.Sync;
 
-public class RealmController
+[CreateAssetMenu(fileName = "RealmController", menuName = "RCSO")]
+public class RealmController : ScriptableObject
 {
     public App realmApp;
     public Realm realm;
-    public void RealmAppInit()
+    public User user;
+    public int logi;
+    public int regi;
+    private string userName;
+
+    public async Task<int> RealmAppInit(string _userName, string _password)
     {
-        realmApp = App.Create(new AppConfiguration("descendants-qsppj")
+        try
+        {
+            var payload = new
+            {
+                name = _userName,
+                password = _password
+            };
+            realmApp = App.Create(new AppConfiguration("descandants-upzrf")
+            {
+                MetadataPersistenceMode = MetadataPersistenceMode.NotEncrypted
+            });
+
+            user = realmApp.CurrentUser;
+
+            if (user == null)
+            {
+                user = await realmApp.LogInAsync(Credentials.Function(payload));
+                realm = await Realm.GetInstanceAsync(new PartitionSyncConfiguration("partition", user));
+                
+            }
+            else
+                realm = Realm.GetInstance(new PartitionSyncConfiguration("partition", user));
+
+            logi = 1;
+            userName = _userName;
+        }
+        catch {
+            logi = 0;
+        }
+
+        return logi;
+    }
+
+    public async Task<int> Register(string _userName, string _password)
+    {
+        var payload = new
+        {
+            name = _userName,
+            password = _password
+        };
+        realmApp = App.Create(new AppConfiguration("descandants-upzrf")
         {
             MetadataPersistenceMode = MetadataPersistenceMode.NotEncrypted
         });
+
+        user = realmApp.CurrentUser;
+
+        if (user == null)
+        {
+            user = await realmApp.LogInAsync(Credentials.Anonymous());
+            realm = await Realm.GetInstanceAsync(new PartitionSyncConfiguration("partition", user));
+            regi = await realmApp.CurrentUser.Functions.CallAsync<int>("Register", payload);
+
+            if (regi == 1)
+            {
+                AddNewUser(_userName, _password);
+            }
+            LogOut();
+        }
+        return regi;
     }
 
+    public async void LogOut()
+    {
+        await realmApp.CurrentUser.LogOutAsync();
+        realm.Dispose();
+    }
+
+    public IOrderedQueryable<PlayerData> GetLeaderBoradData()
+    {
+        IOrderedQueryable<PlayerData> stats = realm.All<PlayerData>().OrderByDescending(p => p.highestScore);
+        return stats;
+    }
+
+    public void OnApplicationQuit()
+    {
+        LogOut();
+    }
+
+    public long GetHighestScore()
+    {
+        var highestScore = realm.Find<PlayerData>(userName).highestScore;
+        return highestScore;
+    }
+
+    public void UpdateHighestScore(long score)
+    {
+        realm.Write(() =>
+        {
+            realm.Find<PlayerData>(userName).highestScore = score;
+        });
+    }
+
+    private void AddNewUser(string name, string password)
+    {
+        realm.Write(() =>
+        {
+            var newPlayer = new PlayerData(name, password, 0);
+            realm.Add(newPlayer);
+        });
+    }
 }

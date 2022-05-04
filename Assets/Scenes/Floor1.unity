@@ -623,7 +623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3852515061316276156, guid: f4cb579639718ab4dbbd3220bebadc65, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3852515061316276156, guid: f4cb579639718ab4dbbd3220bebadc65, type: 3}
       propertyPath: m_TagString
@@ -2210,7 +2210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSize: {fileID: 11400000, guid: ae52c718687e541489329283e023fc61, type: 2}
   spawnPoint: {fileID: 7786758406862110774, guid: 178417c5b1d823c46a000e863096f07c, type: 3}
-  numOfRooms: 5
+  numOfRooms: 10
 --- !u!4 &1770796575
 Transform:
   m_ObjectHideFlags: 0
@@ -7367,6 +7367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: f210b694fac419b4e90437d55283ba16, type: 2}
+  rc: {fileID: 11400000, guid: a5ac6e6a880ddc44d8501e120d5fd9eb, type: 2}
 --- !u!224 &8747441744556855855
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7406,6 +7407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: f210b694fac419b4e90437d55283ba16, type: 2}
+  rc: {fileID: 11400000, guid: a5ac6e6a880ddc44d8501e120d5fd9eb, type: 2}
 --- !u!114 &8747441744576860032
 MonoBehaviour:
   m_ObjectHideFlags: 0

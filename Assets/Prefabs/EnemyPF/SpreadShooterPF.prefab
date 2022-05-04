@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6de8d5d961fa1a24ea5a4de029a5de2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: f210b694fac419b4e90437d55283ba16, type: 2}
 --- !u!60 &4370185901591096975
 PolygonCollider2D:
   m_ObjectHideFlags: 0

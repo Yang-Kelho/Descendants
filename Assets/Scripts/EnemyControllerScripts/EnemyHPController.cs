@@ -6,6 +6,7 @@ public class EnemyHPController : MonoBehaviour
 {
     private float health;
     private AudioSource damageSound;
+    public PlayerStats stats;
     
     void Start()
     {
@@ -22,7 +23,7 @@ public class EnemyHPController : MonoBehaviour
         long score = GetComponent<Enemy>().enemy.score;
         Debug.Log("enemy dropped " + goldDropped + " gold");
         GoldDisplay.goldSystem.EarnGold(goldDropped);
-        Player.increaseCurrentScore(score);
+        stats.score += score;
         Destroy(gameObject);
         if (this.gameObject.CompareTag("Boss"))
         {

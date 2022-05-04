@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public PlayerStats stats;
+    public RealmController rc;
 
     public void PlayerDamage(int damageAmount)
     {
@@ -27,11 +28,15 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die()
     {
-        stats.ReSet();
         gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         gameObject.GetComponent<ParticleSystem>().Play();
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         gameObject.GetComponent<PlayerMovementController>().enabled = false;
+        if (stats.score > rc.GetHighestScore())
+        {
+            rc.UpdateHighestScore(stats.score);
+        }
+        stats.ReSet();
     }
 
     public bool IsDead()

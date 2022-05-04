@@ -14,7 +14,7 @@ public class RegisterPanelCtrl : MonoBehaviour
     Button btn_back;
     Button btn_OK_success;
     Button btn_OK_fail;
-    private Realm _realm;
+    public RealmController rc;
 
     // Start is called before the first frame update
     void Start()
@@ -44,44 +44,18 @@ public class RegisterPanelCtrl : MonoBehaviour
         // trigger when you click the register button:
         var userName = transform.Find("vertical_layout").Find("Input_userName").Find("Text").GetComponent<Text>().text;
         var password = transform.Find("vertical_layout").Find("Input_password").Find("Text").GetComponent<Text>().text;
-        var regi = 0;
-        var payload = new
-        {
-            name = userName,
-            password = password
-        };
-        var realmApp = App.Create(new AppConfiguration("descandants-upzrf")
-        {
-            MetadataPersistenceMode = MetadataPersistenceMode.NotEncrypted
-        });
 
-        var currentUser = realmApp.CurrentUser;
+        var regi = await rc.Register(userName, password);
 
-        if (currentUser == null)
-        {
-            currentUser = await realmApp.LogInAsync(Credentials.Anonymous());
-            regi = await realmApp.CurrentUser.Functions.CallAsync<int>("Register", payload);
-        }
-
+        //Debug.Log(LoginPanelCtrl.rc.regi);
         if (regi == 0)
         {
             //if return value = 0. Register failed
-            await realmApp.CurrentUser.LogOutAsync();
-            _realm.Dispose();
             panel_notification_fail.SetActive(true);
             Debug.Log("Reigster failed, duplicated id exists");
         }
         else
         {
-            _realm = await Realm.GetInstanceAsync(new PartitionSyncConfiguration("partition", currentUser));
-            _realm.Write(() =>
-            {
-                var newPlayer = new PlayerData(userName, password, 0);
-                _realm.Add(newPlayer);
-            });
-
-            await realmApp.CurrentUser.LogOutAsync();
-            _realm.Dispose();
             panel_notification_success.SetActive(true);
         }
     }

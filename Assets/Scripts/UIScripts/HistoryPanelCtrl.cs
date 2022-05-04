@@ -14,8 +14,7 @@ public class HistoryPanelCtrl : MonoBehaviour
     Button btn_leaderboard;
     Button btn_back;
     Font defaultFont;
-    private Realm _realm;
-    App realmApp;
+    public RealmController rc;
 
     // Start is called before the first frame update
     void Start()
@@ -39,14 +38,9 @@ public class HistoryPanelCtrl : MonoBehaviour
         // activate the scrow view that contains my historoy info:
     }
 
-    private async void LeaderboardEvent()
+    private void LeaderboardEvent()
     {
-        
-        realmApp = App.Create("descandants-upzrf");
-        var currentUser = realmApp.CurrentUser;
-        _realm = await Realm.GetInstanceAsync(new PartitionSyncConfiguration("partition", currentUser));
-
-        var sortedStats = _realm.All<PlayerData>().OrderByDescending(p => p.highestScore);
+        var sortedStats = rc.GetLeaderBoradData();
         Debug.Log(sortedStats);
 
         // initialize parent object:

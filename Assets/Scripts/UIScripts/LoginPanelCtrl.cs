@@ -17,8 +17,7 @@ public class LoginPanelCtrl : MonoBehaviour
     Button btn_Logout;
     Button btn_OK_success;
     Button btn_OK_fail;
-    App realmApp;
-    private Realm _realm;
+    public RealmController rc;
 
     // Start is called before the first frame update
     void Start()
@@ -52,48 +51,29 @@ public class LoginPanelCtrl : MonoBehaviour
         // What do you want to do when you click the login button?
         var userName = transform.Find("vertical_layout").Find("Input_userName").Find("Text").GetComponent<Text>().text;
         var password = transform.Find("vertical_layout").Find("Input_password").Find("Text").GetComponent<Text>().text;
-        var payload = new
-        {
-            name = userName,
-            password = password
-        };
 
-        realmApp = App.Create(new AppConfiguration("descandants-upzrf")
-        {
-            MetadataPersistenceMode = MetadataPersistenceMode.NotEncrypted
-        });
-        var currentUser = realmApp.CurrentUser;
+        var logi = await rc.RealmAppInit(userName, password);
 
-        try
+        Debug.Log(logi);
+        // pop out the "login success" panel
+        if (logi == 1)
         {
-            if (currentUser == null)
-            {
-                currentUser = await realmApp.LogInAsync(Credentials.Function(payload));
-                //_realm = await Realm.GetInstanceAsync(new PartitionSyncConfiguration(userName, currentUser));
-            }
-            else
-                _realm = Realm.GetInstance(new PartitionSyncConfiguration("partition", currentUser));
+            panel_notification_success.SetActive(true);
         }
-        catch
+        else
         {
             //if error catched, login failed
             Debug.Log("Login failed, invaild Credential");
             // pop out the "login fail" panel
             panel_notification_fail.SetActive(true);
         }
-
-        // pop out the "login success" panel
-        if(panel_notification_fail.activeSelf == false)
-        {
-            panel_notification_success.SetActive(true);
-        }
     }
 
-    private async void LogoutEvent()
+    private void LogoutEvent()
     {
-        await realmApp.CurrentUser.LogOutAsync();
-        _realm.Dispose();
+        rc.LogOut();
     }
+
     private void RegisterTransferEvent()
     {
         // transfer to register page:
@@ -110,16 +90,9 @@ public class LoginPanelCtrl : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private async void OnApplicationQuit()
-    {
-        await realmApp.CurrentUser.LogOutAsync();
-        _realm.Dispose();
-    }
-
     private void OKEvent_Success()
     {
         panel_notification_success.SetActive(false);
-        Player.userName = transform.Find("vertical_layout").Find("Input_userName").Find("Text").GetComponent<Text>().text;
     }
     private void OKEvent_Fail()
     {
