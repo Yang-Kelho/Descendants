@@ -20542,6 +20542,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6382209450795362015, guid: a86f3727ad38ab5428a6f57368d8d94e, type: 3}
+      propertyPath: m_Volume
+      value: 0.702
+      objectReference: {fileID: 0}
     - target: {fileID: 7729471927698599259, guid: a86f3727ad38ab5428a6f57368d8d94e, type: 3}
       propertyPath: m_Name
       value: Slime Boss

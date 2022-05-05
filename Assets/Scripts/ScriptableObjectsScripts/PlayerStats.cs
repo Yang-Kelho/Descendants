@@ -9,7 +9,8 @@ public class PlayerStats : ScriptableObject
     public int gold = 0;
     public int maxHealth = 6;
     public long score = 0;
-    public float speed;
+    public float speed = 300;
+    public float dmgMod = 0;
 
     public void SetHealth(int _health)
     {
@@ -22,6 +23,8 @@ public class PlayerStats : ScriptableObject
         gold = 0;
         maxHealth = 6;
         score = 0;
+        speed = 300;
+        dmgMod = 0;
     }
 
        

@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class GameClearCtrl : MonoBehaviour
 {
-
-    int score = 0;
     Text finalScore;
     Button btn_exit;
     public PlayerStats ps;
