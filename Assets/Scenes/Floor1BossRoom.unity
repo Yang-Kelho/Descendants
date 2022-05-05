@@ -20606,6 +20606,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8575953072416416682, guid: a86f3727ad38ab5428a6f57368d8d94e, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: f210b694fac419b4e90437d55283ba16, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a86f3727ad38ab5428a6f57368d8d94e, type: 3}
 --- !u!1 &1924482232 stripped
@@ -20945,7 +20949,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2466445926283032848, guid: 2e99ead14f54f034cbea1170d4bf5215, type: 3}
       propertyPath: _nextLevelName
-      value: Floor2
+      value: GameClear
       objectReference: {fileID: 0}
     - target: {fileID: 2466445926283032849, guid: 2e99ead14f54f034cbea1170d4bf5215, type: 3}
       propertyPath: m_Name

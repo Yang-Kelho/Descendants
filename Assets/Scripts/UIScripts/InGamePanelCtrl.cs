@@ -72,6 +72,7 @@ public class InGamePanelCtrl : MonoBehaviour
     private void Update()
     {
         getWeaponInventory();
+        CheckLast();
     }
 
     private void initBackpackSlots()
@@ -200,5 +201,13 @@ public class InGamePanelCtrl : MonoBehaviour
         Time.timeScale = 1;
         atk_stick.SetActive(true);
         mov_stick.SetActive(true);
+    }
+
+    // retrieve the score when the current floor is the boss floor and the boss is dead:
+    private void CheckLast()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        Debug.Log(currentScene.buildIndex); // should be 2
+        
     }
 }
