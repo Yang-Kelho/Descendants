@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LootChest : Interactable
 {
@@ -13,8 +14,9 @@ public class LootChest : Interactable
 
     private bool isOpen, playerInRange;
 
-    [SerializeField]
-    private GameObject item;
+    public GameObject item1;
+    public GameObject item2;
+    public GameObject item3;
 
     public override void Interact()
     {
@@ -48,8 +50,18 @@ public class LootChest : Interactable
 
     public void DropItem()
     {
-        GameObject droppedItem;
-        droppedItem = Instantiate(item, transform.position, transform.rotation);
-        Debug.Log("dropped item");
+        Scene scene = SceneManager.GetActiveScene();
+        switch (scene.name)
+        {
+            case "Floor3":
+                Instantiate(item3, transform.position, transform.rotation);
+                break;
+            case "Floor2":
+                Instantiate(item2, transform.position, transform.rotation);
+                break;
+            default:
+                Instantiate(item2, transform.position, transform.rotation);
+                break;
+        }
     }
 }

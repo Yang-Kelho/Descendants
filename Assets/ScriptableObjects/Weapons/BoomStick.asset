@@ -17,7 +17,7 @@ MonoBehaviour:
   affix: 1
   numOfShots: 3
   fireRate: 1.5
-  spread: 0.09
+  spread: 0.15
   tooltip: 
   description: 
   projectile: {fileID: 11400000, guid: c52b44c1b8ecbb64c99e0db25e80002f, type: 2}

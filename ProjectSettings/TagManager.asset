@@ -13,6 +13,7 @@ TagManager:
   - Door
   - Enemies_Spawn
   - Boss
+  - Pickup
   layers:
   - Default
   - TransparentFX

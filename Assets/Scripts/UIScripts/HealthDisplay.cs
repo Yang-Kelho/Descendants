@@ -22,11 +22,11 @@ public class HealthDisplay : MonoBehaviour
     private void Start()
     {
         HealthSystem healthSystem = new HealthSystem(3, stats);
-        setHealthSystem(healthSystem);
+        SetHealthSystem(healthSystem);
         HealthSystemStatic = healthSystem;
     }
 
-    public void setHealthSystem(HealthSystem healthSystem)
+    public void SetHealthSystem(HealthSystem healthSystem)
     {
         this.healthSystem = healthSystem;
         List<HealthSystem.Heart> heartList = healthSystem.GetHeartList();
@@ -40,6 +40,7 @@ public class HealthDisplay : MonoBehaviour
         }
         healthSystem.OnDamaged += HealthSystem_OnDamaged;
         healthSystem.OnHealed += HealthSystem_OnHealed;
+        healthSystem.OnUpdated += UpdateHeartImageList;
 
     }
 
@@ -53,9 +54,17 @@ public class HealthDisplay : MonoBehaviour
         RefreshHealthDisplay();
     }
 
+    public void UpdateHeartImageList(object sender, EventArgs e)
+    {
+        int count = healthSystem.GetHeartList().Count;
+        heartImageList.Add(CreateHeart(new Vector2(32 * (count - 1), -64)));
+        RefreshHealthDisplay();
+    }
+
     private void RefreshHealthDisplay()
     {
         List<HealthSystem.Heart> heartList = healthSystem.GetHeartList();
+
         for (int i = 0; i < heartList.Count; i++)
         {
             HeartImage heartImage = heartImageList[i];

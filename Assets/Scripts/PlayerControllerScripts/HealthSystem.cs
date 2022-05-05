@@ -9,6 +9,7 @@ public class HealthSystem{
     public const int MAX_FRAGMENT_NUMBER = 2;
     public event EventHandler OnDamaged;
     public event EventHandler OnHealed;
+    public event EventHandler OnUpdated;
 
     private List<Heart> heartList;
     public HealthSystem(int heartAmount, PlayerStats stats)
@@ -17,8 +18,7 @@ public class HealthSystem{
         this.heartList = new List<Heart>();
         for (int i = 0; i < heartAmount; i++)
         {
-            Heart heart = new Heart(2);
-            heartList.Add(heart);
+            heartList.Add(new Heart(2));
         }
 
         if (stats.health < stats.maxHealth)
@@ -35,6 +35,14 @@ public class HealthSystem{
     public List<Heart> GetHeartList()
     {
         return this.heartList;
+    }
+
+    public void AddHeart()
+    {
+        // increases player's maximum health by one heart
+        heartList.Add(new Heart(0));
+        OnUpdated?.Invoke(this, EventArgs.Empty);
+        Heal(2);
     }
 
     public void Damage(int amount)
@@ -75,11 +83,20 @@ public class HealthSystem{
         }
         OnHealed?.Invoke(this, EventArgs.Empty);
     }
+
+    public int GetCurrentHealth()
+    {
+        int totalFragments = 0;
+        for (int i = 0; i < heartList.Count; i++)
+        {
+            totalFragments += heartList[i].GetFragmentNumber();
+        }
+        return totalFragments;
+    }
     public bool IsFullHealth()
     {
         return heartList[heartList.Count-1].GetFragmentNumber() == MAX_FRAGMENT_NUMBER;
     }
-
     public bool IsDead()
     {
         return heartList[0].GetFragmentNumber() == 0;

@@ -22,15 +22,17 @@ public class RoomSpawner : MonoBehaviour
             GameObject r = Instantiate(room.roomPrefabs[score - 1], transform.position, Quaternion.identity);
             if (r.transform.position == Vector3.zero)
             {
-                foreach (SpawnEnemy sp in r.GetComponentsInChildren<SpawnEnemy>()) {
-                    Destroy(sp.gameObject);
+                // prevent enemies from spawning in spawn room
+                foreach (SpawnEnemy sp in r.GetComponentsInChildren<SpawnEnemy>())
+                {
+                    DestroyImmediate(sp.gameObject);
                 }
                 foreach (Door d in r.GetComponentsInChildren<Door>())
                 {
                     Destroy(d.gameObject);
                 }
             }
-            Destroy(gameObject);
+            Destroy(gameObject); // destroys room's spawnpoint
         }
     }
 }

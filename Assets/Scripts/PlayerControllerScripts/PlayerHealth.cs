@@ -9,9 +9,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void PlayerDamage(int damageAmount)
     {
-        Debug.Log("Player took " + damageAmount + " damage");
+        //Debug.Log("Player took " + damageAmount + " damage");
         HealthDisplay.HealthSystemStatic.Damage(damageAmount);
-        stats.health = getCurrentHealth();
+        stats.health = GetCurrentHealth();
         if (IsDead())
             Die();
     }
@@ -20,9 +20,9 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!HealthDisplay.HealthSystemStatic.IsFullHealth())
         {
-            Debug.Log("Player healed " + healAmount + " HP");
+            //Debug.Log("Player healed " + healAmount + " HP");
             HealthDisplay.HealthSystemStatic.Heal(healAmount);
-            stats.health = getCurrentHealth();
+            stats.health = GetCurrentHealth();
         }
     }
 
@@ -44,7 +44,7 @@ public class PlayerHealth : MonoBehaviour
         return HealthDisplay.HealthSystemStatic.IsDead();
     }
 
-    public int getCurrentHealth()
+    public int GetCurrentHealth()
     {
         var heartList = HealthDisplay.HealthSystemStatic.GetHeartList();
         var currentHealth = 0;

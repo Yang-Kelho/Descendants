@@ -186,7 +186,9 @@ public class InGamePanelCtrl : MonoBehaviour
         int currentSlot = GameObject.Find("PF Player").GetComponent<PlayerAtkController>().weaponInv.GetCurrentSlot();
         WeaponInventory.WeaponInventorySlots slot = GameObject.Find("PF Player").GetComponent<PlayerAtkController>().weaponInv.containers[currentSlot];
         Sprite weapon = slot.weapons.weaponPrefab.transform.GetComponent<SpriteRenderer>().sprite;
-        this.transform.Find("sprite_currentWeapon").GetComponent<Image>().sprite = weapon;
+        Image currentWeaponSprite = this.transform.Find("sprite_currentWeapon").GetComponent<Image>();
+        currentWeaponSprite.sprite = weapon;
+        currentWeaponSprite.preserveAspect = true;
     }
 
     private void pause()
