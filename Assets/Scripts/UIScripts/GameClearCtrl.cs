@@ -9,6 +9,7 @@ public class GameClearCtrl : MonoBehaviour
     Text finalScore;
     Button btn_exit;
     public PlayerStats ps;
+    public RealmController rc;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,11 @@ public class GameClearCtrl : MonoBehaviour
 
         // Score control:
         finalScore = this.transform.Find("txt_finalScore").GetComponent<Text>();
-        finalScore.text = "Your score: " + ps.score; 
+        finalScore.text = "Your score: " + ps.score;
+        if (ps.score > rc.GetHighestScore())
+        {
+            rc.UpdateHighestScore(ps.score);
+        }
     }
     private void ExitEvent()
     {
