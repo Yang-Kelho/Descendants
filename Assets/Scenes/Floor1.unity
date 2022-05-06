@@ -1104,6 +1104,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6369851048457188550, guid: 4dc1caa5333c6154d8106eca221681b5, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 11400000, guid: f210b694fac419b4e90437d55283ba16, type: 2}
     - target: {fileID: 7868908687654807460, guid: 4dc1caa5333c6154d8106eca221681b5, type: 3}
       propertyPath: _particleSystem
       value: 

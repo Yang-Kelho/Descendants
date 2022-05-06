@@ -99,16 +99,24 @@ public class RealmController : ScriptableObject
 
     public long GetHighestScore()
     {
-        var highestScore = realm.Find<PlayerData>(userName).highestScore;
-        return highestScore;
+        if (realm != null)
+        {
+            var highestScore = realm.Find<PlayerData>(userName).highestScore;
+            return highestScore;
+        }
+        else
+            return 0;
     }
 
     public void UpdateHighestScore(long score)
     {
-        realm.Write(() =>
+        if (realm != null)
         {
-            realm.Find<PlayerData>(userName).highestScore = score;
-        });
+            realm.Write(() =>
+            {
+                realm.Find<PlayerData>(userName).highestScore = score;
+            });
+        }
     }
 
     private void AddNewUser(string name, string password)

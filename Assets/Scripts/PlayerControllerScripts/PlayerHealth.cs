@@ -32,6 +32,7 @@ public class PlayerHealth : MonoBehaviour
         gameObject.GetComponent<ParticleSystem>().Play();
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         gameObject.GetComponent<PlayerMovementController>().enabled = false;
+        gameObject.GetComponent<PlayerAtkController>().enabled = false;
         if (stats.score > rc.GetHighestScore())
         {
             rc.UpdateHighestScore(stats.score);

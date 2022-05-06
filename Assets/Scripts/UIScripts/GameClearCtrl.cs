@@ -23,6 +23,7 @@ public class GameClearCtrl : MonoBehaviour
     }
     private void ExitEvent()
     {
+        ps.ReSet();
         // invoke the UI scene
         SceneManager.LoadScene(0); 
     }

@@ -576,7 +576,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2114914351}
         m_TargetAssemblyTypeName: PlayerPickup, Assembly-CSharp
         m_MethodName: pickUp
         m_Mode: 1
@@ -7795,7 +7795,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2114914352}
         m_TargetAssemblyTypeName: PlayerAtkController, Assembly-CSharp
         m_MethodName: SwitchWeapon
         m_Mode: 1
@@ -21396,6 +21396,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4dc1caa5333c6154d8106eca221681b5, type: 3}
+--- !u!114 &2114914351 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6369851048457188554, guid: 4dc1caa5333c6154d8106eca221681b5, type: 3}
+  m_PrefabInstance: {fileID: 2114914350}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713a3cdc74ff3034a8856a4c0d0bd39b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2114914352 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6369851048457188552, guid: 4dc1caa5333c6154d8106eca221681b5, type: 3}
+  m_PrefabInstance: {fileID: 2114914350}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edee4a915faf637479e26f5f46f5481f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2121620797
 GameObject:
   m_ObjectHideFlags: 0
