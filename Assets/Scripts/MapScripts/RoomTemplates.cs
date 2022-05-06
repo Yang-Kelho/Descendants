@@ -5,5 +5,7 @@ using UnityEngine;
 public class RoomTemplates : MonoBehaviour
 {
     public GameObject[] roomPrefabs;
+    public GameObject[] spikeRoomPrefabs;
+    // public GameObject[] shopRoomPrefabs;
 
 }

@@ -51,16 +51,17 @@ public class LootChest : Interactable
     public void DropItem()
     {
         Scene scene = SceneManager.GetActiveScene();
+        Vector2 position = transform.position;
         switch (scene.name)
         {
             case "Floor3":
-                Instantiate(item3, transform.position, transform.rotation);
+                Instantiate(item3, position - new Vector2(0, 10), transform.rotation);
                 break;
             case "Floor2":
-                Instantiate(item2, transform.position, transform.rotation);
+                Instantiate(item2, position - new Vector2(0, 10), transform.rotation);
                 break;
             default:
-                Instantiate(item2, transform.position, transform.rotation);
+                Instantiate(item2, position - new Vector2(0, 10), transform.rotation);
                 break;
         }
     }
