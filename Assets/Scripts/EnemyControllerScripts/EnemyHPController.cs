@@ -43,10 +43,18 @@ public class EnemyHPController : MonoBehaviour
     {
         if (health > damage)
         {
+            StartCoroutine(DamageFlash(0.15f));
             damageSound.Play();
             health -= damage;
         }
         else
             Die();
+    }
+
+    public IEnumerator DamageFlash(float flashTime)
+    {
+        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(flashTime);
+        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
 }

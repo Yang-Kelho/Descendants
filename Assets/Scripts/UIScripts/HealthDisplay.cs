@@ -57,7 +57,9 @@ public class HealthDisplay : MonoBehaviour
     public void UpdateHeartImageList(object sender, EventArgs e)
     {
         int count = healthSystem.GetHeartList().Count;
-        heartImageList.Add(CreateHeart(new Vector2(32 * (count - 1), -64)));
+        HeartImage newHeartImage = CreateHeart(new Vector2(32 * (count - 1), -64));
+        newHeartImage.SetHeartFragments(0);
+        heartImageList.Add(newHeartImage);
         RefreshHealthDisplay();
     }
 

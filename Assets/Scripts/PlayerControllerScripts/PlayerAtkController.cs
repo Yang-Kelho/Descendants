@@ -11,6 +11,7 @@ public class PlayerAtkController : MonoBehaviour
     private float nextAttack;
     public WeaponInventory weaponInv;
     public WeaponObjects defaultWeap;
+    public float damageModifier = 0;
 
     private void Awake()
     {
@@ -45,16 +46,17 @@ public class PlayerAtkController : MonoBehaviour
             if (nextAttack <= 0)
             {
                 GameObject firedProjectile = Instantiate(currentWeapon.weapons.projectile.projectilePrefab, transform.position, Quaternion.identity);
-                firedProjectile.GetComponent<Projectile>().projectile = currentWeapon.weapons.projectile;
-                firedProjectile.GetComponent<Projectile>().damage = currentWeapon.weapons.projectile.damage;
+                Projectile projectile = firedProjectile.GetComponent<Projectile>();
+                projectile.projectile = currentWeapon.weapons.projectile;
+                projectile.damage = currentWeapon.weapons.projectile.damage + damageModifier;
                 firedProjectile.GetComponent<Rigidbody2D>().velocity = atkDirection.normalized * currentWeapon.weapons.projectile.projectileSpeed;
                 for (int i = 2; i <= currentWeapon.weapons.numOfShots; i++)
                 {
                     AddSpread(currentWeapon);
-                    firedProjectile = Instantiate(currentWeapon.weapons.projectile.projectilePrefab, transform.position, Quaternion.identity);
-                    firedProjectile.GetComponent<Projectile>().projectile = currentWeapon.weapons.projectile;
-                    firedProjectile.GetComponent<Projectile>().damage = currentWeapon.weapons.projectile.damage;
-                    firedProjectile.GetComponent<Rigidbody2D>().velocity = atkDirection.normalized * currentWeapon.weapons.projectile.projectileSpeed;
+                    GameObject extraProjectile = Instantiate(currentWeapon.weapons.projectile.projectilePrefab, transform.position, Quaternion.identity);
+                    extraProjectile.GetComponent<Projectile>().projectile = currentWeapon.weapons.projectile;
+                    extraProjectile.GetComponent<Projectile>().damage = currentWeapon.weapons.projectile.damage + damageModifier;
+                    extraProjectile.GetComponent<Rigidbody2D>().velocity = atkDirection.normalized * currentWeapon.weapons.projectile.projectileSpeed;
                 }
                 nextAttack = currentWeapon.weapons.fireRate;
             }

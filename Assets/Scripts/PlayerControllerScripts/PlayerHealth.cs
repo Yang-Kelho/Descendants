@@ -7,28 +7,35 @@ public class PlayerHealth : MonoBehaviour
     public PlayerStats stats;
     public RealmController rc;
 
-    public void PlayerDamage(int damageAmount)
-    {
-        //Debug.Log("Player took " + damageAmount + " damage");
-        HealthDisplay.HealthSystemStatic.Damage(damageAmount);
-        stats.health = GetCurrentHealth();
-        if (IsDead())
-            Die();
-    }
-
     public void PlayerHeal(int healAmount)
     {
         if (!HealthDisplay.HealthSystemStatic.IsFullHealth())
         {
-            //Debug.Log("Player healed " + healAmount + " HP");
             HealthDisplay.HealthSystemStatic.Heal(healAmount);
             stats.health = GetCurrentHealth();
         }
     }
 
-    public void Die()
+    public void PlayerDamage(int damageAmount)
+    {
+        HealthDisplay.HealthSystemStatic.Damage(damageAmount);
+        stats.health = GetCurrentHealth();
+        if (IsDead())
+            Die();
+        else
+            StartCoroutine(DamageFlash(0.15f));
+    }
+
+    public IEnumerator DamageFlash(float flashTime)
     {
         gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(flashTime);
+        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
+    public void Die()
+    {
+        gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
         gameObject.GetComponent<ParticleSystem>().Play();
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         gameObject.GetComponent<PlayerMovementController>().enabled = false;

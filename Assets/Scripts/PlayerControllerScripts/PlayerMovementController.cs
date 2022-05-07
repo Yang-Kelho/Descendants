@@ -7,7 +7,7 @@ public class PlayerMovementController : MonoBehaviour
 {
     public PlayerStats player;
     public Rigidbody2D playerRb;
-    public float playerSpeed = 300f;
+    //public float playerSpeed = 300f;
     public PlayerControls playerControls;
     Vector2 movDirection = Vector2.zero;
     private InputAction move;
@@ -36,7 +36,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerRb.velocity = new Vector2(movDirection.x * playerSpeed, movDirection.y * player.speed);
+        playerRb.velocity = new Vector2(movDirection.x * player.speed, movDirection.y * player.speed);
     }
 
     public Vector2 GetPosition()
