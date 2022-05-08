@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SaveObject : MonoBehaviour
+public class SaveObject
 {
     public List<int> roomScore;
     public List<int> roomType;

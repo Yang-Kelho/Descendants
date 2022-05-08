@@ -14,7 +14,7 @@ public class RealmController : ScriptableObject
     public User user;
     public int logi;
     public int regi;
-    private string userName;
+    public string userName = "anon";
 
     public async Task<int> RealmAppInit(string _userName, string _password)
     {
@@ -130,7 +130,7 @@ public class RealmController : ScriptableObject
 
     public string GetUserName()
     {
-        if (userName == null)
+        if (userName == "anon")
             return "anonymous";
         else
             return userName;
