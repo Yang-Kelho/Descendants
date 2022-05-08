@@ -19,6 +19,7 @@ public class RoomSpawner : MonoBehaviour
         {
             if (transform.position == Vector3.zero) // location of spawn room
             {
+                //GameObject r = Instantiate(room.emptyRoomPrefabs[score - 1], transform.position, Quaternion.identity);
                 GameObject r = Instantiate(room.roomPrefabs[score - 1], transform.position, Quaternion.identity);
                 // prevent enemies from spawning in spawn room
                 foreach (SpawnEnemy sp in r.GetComponentsInChildren<SpawnEnemy>())
@@ -39,15 +40,13 @@ public class RoomSpawner : MonoBehaviour
                 }
                 else if (!mapGen.spawnedChestRoom && rand < 0.1) // 10% chance of treasure room, one per map max
                 {
-                    //Instantiate(room.chestRoomPrefabs[score - 1], transform.position, Quaternion.identity);
-                    Instantiate(room.roomPrefabs[score - 1], transform.position, Quaternion.identity);
+                    Instantiate(room.chestRoomPrefabs[score - 1], transform.position, Quaternion.identity);
                     mapGen.spawnedChestRoom = true;
                     Debug.Log("spawned chest room");
                 }
                 else if (!mapGen.spawnedShopRoom && rand < 0.15) // 15% chance of shop room, one per map max
                 {
-                    //Instantiate(room.shopRoomPrefabs[score - 1], transform.position, Quaternion.identity);
-                    Instantiate(room.roomPrefabs[score - 1], transform.position, Quaternion.identity);
+                    Instantiate(room.shopRoomPrefabs[score - 1], transform.position, Quaternion.identity);
                     mapGen.spawnedShopRoom = true;
                     Debug.Log("spawned shop room");
                 }
