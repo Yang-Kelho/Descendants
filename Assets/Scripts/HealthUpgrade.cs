@@ -8,6 +8,8 @@ public class HealthUpgrade : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            other.GetComponent<PlayerHealth>().stats.health += 2;
+            other.GetComponent<PlayerHealth>().stats.maxHealth += 2;
             HealthDisplay.HealthSystemStatic.AddHeart();
             Destroy(gameObject);
         }

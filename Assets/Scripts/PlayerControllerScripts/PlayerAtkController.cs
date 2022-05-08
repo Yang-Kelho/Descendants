@@ -6,12 +6,12 @@ using UnityEngine.InputSystem;
 public class PlayerAtkController : MonoBehaviour
 {
     public PlayerControls playerControls;
+    public PlayerStats player;
     private InputAction attack;
     Vector2 atkDirection = Vector2.zero;
     private float nextAttack;
     public WeaponInventory weaponInv;
     public WeaponObjects defaultWeap;
-    public float damageModifier = 0;
 
     private void Awake()
     {
@@ -48,14 +48,14 @@ public class PlayerAtkController : MonoBehaviour
                 GameObject firedProjectile = Instantiate(currentWeapon.weapons.projectile.projectilePrefab, transform.position, Quaternion.identity);
                 Projectile projectile = firedProjectile.GetComponent<Projectile>();
                 projectile.projectile = currentWeapon.weapons.projectile;
-                projectile.damage = currentWeapon.weapons.projectile.damage + damageModifier;
+                projectile.damage = currentWeapon.weapons.projectile.damage + player.dmgMod;
                 firedProjectile.GetComponent<Rigidbody2D>().velocity = atkDirection.normalized * currentWeapon.weapons.projectile.projectileSpeed;
                 for (int i = 2; i <= currentWeapon.weapons.numOfShots; i++)
                 {
                     AddSpread(currentWeapon);
                     GameObject extraProjectile = Instantiate(currentWeapon.weapons.projectile.projectilePrefab, transform.position, Quaternion.identity);
                     extraProjectile.GetComponent<Projectile>().projectile = currentWeapon.weapons.projectile;
-                    extraProjectile.GetComponent<Projectile>().damage = currentWeapon.weapons.projectile.damage + damageModifier;
+                    extraProjectile.GetComponent<Projectile>().damage = currentWeapon.weapons.projectile.damage + player.dmgMod;
                     extraProjectile.GetComponent<Rigidbody2D>().velocity = atkDirection.normalized * currentWeapon.weapons.projectile.projectileSpeed;
                 }
                 nextAttack = currentWeapon.weapons.fireRate;

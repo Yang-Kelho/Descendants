@@ -59,14 +59,11 @@ public class HealthDisplay : MonoBehaviour
         int count = healthSystem.GetHeartList().Count;
         HeartImage newHeartImage = CreateHeart(new Vector2(32 * (count - 1), -64));
         newHeartImage.SetHeartFragments(0);
-        heartImageList.Add(newHeartImage);
-        RefreshHealthDisplay();
     }
 
     private void RefreshHealthDisplay()
     {
         List<HealthSystem.Heart> heartList = healthSystem.GetHeartList();
-
         for (int i = 0; i < heartList.Count; i++)
         {
             HeartImage heartImage = heartImageList[i];
@@ -104,6 +101,7 @@ public class HealthDisplay : MonoBehaviour
 
         public void SetHeartFragments(int fragments)
         {
+            // Debug.Log("In shf: " + fragments + "!");
             switch (fragments){
                 case 0: heartImage.sprite = healthDisplay.emptyHeartSprite; break;
                 case 1: heartImage.sprite = healthDisplay.halfHeartSprite; break;

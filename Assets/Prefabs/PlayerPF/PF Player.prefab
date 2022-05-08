@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edee4a915faf637479e26f5f46f5481f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 11400000, guid: f210b694fac419b4e90437d55283ba16, type: 2}
   weaponInv: {fileID: 11400000, guid: 34e9bd887be8470448ea24b1856334aa, type: 2}
   defaultWeap: {fileID: 11400000, guid: 97f84f35f047f7e4eaf62377080352f1, type: 2}
 --- !u!114 &6369851048457188550
@@ -199,7 +200,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: f210b694fac419b4e90437d55283ba16, type: 2}
   playerRb: {fileID: 1620448596000502395}
-  playerSpeed: 300
 --- !u!114 &6369851048457188548
 MonoBehaviour:
   m_ObjectHideFlags: 0

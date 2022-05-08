@@ -12,11 +12,6 @@ public class PlayerStats : ScriptableObject
     public float speed = 300;
     public float dmgMod = 0;
 
-    public void SetHealth(int _health)
-    {
-        _health = health;
-    }
-
     public void ReSet()
     {
         health = 6;
@@ -26,6 +21,4 @@ public class PlayerStats : ScriptableObject
         speed = 300;
         dmgMod = 0;
     }
-
-       
 }

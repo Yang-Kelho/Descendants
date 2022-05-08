@@ -209,7 +209,7 @@ public class InGamePanelCtrl : MonoBehaviour
     private void CheckLast()
     {
         Scene currentScene = SceneManager.GetActiveScene();
-        Debug.Log(currentScene.buildIndex); // should be 2
+        // Debug.Log(currentScene.buildIndex); // should be 2
         
     }
 }

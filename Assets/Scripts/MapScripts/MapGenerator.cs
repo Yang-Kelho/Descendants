@@ -47,13 +47,11 @@ public class MapGenerator : MonoBehaviour
                     {
                         spawnPoint.GetComponent<Spawn>().roomType = 1;
                         spawnedChestRoom = true;
-                        Debug.Log("spawned chest room");
                     }
                     else if (!spawnedShopRoom && rand < 0.15) // 15% chance of shop room, one per map max
                     {
                         spawnPoint.GetComponent<Spawn>().roomType = 2;
                         spawnedShopRoom = true;
-                        Debug.Log("spawned shop room");
                     }
                     else if (initspawnPointPosition.x == 0 & initspawnPointPosition.y == 0) // set room to regular room if coordinate = (0,0)
                     {

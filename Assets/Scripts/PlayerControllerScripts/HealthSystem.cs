@@ -136,7 +136,9 @@ public class HealthSystem{
                 numFragments = MAX_FRAGMENT_NUMBER;
             }
             else
+            {
                 numFragments += healAmount;
+            }
         }
     }
 }

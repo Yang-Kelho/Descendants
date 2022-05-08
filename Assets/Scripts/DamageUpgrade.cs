@@ -9,7 +9,7 @@ public class DamageUpgrade : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerAtkController>().damageModifier += damageBoost;
+            other.gameObject.GetComponent<PlayerAtkController>().player.dmgMod += damageBoost;
             Destroy(gameObject);
         }
     }
