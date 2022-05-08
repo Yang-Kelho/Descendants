@@ -18,6 +18,7 @@ public class EnemyHPController : MonoBehaviour
     private void Die()
     {
         SoundManager sm = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+        GetComponent<BoxCollider2D>().enabled = false;
 
         Transform parent = this.transform.parent;
         int goldDropped = GetComponent<Enemy>().enemy.goldDropped;

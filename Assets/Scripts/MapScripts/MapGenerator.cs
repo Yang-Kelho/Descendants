@@ -9,6 +9,8 @@ public class MapGenerator : MonoBehaviour
     public NeighborRoom room2Spawn;
     public int numOfRooms;
     public int[,] arrayMap;
+    public int[,] ScoreMap;
+    public int[,] TypeMap;
     private int startRoomPosX;
     private int startRoomPosY;
 
@@ -17,20 +19,60 @@ public class MapGenerator : MonoBehaviour
 
     void Start()
     {
-        Vector2 initspawnPointPosition;
-        initspawnPointPosition.x = transform.position.x - (((gridSize.mapWidth - 1) / 2) * 1296);
-        ArrayMapInit();
-
-        for (int i = 0; i < (gridSize.mapWidth); i++)
+        if (ScoreMap == null && TypeMap == null)
         {
-            initspawnPointPosition.y = transform.position.y + (((gridSize.mapHeight - 1) / 2) * 720);
-            for (int j = 0; j < (gridSize.mapHeight); j++)
+            Vector2 initspawnPointPosition;
+            initspawnPointPosition.x = transform.position.x - (((gridSize.mapWidth - 1) / 2) * 1296);
+            ArrayMapInit();
+
+            ScoreMap = new int[gridSize.mapHeight, gridSize.mapWidth];
+            TypeMap = new int[gridSize.mapHeight, gridSize.mapWidth];
+            for (int i = 0; i < (gridSize.mapWidth); i++)
             {
-                spawnPoint.GetComponent<Spawn>().roomScore = arrayMap[j, i];
-                Instantiate(spawnPoint, initspawnPointPosition, Quaternion.identity);
-                initspawnPointPosition.y -= 720;
+                initspawnPointPosition.y = transform.position.y + (((gridSize.mapHeight - 1) / 2) * 720);
+                for (int j = 0; j < (gridSize.mapHeight); j++)
+                {
+                    spawnPoint.GetComponent<Spawn>().roomScore = arrayMap[j, i];
+
+                    // 0 -> spike room
+                    // 1 -> chest room
+                    // 2 -> shop
+                    // 3 -> regular
+                    float rand = Random.Range(0, 1.0f);
+                    if (rand > 0.80) // 20% chance of spike room with a single enemy
+                    {
+                        spawnPoint.GetComponent<Spawn>().roomType = 0;
+                    }
+                    else if (!spawnedChestRoom && rand < 0.1) // 10% chance of treasure room, one per map max
+                    {
+                        spawnPoint.GetComponent<Spawn>().roomType = 1;
+                        spawnedChestRoom = true;
+                        Debug.Log("spawned chest room");
+                    }
+                    else if (!spawnedShopRoom && rand < 0.15) // 15% chance of shop room, one per map max
+                    {
+                        spawnPoint.GetComponent<Spawn>().roomType = 2;
+                        spawnedShopRoom = true;
+                        Debug.Log("spawned shop room");
+                    }
+                    else if (initspawnPointPosition.x == 0 & initspawnPointPosition.y == 0) // set room to regular room if coordinate = (0,0)
+                    {
+                        spawnPoint.GetComponent<Spawn>().roomType = 3;
+                    }
+                    else // default to room with 2 enemies, 65-80% chance
+                    {
+                        spawnPoint.GetComponent<Spawn>().roomType = 3;
+                    }
+
+
+                    ScoreMap[j, i] = spawnPoint.GetComponent<Spawn>().roomScore;
+                    TypeMap[j, i] = spawnPoint.GetComponent<Spawn>().roomType;
+                    Instantiate(spawnPoint, initspawnPointPosition, Quaternion.identity);
+                    initspawnPointPosition.y -= 720;
+                }
+                initspawnPointPosition.x += 1296;
             }
-            initspawnPointPosition.x += 1296;
+            GetComponent<SaveLoad>().Save();
         }
     }
 

@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomScore: -1
+  roomType: 0
 --- !u!114 &6424181666850690121
 MonoBehaviour:
   m_ObjectHideFlags: 0

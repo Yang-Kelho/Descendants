@@ -2701,6 +2701,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1770796575}
   - component: {fileID: 1770796574}
+  - component: {fileID: 1770796576}
   m_Layer: 0
   m_Name: MapGen
   m_TagString: Untagged
@@ -2739,6 +2740,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1770796576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770796573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba394583ce6f6ee4a94b03cd92e4643a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: 34e9bd887be8470448ea24b1856334aa, type: 2}
+  stats: {fileID: 11400000, guid: f210b694fac419b4e90437d55283ba16, type: 2}
+  mapGen: {fileID: 1770796574}
+  rc: {fileID: 11400000, guid: a5ac6e6a880ddc44d8501e120d5fd9eb, type: 2}
 --- !u!1 &1775381078
 GameObject:
   m_ObjectHideFlags: 0

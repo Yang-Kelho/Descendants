@@ -127,4 +127,12 @@ public class RealmController : ScriptableObject
             realm.Add(newPlayer);
         });
     }
+
+    public string GetUserName()
+    {
+        if (userName == null)
+            return "anonymous";
+        else
+            return userName;
+    }
 }

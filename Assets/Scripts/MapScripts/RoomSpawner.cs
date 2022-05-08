@@ -5,10 +5,8 @@ using UnityEngine;
 public class RoomSpawner : MonoBehaviour
 {
     public RoomTemplates room;
-    private MapGenerator mapGen;
     void Start()
     {
-        mapGen = FindObjectOfType<MapGenerator>();
         Spawn();
     }
 
@@ -31,26 +29,29 @@ public class RoomSpawner : MonoBehaviour
                     Destroy(d.gameObject);
                 }
             }
+            // 0 -> spike room
+            // 1 -> chest room
+            // 2 -> shop
+            // 3 -> regular
             else
             {
-                float rand = Random.Range(0, 1.0f);
-                if (rand > 0.80) // 20% chance of spike room with a single enemy
+                if (GetComponent<Spawn>().roomType == 0)
                 {
                     Instantiate(room.spikeRoomPrefabs[score - 1], transform.position, Quaternion.identity);
                 }
-                else if (!mapGen.spawnedChestRoom && rand < 0.1) // 10% chance of treasure room, one per map max
+                else if (GetComponent<Spawn>().roomType == 1)
                 {
                     Instantiate(room.chestRoomPrefabs[score - 1], transform.position, Quaternion.identity);
-                    mapGen.spawnedChestRoom = true;
+                    GetComponent<Spawn>().roomType = 1;
                     Debug.Log("spawned chest room");
                 }
-                else if (!mapGen.spawnedShopRoom && rand < 0.15) // 15% chance of shop room, one per map max
+                else if (GetComponent<Spawn>().roomType == 2)
                 {
                     Instantiate(room.shopRoomPrefabs[score - 1], transform.position, Quaternion.identity);
-                    mapGen.spawnedShopRoom = true;
+                    GetComponent<Spawn>().roomType = 2;
                     Debug.Log("spawned shop room");
                 }
-                else // default to room with 2 enemies, 65-80% chance
+                else if(GetComponent<Spawn>().roomType == 3)
                 {
                     Instantiate(room.roomPrefabs[score - 1], transform.position, Quaternion.identity);
                 }
