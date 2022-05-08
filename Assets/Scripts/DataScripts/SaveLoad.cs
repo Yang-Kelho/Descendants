@@ -10,8 +10,12 @@ public class SaveLoad : MonoBehaviour
     public PlayerStats stats;
     public MapGenerator mapGen;
     public RealmController rc;
-    public static string path = Application.dataPath + "/Saves/";
+    public static string path;
 
+    public void Awake()
+    {
+        path = Application.dataPath + "/Saves/";
+    }
     public void Save()
     {
         SaveObject saveFile = new SaveObject
