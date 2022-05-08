@@ -75,6 +75,7 @@ public class RealmController : ScriptableObject
             {
                 AddNewUser(_userName, _password);
             }
+
             LogOut();
         }
         return regi;
@@ -83,6 +84,7 @@ public class RealmController : ScriptableObject
     public async void LogOut()
     {
         await realmApp.CurrentUser.LogOutAsync();
+        userName = "anon";
         realm.Dispose();
     }
 
