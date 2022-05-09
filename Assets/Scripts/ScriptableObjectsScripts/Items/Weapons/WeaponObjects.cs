@@ -19,6 +19,7 @@ public enum Affixes
 
 public abstract class WeaponObjects : ScriptableObject
 {
+    public int id;
     public GameObject weaponPrefab;
     public WeaponType weaponType;
     public Affixes affix;

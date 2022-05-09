@@ -11,7 +11,8 @@ public class SaveLoad : MonoBehaviour
     public MapGenerator mapGen;
     public RealmController rc;
     public static string path;
-    private bool map;
+    public SpawnPointData spd;
+    public WeaponTemplate weaponDb;
 
     public void Awake()
     {
@@ -54,6 +55,14 @@ public class SaveLoad : MonoBehaviour
             }
         }
 
+        saveFile.weaponID = new List<int>();
+        saveFile.weaponID.Add(-1);
+        saveFile.weaponID.Add(-1);
+        for (int i = 0; i < inventory.containers.Length; i++)
+        {
+            saveFile.weaponID[i] = inventory.containers[i].weapons.id;
+        }
+
         string json = JsonUtility.ToJson(saveFile);
         var fileName = "/" + rc.GetUserName() + ".txt";
         Debug.Log(fileName);
@@ -82,30 +91,16 @@ public class SaveLoad : MonoBehaviour
 
         if (saveFile != null)
         {
-            var scene = SceneManager.GetSceneByName(saveFile.level);
 
-            GameObject[] objects = scene.GetRootGameObjects();
-
-            for (int i = 0; i < objects.Length; i++)
-            {
-                if (objects[i].name == "MapGen")
-                {
-                    mapGen = objects[i].GetComponent<MapGenerator>();
-                    map = true;
-                }
-                else
-                    map = false;
-            }
-
-            if (map != false)
+            if (gameObject.name != "BossMapGen")
             {
                 var iter = 0;
                 for (int i = 0; i < saveFile.roomScore.Count; i++)
                 {
                     for (int j = 0; j < saveFile.roomScore.Count; j++)
                     {
-                        mapGen.ScoreMap[j, i] = saveFile.roomScore[iter];
-                        mapGen.TypeMap[j, i] = saveFile.roomType[iter];
+                        spd.ScoreMap[j, i] = saveFile.roomScore[iter];
+                        spd.TypeMap[j, i] = saveFile.roomType[iter];
                     }
                 }
             }
@@ -116,7 +111,15 @@ public class SaveLoad : MonoBehaviour
             stats.score = saveFile.score;
             stats.speed = saveFile.speed;
             stats.dmgMod = saveFile.dmgMod;
+            for (int i = 0; i < inventory.containers.Length; i++)
+            {
+                if (saveFile.weaponID[i] != -1)
+                {
+                    var id = saveFile.weaponID[i];
+                    inventory.containers[i].weapons = weaponDb.weapon[id];
 
+                }
+            }
             SceneManager.LoadScene(saveFile.level);
         }
     }

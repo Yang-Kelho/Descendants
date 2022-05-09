@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb94c47794c18904aa421e53f0d5535b, type: 3}
   m_Name: The Classic
   m_EditorClassIdentifier: 
+  id: 2
   weaponPrefab: {fileID: 1829108352623698028, guid: bcc01ede57e8b5043a91e550425c6b18, type: 3}
   weaponType: 2
   affix: 1

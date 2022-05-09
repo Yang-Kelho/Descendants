@@ -13,6 +13,7 @@ public class MapGenerator : MonoBehaviour
     public int[,] TypeMap;
     private int startRoomPosX;
     private int startRoomPosY;
+    public SpawnPointData spd;
 
     public bool spawnedShopRoom = false;
     public bool spawnedChestRoom = false;
@@ -79,13 +80,16 @@ public class MapGenerator : MonoBehaviour
                 initspawnPointPosition.y = transform.position.y + (((gridSize.mapHeight - 1) / 2) * 720);
                 for (int j = 0; j < (gridSize.mapHeight); j++)
                 {
-                    spawnPoint.GetComponent<Spawn>().roomScore = ScoreMap[j, i];
-                    spawnPoint.GetComponent<Spawn>().roomType = TypeMap[j, i];
+                    spawnPoint.GetComponent<Spawn>().roomScore = spd.ScoreMap[j, i];
+                    spawnPoint.GetComponent<Spawn>().roomType = spd.TypeMap[j, i];
                     Instantiate(spawnPoint, initspawnPointPosition, Quaternion.identity);
                     initspawnPointPosition.y -= 720;
                 }
                 initspawnPointPosition.x += 1296;
             }
+
+            spd.ScoreMap = null;
+            spd.TypeMap = null;
         }
     }
 
