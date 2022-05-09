@@ -19,10 +19,10 @@ public class MapGenerator : MonoBehaviour
 
     void Start()
     {
+        Vector2 initspawnPointPosition;
+        initspawnPointPosition.x = transform.position.x - (((gridSize.mapWidth - 1) / 2) * 1296);
         if (ScoreMap == null && TypeMap == null)
         {
-            Vector2 initspawnPointPosition;
-            initspawnPointPosition.x = transform.position.x - (((gridSize.mapWidth - 1) / 2) * 1296);
             ArrayMapInit();
 
             ScoreMap = new int[gridSize.mapHeight, gridSize.mapWidth];
@@ -71,6 +71,21 @@ public class MapGenerator : MonoBehaviour
                 initspawnPointPosition.x += 1296;
             }
             GetComponent<SaveLoad>().Save();
+        }
+        else
+        {
+            for (int i = 0; i < (gridSize.mapWidth); i++)
+            {
+                initspawnPointPosition.y = transform.position.y + (((gridSize.mapHeight - 1) / 2) * 720);
+                for (int j = 0; j < (gridSize.mapHeight); j++)
+                {
+                    spawnPoint.GetComponent<Spawn>().roomScore = ScoreMap[j, i];
+                    spawnPoint.GetComponent<Spawn>().roomType = TypeMap[j, i];
+                    Instantiate(spawnPoint, initspawnPointPosition, Quaternion.identity);
+                    initspawnPointPosition.y -= 720;
+                }
+                initspawnPointPosition.x += 1296;
+            }
         }
     }
 

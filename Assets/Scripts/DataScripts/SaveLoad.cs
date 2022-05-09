@@ -11,6 +11,7 @@ public class SaveLoad : MonoBehaviour
     public MapGenerator mapGen;
     public RealmController rc;
     public static string path;
+    private bool map;
 
     public void Awake()
     {
@@ -61,6 +62,62 @@ public class SaveLoad : MonoBehaviour
 
     public void Load()
     {
-        
+        string saveString;
+        var name = "/" + rc.GetUserName() + ".txt";
+        if (File.Exists(path + name))
+        {
+            saveString = File.ReadAllText(path + name);
+        }
+        else
+            saveString = "none";
+
+        SaveObject saveFile = new SaveObject();
+
+        if (saveString != "none")
+        {
+            saveFile = JsonUtility.FromJson<SaveObject>(saveString);
+        }
+        else
+            Debug.Log("no existing save");
+
+        if (saveFile != null)
+        {
+            var scene = SceneManager.GetSceneByName(saveFile.level);
+
+            GameObject[] objects = scene.GetRootGameObjects();
+
+            for (int i = 0; i < objects.Length; i++)
+            {
+                if (objects[i].name == "MapGen")
+                {
+                    mapGen = objects[i].GetComponent<MapGenerator>();
+                    map = true;
+                }
+                else
+                    map = false;
+            }
+
+            if (map != false)
+            {
+                var iter = 0;
+                for (int i = 0; i < saveFile.roomScore.Count; i++)
+                {
+                    for (int j = 0; j < saveFile.roomScore.Count; j++)
+                    {
+                        mapGen.ScoreMap[j, i] = saveFile.roomScore[iter];
+                        mapGen.TypeMap[j, i] = saveFile.roomType[iter];
+                    }
+                }
+            }
+
+            stats.maxHealth = saveFile.maxHealth;
+            stats.health = saveFile.health;
+            stats.gold = saveFile.gold;
+            stats.score = saveFile.score;
+            stats.speed = saveFile.speed;
+            stats.dmgMod = saveFile.dmgMod;
+
+            SceneManager.LoadScene(saveFile.level);
+        }
     }
 }
