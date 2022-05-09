@@ -6040,7 +6040,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 946976890}
-  - component: {fileID: 946976889}
   - component: {fileID: 946976888}
   m_Layer: 0
   m_Name: BossMapGen
@@ -6063,27 +6062,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: 34e9bd887be8470448ea24b1856334aa, type: 2}
   stats: {fileID: 11400000, guid: f210b694fac419b4e90437d55283ba16, type: 2}
-  mapGen: {fileID: 946976889}
+  mapGen: {fileID: 0}
   rc: {fileID: 11400000, guid: a5ac6e6a880ddc44d8501e120d5fd9eb, type: 2}
   spd: {fileID: 11400000, guid: efc2d9d898180f94f9ddb5ddb4f47023, type: 2}
---- !u!114 &946976889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 946976887}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0326958ef96b640469638d67edd93251, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gridSize: {fileID: 11400000, guid: ae52c718687e541489329283e023fc61, type: 2}
-  spawnPoint: {fileID: 7786758406862110774, guid: 178417c5b1d823c46a000e863096f07c, type: 3}
-  numOfRooms: 10
-  spd: {fileID: 0}
-  spawnedShopRoom: 0
-  spawnedChestRoom: 0
+  weaponDb: {fileID: 11400000, guid: ed2ce12cc6a5d8f4595249e77031379f, type: 2}
 --- !u!4 &946976890
 Transform:
   m_ObjectHideFlags: 0

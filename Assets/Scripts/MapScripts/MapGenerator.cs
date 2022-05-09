@@ -22,12 +22,13 @@ public class MapGenerator : MonoBehaviour
     {
         Vector2 initspawnPointPosition;
         initspawnPointPosition.x = transform.position.x - (((gridSize.mapWidth - 1) / 2) * 1296);
-        if (ScoreMap == null && TypeMap == null)
+
+        ScoreMap = new int[gridSize.mapHeight, gridSize.mapWidth];
+        TypeMap = new int[gridSize.mapHeight, gridSize.mapWidth];
+
+        if (spd.ScoreMap.Count == 0 && spd.TypeMap.Count == 0)
         {
             ArrayMapInit();
-
-            ScoreMap = new int[gridSize.mapHeight, gridSize.mapWidth];
-            TypeMap = new int[gridSize.mapHeight, gridSize.mapWidth];
             for (int i = 0; i < (gridSize.mapWidth); i++)
             {
                 initspawnPointPosition.y = transform.position.y + (((gridSize.mapHeight - 1) / 2) * 720);
@@ -75,21 +76,31 @@ public class MapGenerator : MonoBehaviour
         }
         else
         {
+            var iter = 0;
+            for (int i = 0; i < gridSize.mapWidth; i++)
+            {
+                for (int j = 0; j < gridSize.mapHeight; j++, iter++)
+                {
+                    ScoreMap[j, i] = spd.ScoreMap[iter];
+                    TypeMap[j, i] = spd.TypeMap[iter];
+                }
+            }
+
             for (int i = 0; i < (gridSize.mapWidth); i++)
             {
                 initspawnPointPosition.y = transform.position.y + (((gridSize.mapHeight - 1) / 2) * 720);
                 for (int j = 0; j < (gridSize.mapHeight); j++)
                 {
-                    spawnPoint.GetComponent<Spawn>().roomScore = spd.ScoreMap[j, i];
-                    spawnPoint.GetComponent<Spawn>().roomType = spd.TypeMap[j, i];
+                    spawnPoint.GetComponent<Spawn>().roomScore = ScoreMap[j, i];
+                    spawnPoint.GetComponent<Spawn>().roomType = TypeMap[j, i];
                     Instantiate(spawnPoint, initspawnPointPosition, Quaternion.identity);
                     initspawnPointPosition.y -= 720;
                 }
                 initspawnPointPosition.x += 1296;
             }
 
-            spd.ScoreMap = null;
-            spd.TypeMap = null;
+            spd.ScoreMap.Clear();
+            spd.TypeMap.Clear();
         }
     }
 
@@ -102,7 +113,9 @@ public class MapGenerator : MonoBehaviour
         {
             for (int j = 0; j < (gridSize.mapHeight); j++)
             {
-                arrayMap[i, j] = -1;
+                Debug.Log(i);
+                Debug.Log(j);
+                arrayMap[j, i] = -1;
             }
         }
         ArrayMapGen();

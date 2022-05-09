@@ -32,35 +32,31 @@ public class SaveLoad : MonoBehaviour
 
         var a_scene = SceneManager.GetActiveScene();
         saveFile.level = a_scene.name;
-
-        saveFile.roomScore = new List<int>(new int[mapGen.ScoreMap.GetLength(0) * mapGen.ScoreMap.GetLength(1)]);
-        var iter = 0;
+        
+        //new int[mapGen.ScoreMap.GetLength(0) * mapGen.ScoreMap.GetLength(1)]
+        saveFile.roomScore = new List<int>();
         for (int i = 0; i < mapGen.ScoreMap.GetLength(0); i++)
         {
             for (int j = 0; j < mapGen.ScoreMap.GetLength(1); j++)
             {
                 saveFile.roomScore.Add(mapGen.ScoreMap[j, i]);
-                iter++;
             }
         }
 
-        saveFile.roomType = new List<int>(new int[mapGen.TypeMap.GetLength(0) * mapGen.TypeMap.GetLength(1)]);
-        iter = 0;
+        saveFile.roomType = new List<int>();
         for (int i = 0; i < mapGen.TypeMap.GetLength(0); i++)
         {
             for (int j = 0; j < mapGen.TypeMap.GetLength(1); j++)
             {
                 saveFile.roomType.Add(mapGen.TypeMap[j, i]);
-                iter++;
             }
         }
 
-        saveFile.weaponID = new List<int>();
-        saveFile.weaponID.Add(-1);
-        saveFile.weaponID.Add(-1);
-        for (int i = 0; i < inventory.containers.Length; i++)
+        saveFile.weaponID = new List<int>() {-1, -1};
+        for (int i = 0; i < 2; i++)
         {
-            saveFile.weaponID[i] = inventory.containers[i].weapons.id;
+            if(inventory.containers[i].weapons != null)
+                saveFile.weaponID[i] = inventory.containers[i].weapons.id;
         }
 
         string json = JsonUtility.ToJson(saveFile);
@@ -93,15 +89,13 @@ public class SaveLoad : MonoBehaviour
         {
 
             if (gameObject.name != "BossMapGen")
-            {
-                var iter = 0;
+            { 
+                spd.ScoreMap = new List<int>();
+                spd.TypeMap = new List<int>();
                 for (int i = 0; i < saveFile.roomScore.Count; i++)
                 {
-                    for (int j = 0; j < saveFile.roomScore.Count; j++)
-                    {
-                        spd.ScoreMap[j, i] = saveFile.roomScore[iter];
-                        spd.TypeMap[j, i] = saveFile.roomType[iter];
-                    }
+                    spd.ScoreMap.Add(saveFile.roomScore[i]);
+                    spd.TypeMap.Add(saveFile.roomType[i]);
                 }
             }
 

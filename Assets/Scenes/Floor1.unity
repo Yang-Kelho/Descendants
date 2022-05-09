@@ -2799,7 +2799,7 @@ MonoBehaviour:
   gridSize: {fileID: 11400000, guid: ae52c718687e541489329283e023fc61, type: 2}
   spawnPoint: {fileID: 7786758406862110774, guid: 178417c5b1d823c46a000e863096f07c, type: 3}
   numOfRooms: 10
-  spd: {fileID: 0}
+  spd: {fileID: 11400000, guid: efc2d9d898180f94f9ddb5ddb4f47023, type: 2}
   spawnedShopRoom: 0
   spawnedChestRoom: 0
 --- !u!4 &1770796575
@@ -2833,6 +2833,7 @@ MonoBehaviour:
   mapGen: {fileID: 1770796574}
   rc: {fileID: 11400000, guid: a5ac6e6a880ddc44d8501e120d5fd9eb, type: 2}
   spd: {fileID: 11400000, guid: efc2d9d898180f94f9ddb5ddb4f47023, type: 2}
+  weaponDb: {fileID: 11400000, guid: ed2ce12cc6a5d8f4595249e77031379f, type: 2}
 --- !u!1 &1775381078
 GameObject:
   m_ObjectHideFlags: 0

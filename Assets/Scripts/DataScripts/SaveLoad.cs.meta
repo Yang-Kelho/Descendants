@@ -7,6 +7,9 @@ MonoImporter:
   - inventory: {fileID: 11400000, guid: 34e9bd887be8470448ea24b1856334aa, type: 2}
   - stats: {fileID: 11400000, guid: f210b694fac419b4e90437d55283ba16, type: 2}
   - mapGen: {instanceID: 0}
+  - rc: {fileID: 11400000, guid: a5ac6e6a880ddc44d8501e120d5fd9eb, type: 2}
+  - spd: {fileID: 11400000, guid: efc2d9d898180f94f9ddb5ddb4f47023, type: 2}
+  - weaponDb: {fileID: 11400000, guid: ed2ce12cc6a5d8f4595249e77031379f, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
