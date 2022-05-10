@@ -49,8 +49,8 @@ public class LoginPanelCtrl : MonoBehaviour
     private async void LoginEvent()
     {
         // What do you want to do when you click the login button?
-        var userName = transform.Find("vertical_layout").Find("Input_userName").Find("Text").GetComponent<Text>().text;
-        var password = transform.Find("vertical_layout").Find("Input_password").Find("Text").GetComponent<Text>().text;
+        var userName = transform.Find("vertical_layout").Find("Input_userName").GetComponent<InputField>().text;
+        var password = transform.Find("vertical_layout").Find("Input_password").GetComponent<InputField>().text;
 
         var logi = await rc.RealmAppInit(userName, password);
 
