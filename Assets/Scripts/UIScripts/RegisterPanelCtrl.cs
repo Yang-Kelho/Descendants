@@ -60,7 +60,7 @@ public class RegisterPanelCtrl : MonoBehaviour
         {
             var regi = await rc.Register(userName, password);
 
-            //Debug.Log(LoginPanelCtrl.rc.regi);
+            Debug.Log(rc.regi);
             if (regi == 0)
             {
                 //if return value = 0. Register failed

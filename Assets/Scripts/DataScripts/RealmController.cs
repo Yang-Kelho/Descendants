@@ -30,13 +30,11 @@ public class RealmController : ScriptableObject
                 MetadataPersistenceMode = MetadataPersistenceMode.NotEncrypted
             });
 
-            user = realmApp.CurrentUser;
-
             if (user == null)
             {
                 user = await realmApp.LogInAsync(Credentials.Function(payload));
                 realm = await Realm.GetInstanceAsync(new PartitionSyncConfiguration("partition", user));
-                
+
             }
             else
                 realm = Realm.GetInstance(new PartitionSyncConfiguration("partition", user));
@@ -44,9 +42,11 @@ public class RealmController : ScriptableObject
             logi = 1;
             userName = _userName;
         }
-        catch {
+        catch
+        {
             logi = 0;
         }
+
 
         return logi;
     }
@@ -86,6 +86,8 @@ public class RealmController : ScriptableObject
         await realmApp.CurrentUser.LogOutAsync();
         userName = "anon";
         realm.Dispose();
+        realm = null;
+        user = null;
     }
 
     public IOrderedQueryable<PlayerData> GetLeaderBoradData()
