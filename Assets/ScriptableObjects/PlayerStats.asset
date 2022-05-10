@@ -15,3 +15,6 @@ MonoBehaviour:
   health: 6
   gold: 0
   maxHealth: 6
+  score: 0
+  speed: 300
+  dmgMod: 0

@@ -16,7 +16,7 @@ public class HealthSystem{
     {
         this.stats = stats;
         this.heartList = new List<Heart>();
-        for (int i = 0; i < heartAmount; i++)
+        for (int i = 0; i < stats.maxHealth / 2; i++)
         {
             heartList.Add(new Heart(2));
         }
