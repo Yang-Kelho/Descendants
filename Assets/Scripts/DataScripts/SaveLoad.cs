@@ -32,23 +32,26 @@ public class SaveLoad : MonoBehaviour
 
         var a_scene = SceneManager.GetActiveScene();
         saveFile.level = a_scene.name;
-        
-        //new int[mapGen.ScoreMap.GetLength(0) * mapGen.ScoreMap.GetLength(1)]
-        saveFile.roomScore = new List<int>();
-        for (int i = 0; i < mapGen.ScoreMap.GetLength(0); i++)
-        {
-            for (int j = 0; j < mapGen.ScoreMap.GetLength(1); j++)
-            {
-                saveFile.roomScore.Add(mapGen.ScoreMap[j, i]);
-            }
-        }
 
-        saveFile.roomType = new List<int>();
-        for (int i = 0; i < mapGen.TypeMap.GetLength(0); i++)
+        if (mapGen != null)
         {
-            for (int j = 0; j < mapGen.TypeMap.GetLength(1); j++)
+            //new int[mapGen.ScoreMap.GetLength(0) * mapGen.ScoreMap.GetLength(1)]
+            saveFile.roomScore = new List<int>();
+            for (int i = 0; i < mapGen.ScoreMap.GetLength(0); i++)
             {
-                saveFile.roomType.Add(mapGen.TypeMap[j, i]);
+                for (int j = 0; j < mapGen.ScoreMap.GetLength(1); j++)
+                {
+                    saveFile.roomScore.Add(mapGen.ScoreMap[j, i]);
+                }
+            }
+
+            saveFile.roomType = new List<int>();
+            for (int i = 0; i < mapGen.TypeMap.GetLength(0); i++)
+            {
+                for (int j = 0; j < mapGen.TypeMap.GetLength(1); j++)
+                {
+                    saveFile.roomType.Add(mapGen.TypeMap[j, i]);
+                }
             }
         }
 

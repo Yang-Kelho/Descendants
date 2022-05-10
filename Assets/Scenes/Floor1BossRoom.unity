@@ -6041,6 +6041,7 @@ GameObject:
   m_Component:
   - component: {fileID: 946976890}
   - component: {fileID: 946976888}
+  - component: {fileID: 946976889}
   m_Layer: 0
   m_Name: BossMapGen
   m_TagString: Untagged
@@ -6066,6 +6067,19 @@ MonoBehaviour:
   rc: {fileID: 11400000, guid: a5ac6e6a880ddc44d8501e120d5fd9eb, type: 2}
   spd: {fileID: 11400000, guid: efc2d9d898180f94f9ddb5ddb4f47023, type: 2}
   weaponDb: {fileID: 11400000, guid: ed2ce12cc6a5d8f4595249e77031379f, type: 2}
+--- !u!114 &946976889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946976887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ad7f4980d1f1bc46b51d0bd3a119896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sl: {fileID: 946976888}
 --- !u!4 &946976890
 Transform:
   m_ObjectHideFlags: 0
