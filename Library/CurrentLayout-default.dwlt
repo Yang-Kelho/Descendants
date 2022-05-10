@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Inspector
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 118
+  controlID: 87
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 215
+  controlID: 41
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 58
+  controlID: 42
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -317,21 +317,21 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 68
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts
   m_LastFoldersGridSize: 68
   m_LastProjectPath: D:\Schoolwork\SeniorProject\Desandant
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: fe470000
-    m_LastClickedID: 18430
+    m_SelectedIDs: e6470000
+    m_LastClickedID: 18406
     m_ExpandedIDs: 00000000e2470000e4470000e6470000e8470000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -481,9 +481,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 30480000
-      m_LastClickedID: 0
-      m_ExpandedIDs: 7caaffffe4c9ffffb6cbffff50daffff64efffff9af0ffffe0f8ffff80faffff94faffff60fbffffc2800000decd0000
+      m_SelectedIDs: 188d0000
+      m_LastClickedID: 36120
+      m_ExpandedIDs: fee3fffffcf0ffff60fbffffc4440000fa440000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -543,9 +543,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 37.997055, y: 36.661274, z: -0.0146484375}
+    m_Target: {x: 514.62756, y: 276.87292, z: -4.915324}
     speed: 2
-    m_Value: {x: 37.997055, y: 36.661274, z: -0.0146484375}
+    m_Value: {x: 514.62756, y: 276.87292, z: -4.915324}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -596,9 +596,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 400.00006
+    m_Target: 332.7159
     speed: 2
-    m_Value: 400.00006
+    m_Value: 332.7159
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -654,7 +654,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 962, y: 541}
+  m_TargetSize: {x: 1139, y: 541}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -669,8 +669,8 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -481
-    m_HBaseRangeMax: 481
+    m_HBaseRangeMin: -569.5
+    m_HBaseRangeMax: 569.5
     m_VBaseRangeMin: -270.5
     m_VBaseRangeMax: 270.5
     m_HAllowExceedBaseRangeMin: 1
