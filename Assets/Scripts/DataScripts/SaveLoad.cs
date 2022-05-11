@@ -17,7 +17,7 @@ public class SaveLoad : MonoBehaviour
     public void Awake()
     {
         mapGen = GetComponent<MapGenerator>();
-        path = Application.dataPath + "/Saves/";
+        path = Application.persistentDataPath;
     }
     public void Save()
     {
@@ -63,18 +63,18 @@ public class SaveLoad : MonoBehaviour
         }
 
         string json = JsonUtility.ToJson(saveFile);
-        var fileName = "/" + rc.GetUserName() + ".txt";
+        var fileName = Path.Combine(path, rc.GetUserName() + ".json");
         Debug.Log(fileName);
-        File.WriteAllText(path + fileName, json);
+        File.WriteAllText(fileName, json);
     }
 
     public void Load()
     {
         string saveString;
-        var name = "/" + rc.GetUserName() + ".txt";
-        if (File.Exists(path + name))
+        var fileName = Path.Combine(path, rc.GetUserName() + ".json");
+        if (File.Exists(fileName))
         {
-            saveString = File.ReadAllText(path + name);
+            saveString = File.ReadAllText(fileName);
         }
         else
             saveString = "none";
