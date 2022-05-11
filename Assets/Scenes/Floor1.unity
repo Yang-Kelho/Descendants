@@ -669,7 +669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5a3d11b96cab64ca488f5674d6441e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAspect: {x: 18, y: 9}
+  targetAspect: {x: 16, y: 9}
 --- !u!1001 &521405008
 PrefabInstance:
   m_ObjectHideFlags: 0
