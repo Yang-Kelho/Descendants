@@ -16,9 +16,10 @@ GameObject:
   - component: {fileID: 1684441617041792803}
   - component: {fileID: 8575953072416416682}
   - component: {fileID: 6382209450795362015}
+  - component: {fileID: 1924482233}
   m_Layer: 0
   m_Name: Slime Boss
-  m_TagString: Enemies
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6de8d5d961fa1a24ea5a4de029a5de2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
+  stats: {fileID: 11400000, guid: f210b694fac419b4e90437d55283ba16, type: 2}
 --- !u!82 &6382209450795362015
 AudioSource:
   m_ObjectHideFlags: 0
@@ -216,7 +217,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d725e57b619c87d4a98082e2f46ff8e6, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.702
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -300,3 +301,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1924482233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7729471927698599259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92029e4692c35664bbee9087ec7f20af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numBullets: 5
+  bulletSpeed: 400

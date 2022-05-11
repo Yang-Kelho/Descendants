@@ -3272,7 +3272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05ef8a07f36b014a9961e4580a56207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPF: {fileID: 5786012857722167081, guid: b0a5156743804f246a23594f589fc20c, type: 3}
+  enemyPF: {fileID: 5786012857722167081, guid: fd66a4fb324b474499d8a2dbb1c24a20, type: 3}
 --- !u!1 &2697576337432822312
 GameObject:
   m_ObjectHideFlags: 0
@@ -3321,7 +3321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05ef8a07f36b014a9961e4580a56207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPF: {fileID: 5786012857722167081, guid: b0a5156743804f246a23594f589fc20c, type: 3}
+  enemyPF: {fileID: 5786012857722167081, guid: fd66a4fb324b474499d8a2dbb1c24a20, type: 3}
 --- !u!1 &7119351133367202262
 GameObject:
   m_ObjectHideFlags: 0

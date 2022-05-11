@@ -45,6 +45,8 @@ public class PlayerAtkController : MonoBehaviour
         {
             if (nextAttack <= 0)
             {
+                SoundManager sm = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+                sm.PlaySound("shoot");
                 GameObject firedProjectile = Instantiate(currentWeapon.weapons.projectile.projectilePrefab, transform.position, Quaternion.identity);
                 Projectile projectile = firedProjectile.GetComponent<Projectile>();
                 projectile.projectile = currentWeapon.weapons.projectile;

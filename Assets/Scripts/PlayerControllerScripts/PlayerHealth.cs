@@ -34,7 +34,11 @@ public class PlayerHealth : MonoBehaviour
         if (IsDead())
             Die();
         else
+        {
+            SoundManager sm = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+            sm.PlaySound("hurt");
             StartCoroutine(DamageFlash(0.15f));
+        }
     }
 
     public IEnumerator DamageFlash(float flashTime)

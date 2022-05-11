@@ -35,7 +35,7 @@ public class EnemyHPController : MonoBehaviour
         }
         else
         {
-            sm.PlaySound("deathBoss");
+            sm.PlaySound("deathEnemy");
             parent.GetComponent<Room>().checkClear();
         }
     }

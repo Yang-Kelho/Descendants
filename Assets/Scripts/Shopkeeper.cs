@@ -57,7 +57,6 @@ public class Shopkeeper : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.GetComponent<Projectile>().projectile.type);
         if (collision.GetComponent<Projectile>().projectile.type == ProjectileObjects.Type.player)
         {
             switch (anger)

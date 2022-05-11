@@ -17,6 +17,7 @@ public class LootChest : Interactable
     public GameObject item1;
     public GameObject item2;
     public GameObject item3;
+    public GameObject item4;
 
     public override void Interact()
     {
@@ -55,10 +56,13 @@ public class LootChest : Interactable
         switch (scene.name)
         {
             case "Floor3":
-                Instantiate(item3, position - new Vector2(0, 10), transform.rotation);
+                Instantiate(item4, position - new Vector2(0, 10), transform.rotation);
                 break;
             case "Floor2":
-                Instantiate(item2, position - new Vector2(0, 10), transform.rotation);
+                if (Random.Range(0f, 1.0f) < 0.75)
+                    Instantiate(item3, position - new Vector2(0, 10), transform.rotation);
+                else
+                    Instantiate(item4, position - new Vector2(0, 10), transform.rotation);
                 break;
             default:
                 Instantiate(item2, position - new Vector2(0, 10), transform.rotation);

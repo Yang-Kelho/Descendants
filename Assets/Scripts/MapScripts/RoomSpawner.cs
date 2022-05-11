@@ -12,7 +12,6 @@ public class RoomSpawner : MonoBehaviour
     GameObject[] roomPrefabs;
     void Start()
     {
-        Debug.Log(SceneManager.GetActiveScene().name);
         switch (SceneManager.GetActiveScene().name)
         {
             case "Floor3":

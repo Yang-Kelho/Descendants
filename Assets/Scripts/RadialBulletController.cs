@@ -44,7 +44,7 @@ public class RadialBulletController : MonoBehaviour
                     break;
         }
             // reset cooldown
-            atkCooldown = 4;
+            atkCooldown = GetComponent<Enemy>().enemy.atkCoolDown;
         }
     }
 

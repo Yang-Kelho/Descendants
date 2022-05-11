@@ -6,7 +6,10 @@ public class SoundManager : MonoBehaviour
 {
     private AudioSource doorClose;
     private AudioSource doorOpen;
+    private AudioSource deathEnemy;
     private AudioSource deathBoss;
+    private AudioSource shoot;
+    private AudioSource hurt;
     public Volumes v;
 
     private void Awake()
@@ -16,8 +19,14 @@ public class SoundManager : MonoBehaviour
         doorClose.volume = v.volume;
         doorOpen = audioSources[1];
         doorOpen.volume = v.volume;
-        deathBoss = audioSources[2];
+        deathEnemy = audioSources[2];
+        deathEnemy.volume = v.volume;
+        deathBoss = audioSources[3];
         deathBoss.volume = v.volume;
+        shoot = audioSources[4];
+        shoot.volume = v.volume;
+        hurt = audioSources[5];
+        hurt.volume = v.volume;
     }
     public void PlaySound(string sound)
     {
@@ -29,9 +38,21 @@ public class SoundManager : MonoBehaviour
         {
             doorOpen.Play();
         }
+        if (sound == "deathEnemy")
+        {
+            deathEnemy.Play();
+        }
         if (sound == "deathBoss")
         {
             deathBoss.Play();
+        }
+        if (sound == "shoot")
+        {
+            shoot.Play();
+        }
+        if (sound == "hurt")
+        {
+            hurt.Play();
         }
     }
 }
