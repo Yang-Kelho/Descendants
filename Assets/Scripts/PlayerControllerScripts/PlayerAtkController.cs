@@ -16,12 +16,12 @@ public class PlayerAtkController : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerControls();
-        weaponInv.SetToZero(); 
-        weaponInv.AddDefaultWeapon(defaultWeap);
     }
 
     private void OnEnable()
     {
+        weaponInv.SetToZero();
+        weaponInv.AddDefaultWeapon(defaultWeap);
         attack = playerControls.Player.Shoot;
         attack.Enable();
     }

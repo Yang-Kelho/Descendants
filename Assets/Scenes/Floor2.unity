@@ -8184,6 +8184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: f210b694fac419b4e90437d55283ba16, type: 2}
   rc: {fileID: 11400000, guid: a5ac6e6a880ddc44d8501e120d5fd9eb, type: 2}
+  inventory: {fileID: 11400000, guid: 34e9bd887be8470448ea24b1856334aa, type: 2}
 --- !u!114 &2089145613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8198,6 +8199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: f210b694fac419b4e90437d55283ba16, type: 2}
   rc: {fileID: 11400000, guid: a5ac6e6a880ddc44d8501e120d5fd9eb, type: 2}
+  inventory: {fileID: 11400000, guid: 34e9bd887be8470448ea24b1856334aa, type: 2}
 --- !u!114 &2089145614
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class GameClearCtrl : MonoBehaviour
     Button btn_exit;
     public PlayerStats ps;
     public RealmController rc;
+    public WeaponInventory inventory;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,7 @@ public class GameClearCtrl : MonoBehaviour
     }
     private void ExitEvent()
     {
+        inventory.Clear();
         ps.ReSet();
         // invoke the UI scene
         SceneManager.LoadScene(0); 

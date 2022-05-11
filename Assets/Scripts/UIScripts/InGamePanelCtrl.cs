@@ -29,6 +29,7 @@ public class InGamePanelCtrl : MonoBehaviour
     [SerializeField]
     PlayerStats stats;
     public RealmController rc;
+    public WeaponInventory inventory;
     // retrieve the images:
     
 
@@ -167,6 +168,7 @@ public class InGamePanelCtrl : MonoBehaviour
         SceneManager.LoadScene(sceneBuildIndex: 0);
         resume();
         stats.ReSet();
+        inventory.Clear();
     }
 
     private void UseEvent()
