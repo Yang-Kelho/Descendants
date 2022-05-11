@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007cdd28ccfeae74faecf412c83dbaeb, type: 3}
+  m_Name: BurstRifle
+  m_EditorClassIdentifier: 
+  id: 3
+  weaponPrefab: {fileID: 8932574305049560205, guid: b384f826d8619d547958070166a9f3e4, type: 3}
+  weaponType: 3
+  affix: 1
+  numOfShots: 1
+  fireRate: 0.2
+  spread: 0.2
+  tooltip: 
+  description: 
+  projectile: {fileID: 11400000, guid: d20a6ce5788e826449f41f22a07e4033, type: 2}
