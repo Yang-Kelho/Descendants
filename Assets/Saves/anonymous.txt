@@ -1,1 +1,1 @@
-{"roomScore":[],"roomType":[],"userName":"anonymous","weaponID":[0,-1],"level":"Floor1BossRoom","health":10,"gold":0,"maxHealth":12,"score":0,"speed":300.0,"dmgMod":0.0}
+{"roomScore":[],"roomType":[],"userName":"anonymous","weaponID":[0,-1],"level":"Floor1BossRoom","health":6,"gold":0,"maxHealth":6,"score":0,"speed":300.0,"dmgMod":0.0}
