@@ -1,0 +1,1 @@
+{"roomScore":[],"roomType":[],"userName":"xibinxibin","weaponID":[0,1],"level":"Floor1BossRoom","health":10,"gold":625,"maxHealth":10,"score":5000,"speed":600.0,"dmgMod":3.0}
