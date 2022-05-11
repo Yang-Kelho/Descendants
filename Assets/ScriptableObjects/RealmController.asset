@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c3535994bdeec45a1fbfd9ba7b4898, type: 3}
   m_Name: RealmController
   m_EditorClassIdentifier: 
-  logi: 0
+  logi: 1
   regi: 0
-  userName: anon
+  userName: test1

@@ -1218,6 +1218,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: ec47f75fe8aff1644ac73998f4ad31b5, type: 3}
     - target: {fileID: 7868908687654807460, guid: 4dc1caa5333c6154d8106eca221681b5, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 11400000, guid: 34e9bd887be8470448ea24b1856334aa, type: 2}
+    - target: {fileID: 7868908687654807460, guid: 4dc1caa5333c6154d8106eca221681b5, type: 3}
       propertyPath: _particleSystem
       value: 
       objectReference: {fileID: 93822906}

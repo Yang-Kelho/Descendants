@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faa915760e9f96c479939815038e6508, type: 3}
   m_Name: weaponInventory
   m_EditorClassIdentifier: 
-  currentWeapon: 1
+  currentWeapon: 0
   containers:
   - weapons: {fileID: 0}
   - weapons: {fileID: 0}

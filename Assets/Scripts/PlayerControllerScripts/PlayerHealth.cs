@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public PlayerStats stats;
     public RealmController rc;
+    public WeaponInventory inventory;
     GameObject panel_gameOver;
     Button btn_gameOver;
 
@@ -61,6 +62,7 @@ public class PlayerHealth : MonoBehaviour
             rc.UpdateHighestScore(stats.score);
         }
         stats.ReSet();
+        inventory.Clear();
 
         GameOverScreenActive();
     }

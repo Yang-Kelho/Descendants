@@ -25,28 +25,23 @@ public class RealmController : ScriptableObject
                 name = _userName,
                 password = _password
             };
-            realmApp = App.Create(new AppConfiguration("descandants-upzrf")
-            {
-                MetadataPersistenceMode = MetadataPersistenceMode.NotEncrypted
-            });
+            realmApp = App.Create(new AppConfiguration("descandants-upzrf"));
 
+            user = realmApp.CurrentUser;
             if (user == null)
             {
                 user = await realmApp.LogInAsync(Credentials.Function(payload));
                 realm = await Realm.GetInstanceAsync(new PartitionSyncConfiguration("partition", user));
-
+                logi = 1;
+                userName = _userName;
             }
             else
                 realm = Realm.GetInstance(new PartitionSyncConfiguration("partition", user));
-
-            logi = 1;
-            userName = _userName;
         }
         catch
         {
             logi = 0;
         }
-
 
         return logi;
     }
@@ -58,11 +53,8 @@ public class RealmController : ScriptableObject
             name = _userName,
             password = _password
         };
-        realmApp = App.Create(new AppConfiguration("descandants-upzrf")
-        {
-            MetadataPersistenceMode = MetadataPersistenceMode.NotEncrypted
-        });
-
+        realmApp = App.Create(new AppConfiguration("descandants-upzrf"));
+        
         user = realmApp.CurrentUser;
 
         if (user == null)
@@ -88,8 +80,10 @@ public class RealmController : ScriptableObject
 
     public async void LogOut()
     {
-        await realmApp.CurrentUser.LogOutAsync();
+        logi = 0;
+        regi = 0;
         userName = "anon";
+        await user.LogOutAsync();
         realm.Dispose();
         realm = null;
         user = null;
