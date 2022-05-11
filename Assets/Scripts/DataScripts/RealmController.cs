@@ -78,6 +78,11 @@ public class RealmController : ScriptableObject
 
             LogOut();
         }
+        else
+        {
+            regi = 0;
+            LogOut();
+        }
         return regi;
     }
 

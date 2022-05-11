@@ -1,12 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
     public PlayerStats stats;
     public RealmController rc;
+    GameObject panel_gameOver;
+    Button btn_gameOver;
 
+    public void Start()
+    {
+        panel_gameOver = GameObject.Find("Canvas").transform.Find("ingame_prefab").transform.Find("panel_gameover").gameObject;
+        btn_gameOver = GameObject.Find("Canvas").transform.Find("ingame_prefab").transform.Find("panel_gameover").transform.Find("btn_gameover").GetComponent<Button>();
+
+        btn_gameOver.onClick.AddListener(BacktoMain);
+    }
     public void PlayerHeal(int healAmount)
     {
         if (!HealthDisplay.HealthSystemStatic.IsFullHealth())
@@ -40,11 +51,14 @@ public class PlayerHealth : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         gameObject.GetComponent<PlayerMovementController>().enabled = false;
         gameObject.GetComponent<PlayerAtkController>().enabled = false;
+
         if (stats.score > rc.GetHighestScore())
         {
             rc.UpdateHighestScore(stats.score);
         }
         stats.ReSet();
+
+        GameOverScreenActive();
     }
 
     public bool IsDead()
@@ -66,5 +80,15 @@ public class PlayerHealth : MonoBehaviour
     private void OnApplicationQuit()
     {
         stats.ReSet();
+    }
+
+    private void GameOverScreenActive()
+    {
+        panel_gameOver.SetActive(true);
+    }
+
+    private void BacktoMain()
+    {
+        SceneManager.LoadScene("UI");
     }
 }
